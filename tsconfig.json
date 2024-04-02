@@ -1,0 +1,18 @@
+{
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./app",
+    "paths": {
+      "@screens/*": ["./boundedContext/presentation/screens/*"],
+      "@navigations/*": ["./boundedContext/presentation/navigations/*"],
+      "@hooks/*": ["./boundedContext/application/hooks/*"],
+      "@domain/*": ["./boundedContext/domain/*"],
+      "@infrastructure/*": ["./boundedContext/infrastructure/*"],
+      "@storage/*": ["./boundedContext/infrastructure/storage/*"],
+      "@repositories/*": ["./boundedContext/infrastructure/repositories/*"],
+      "@components/*": ["./boundedContext/presentation/components/*"],
+      "@application/*": ["./boundedContext/application/*"],
+      "@utils/*": ["./utils/*"],
+    }
+  }
+}
