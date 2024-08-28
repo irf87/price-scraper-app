@@ -1,6 +1,6 @@
-import { api } from '@infrastructure/repositories/axiosBase';
-import { Product, ProductScraped } from '@domain/products/product';
-import { ProductScrapedRecords } from '@domain/products/productRecords';
+import {api} from '@infrastructure/repositories/axiosBase';
+import {Product, ProductScraped} from '@domain/products/product';
+import {ProductScrapedRecords} from '@domain/products/productRecords';
 
 export async function getProductRequest() {
   const response = await api.get<Product[]>('products');
@@ -13,6 +13,8 @@ export async function getProductScrapedRequest() {
 }
 
 export async function getProductScrapedRecords(productScrapedId: number) {
-  const response = await api.get<ProductScrapedRecords[]>(`reports/product-scraped/?id=${productScrapedId}`);
+  const response = await api.get<ProductScrapedRecords>(
+    `reports/product-scraped/?id=${productScrapedId}`,
+  );
   return response.data;
 }

@@ -1,4 +1,4 @@
-import { MMKV } from 'react-native-mmkv'
+import {MMKV} from 'react-native-mmkv';
 
 const storage = new MMKV();
 
@@ -6,21 +6,29 @@ export enum StorageTypes {
   object = 'object',
   number = 'number',
   string = 'string',
-  boolean = 'boolean'
+  boolean = 'boolean',
 }
 
 function useLocalStorage() {
-
-  function saveData (keyStorage: string, objet: string | number | boolean | Uint8Array | object) {
+  function saveData(
+    keyStorage: string,
+    objet: string | number | boolean | Uint8Array | object,
+  ) {
     let valueToStore: string | number | boolean | Uint8Array = '';
-    if (typeof objet === 'object') valueToStore = JSON.stringify(objet);
-    if (typeof objet === 'string' || typeof objet === 'number' || typeof objet === 'boolean') {
+    if (typeof objet === 'object') {
+      valueToStore = JSON.stringify(objet);
+    }
+    if (
+      typeof objet === 'string' ||
+      typeof objet === 'number' ||
+      typeof objet === 'boolean'
+    ) {
       valueToStore = objet as string | number | boolean | Uint8Array;
     }
     storage.set(keyStorage, valueToStore);
   }
 
-  function getData (keyStorage: string, type = StorageTypes.string) {
+  function getData(keyStorage: string, type = StorageTypes.string) {
     if (type === StorageTypes.string) {
       return storage.getString(keyStorage);
     } else if (type === StorageTypes.object) {
@@ -33,8 +41,7 @@ function useLocalStorage() {
     return '';
   }
 
-  return { saveData, getData };
-
+  return {saveData, getData};
 }
 
 export default useLocalStorage;

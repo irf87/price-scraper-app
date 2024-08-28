@@ -14,12 +14,15 @@ export interface ProductScraped extends Product {
 }
 
 export const getDomain = (url?: string) => {
-  if (!url) return '';
-  try {
-    const parsedUrl = new URL(url);
-    return parsedUrl.hostname;
-  } catch (error) {
-    console.error('Error al analizar la URL:', error);
+  if (!url) {
     return '';
   }
-}
+  const regex = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/g;
+  const match = regex.exec(url);
+
+  if (match && match.length > 1) {
+    return match[1];
+  } else {
+    return '';
+  }
+};

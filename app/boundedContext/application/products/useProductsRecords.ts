@@ -1,25 +1,24 @@
-import dayjs from 'dayjs';
-import { useQuery  } from 'react-query';
-import { getProductScrapedRecords } from '@repositories/products';
+import {useQuery} from 'react-query';
+import {getProductScrapedRecords} from '@repositories/products';
 
-import { getDomain } from '@domain/products/product';
-import { ProductScrapedRecords } from '@domain/products/productRecords';
-import { convertToPrice } from '@domain/currencies/currency';
-
+import {convertToPrice} from '@domain/currencies/currency';
 
 const QUERY = 'product-scraped-records';
 
-export function useProductScrapedRecords (productScrapedId: number) {
-  const { data, isError, isFetched, isFetching } = useQuery(`${QUERY}`, () => getProductScrapedRecords(productScrapedId), 
-  { 
-    select: (productScrapedRecords) => {
-      const [objet] = productScrapedRecords;
-      objet.minPrice = convertToPrice(objet.minPrice);
-      objet.maxPrice = convertToPrice(objet.maxPrice);
-      objet.avgPrice = convertToPrice(objet.avgPrice);
-      return objet;
+export function useProductScrapedRecords(productScrapedId: number) {
+  const {data, isError, isFetched, isFetching} = useQuery(
+    `${QUERY}`,
+    () => getProductScrapedRecords(productScrapedId),
+    {
+      select: productScrapedRecords => {
+        const object = productScrapedRecords;
+        object.minPrice = convertToPrice(object.minPrice);
+        object.maxPrice = convertToPrice(object.maxPrice);
+        object.avgPrice = convertToPrice(object.avgPrice);
+        return object;
+      },
     },
-  });
+  );
 
   return {
     productScrapedRecordsState: {
@@ -28,5 +27,5 @@ export function useProductScrapedRecords (productScrapedId: number) {
       isFetching,
     },
     productScrapedRecords: data,
-  }
+  };
 }
