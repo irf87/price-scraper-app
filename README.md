@@ -82,38 +82,38 @@ To learn more about React Native, take a look at the following resources:
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
 
-To generate apk
+# To generate apk
 
-# create assets folder in the current project
+## create assets folder in the current project
 ```bash
 $ mkdir android/app/src/main/assets
 ```
 
-# create bundle script
+## create bundle script
 ```bash
 $ react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
 ```
 
-# execute command to run android to create debug apk
+## execute command to run android to create debug apk
 ```bash
 $ react-native run-android
 ```
 
-# change to android folder
+## change to android folder
 ```bash
 $ cd android
 ```
 
-# build debug apk
+## build debug apk
 ```bash
 $ ./gradlew assembleDebug
 ```
 
-# install app
+## install app
 ```bash
 $ ./gradlew :app:installDebug
 ```
 
-# the apk new apk is in:
+## the apk new apk is in:
 
 /android/app/build/outputs/apk/debug
