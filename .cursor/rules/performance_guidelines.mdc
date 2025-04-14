@@ -1,0 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+   - Implement proper memo and callback hooks
+   - Use proper image optimization
+   - Follow React Native performance best practices

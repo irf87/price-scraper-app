@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+   - Use React Native Paper components when possible for consistency
+   - Always check the compatibility for android or ios, because this is a project for mobile not for web
+   - Implement responsive layouts using safe area context
+   - Follow atomic design principles for component organization
+   - Use SVG for icons and charts when possible
