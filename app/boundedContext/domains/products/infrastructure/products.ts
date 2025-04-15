@@ -1,6 +1,6 @@
 import {api} from '@infrastructure/repositories/axiosBase';
-import {Product, ProductScraped} from '@domain/products/product';
-import {ProductScrapedRecords} from '@domain/products/productRecords';
+import {Product, ProductScraped} from '@domains/products/domain/product';
+import {ProductScrapedRecords} from '@domains/products/domain/productRecords';
 
 export async function getProductRequest() {
   const response = await api.get<Product[]>('products');

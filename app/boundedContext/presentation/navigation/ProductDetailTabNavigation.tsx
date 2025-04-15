@@ -1,4 +1,4 @@
-import { StackScreenProps, ProductDetailStackPramList } from '@domain/navigation';
+import { StackScreenProps, ProductDetailStackPramList } from 'boundedContext/presentation/navigation';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 

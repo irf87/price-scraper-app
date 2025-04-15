@@ -2,13 +2,13 @@ import React from 'react';
 import {View, Image, Linking, ScrollView} from 'react-native';
 import {Text, Button} from 'react-native-paper';
 
-import {ProductScrapedFormated} from '@application/products/useProducts';
-import {ProductScrapedRecords} from '@domain/products/productRecords';
+import {ProductScrapedFormatted} from '@domains/products/application/useProducts';
+import {ProductScrapedRecords} from '@domains/products/domain/productRecords';
 
 import style from './styles';
 
 interface Props {
-  productDetail: Readonly<ProductScrapedFormated>;
+  productDetail: Readonly<ProductScrapedFormatted>;
   productScrapedRecord: Readonly<ProductScrapedRecords>;
 }
 

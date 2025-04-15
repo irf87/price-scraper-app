@@ -1,9 +1,9 @@
 import React from 'react';
 import {SafeAreaView, ActivityIndicator} from 'react-native';
 
-import {StackScreenProductDetailProps} from '@domain/navigation';
+import {StackScreenProductDetailProps} from 'boundedContext/presentation/navigation';
 
-import {useProductScrapedRecords} from '@application/products/useProductsRecords';
+import {useProductScrapedRecords} from 'boundedContext/products/application/useProductsRecords';
 
 import ProductScrapedDetail from '@components/products/ProductScrapedDetail/ProductScrapedDetail';
 

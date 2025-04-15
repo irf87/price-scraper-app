@@ -4,9 +4,9 @@ import {ActivityIndicator, SafeAreaView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppStackParamList} from '@domain/navigation';
-import {ProductScrapedFormated} from '@application/products/useProducts';
-import {useProductsScraped} from '@application/products/useProducts';
+import {AppStackParamList} from 'boundedContext/presentation/navigation';
+import {ProductScrapedFormated} from 'boundedContext/products/application/useProducts';
+import {useProductsScraped} from 'boundedContext/products/application/useProducts';
 
 import ProductsScrapedList from '@components/products/ProductsScrapedList/ProductsScrapedList';
 

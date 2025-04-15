@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const style = StyleSheet.create({
   descriptionContainter: {
@@ -18,7 +18,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
   },
   img: {
-    justifyContent: "center",
+    justifyContent: 'center',
     height: 48,
     width: 48,
   },
@@ -29,7 +29,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 8,
-    marginBottom: 8
+    marginBottom: 8,
   },
   currentPrice: {
     marginRight: 8,
@@ -37,13 +37,13 @@ const style = StyleSheet.create({
   priceBehaviourSection: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 16
+    marginBottom: 16,
   },
   buttonSection: {
     marginLeft: 40,
     marginRight: 40,
     alignItems: 'center',
-  }
+  },
 });
 
 export default style;

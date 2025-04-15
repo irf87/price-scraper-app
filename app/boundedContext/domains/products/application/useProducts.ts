@@ -2,14 +2,14 @@ import {useQuery} from 'react-query';
 import {
   getProductRequest,
   getProductScrapedRequest,
-} from '@repositories/products';
+} from '@domains/products/infrastructure/products';
 
-import {ProductScraped, getDomain} from '@domain/products/product';
-import {convertToPrice} from '@domain/currencies/currency';
+import {ProductScraped, getDomain} from '@domains/products/domain/product';
+import {convertToPrice} from '@utils/currency';
 
-import {stringDateFormated} from '@utils/date';
+import {stringDateFormatted} from '@utils/date';
 
-export interface ProductScrapedFormated extends ProductScraped {
+export interface ProductScrapedFormatted extends ProductScraped {
   urlScrapedDomainName?: string;
 }
 
@@ -35,16 +35,16 @@ export function useProductsScraped() {
     () => getProductScrapedRequest(),
     {
       select: dataProductScraped => {
-        const newProductScrapedFormated: ProductScrapedFormated[] =
+        const newProductScrapedFormatted: ProductScrapedFormatted[] =
           dataProductScraped.map(productScraped => {
             return {
               ...productScraped,
               urlScrapedDomainName: getDomain(productScraped.urlToScrape),
-              date: stringDateFormated(productScraped.date),
+              date: stringDateFormatted(productScraped.date),
               price: convertToPrice(productScraped.price),
             };
           });
-        return newProductScrapedFormated;
+        return newProductScrapedFormatted;
       },
     },
   );

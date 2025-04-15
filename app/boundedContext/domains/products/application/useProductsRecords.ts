@@ -1,8 +1,8 @@
 import {useQuery, useQueryClient} from 'react-query';
-import {getProductScrapedRecords} from '@repositories/products';
+import {getProductScrapedRecords} from '@domains/products/infrastructure/products';
 
-import {convertToPrice} from '@domain/currencies/currency';
-import {ProductScrapedRecords} from '@domain/products/productRecords';
+import {convertToPrice} from '@utils/currency';
+import {ProductScrapedRecords} from '@domains/products/domain/productRecords';
 
 const QUERY = 'product-scraped-records';
 

@@ -1,6 +1,6 @@
 import { RouteProp, ParamListBase } from '@react-navigation/native';
 
-import { ProductScrapedFormated } from '@application/products/useProducts';
+import { ProductScrapedFormated } from 'boundedContext/products/application/useProducts';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 

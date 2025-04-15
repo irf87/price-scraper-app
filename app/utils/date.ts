@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-export const stringDateFormated = (unformatedDate: string) => {
+export const stringDateFormatted = (unformatedDate: string) => {
   const newDate = dayjs(unformatedDate);
   if (!newDate.isValid()) {
     return unformatedDate;

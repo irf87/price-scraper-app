@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { Text, TextInput, Button } from 'react-native-paper';
 
-import { AppStackParamList } from '@domain/navigation';
+import { AppStackParamList } from 'boundedContext/presentation/navigation';
 import useLocalStorage from '@storage/useLocalStorage';
 
 import style from './styles';
