@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Image, Linking, ScrollView} from 'react-native';
-import {Text, Button} from 'react-native-paper';
+import {Text, Button, Card} from 'react-native-paper';
 
 import {ProductScrapedFormatted} from '@domains/products/application/useProducts';
 import {ProductScrapedRecords} from '@domains/products/domain/productRecords';
@@ -15,49 +15,95 @@ interface Props {
 function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
   return (
     <ScrollView>
-      <View>
-        <View style={style.descriptionContainter}>
+      <View style={style.container}>
+        <View style={style.lastUpdateContainer}>
+          <Text variant="bodySmall" style={style.lastUpdateText}>
+            Última actualización: {productDetail?.date}
+          </Text>
+        </View>
+        <View style={style.productNameContainer}>
+          <Text variant="titleLarge" style={style.productName}>
+            {productDetail?.name}
+          </Text>
+        </View>
+        <View style={style.imageContainer}>
           <Image
             style={style.img}
             source={{uri: productDetail?.urlImg || ''}}
+            resizeMode="cover"
           />
+        </View>
+        <View style={style.descriptionContainer}>
           <Text variant="bodyMedium" style={style.description}>
             {productDetail?.description}
           </Text>
         </View>
-        <Text variant="bodySmall">
-          Última actualización: {productDetail?.date}
-        </Text>
         <View style={style.currentPriceSection}>
-          <Text variant="titleSmall" style={style.currentPrice}>
+          <Text variant="titleMedium" style={style.currentPriceLabel}>
             Precio actual:
           </Text>
-          <Text variant="titleSmall">{productDetail.price}</Text>
+          <Text variant="headlineMedium" style={style.currentPriceValue}>
+            {productDetail.price}
+          </Text>
         </View>
         <View style={style.priceBehaviourSection}>
-          <View>
-            <Text variant="bodySmall">Precio Minimo</Text>
-            <Text variant="bodySmall">{productScrapedRecord?.minPrice}</Text>
-          </View>
-          <View>
-            <Text variant="bodySmall">Precio Máximo</Text>
-            <Text variant="bodySmall">{productScrapedRecord?.maxPrice}</Text>
-          </View>
-          <View>
-            <Text variant="bodySmall">Precio promedio</Text>
-            <Text variant="bodySmall">{productScrapedRecord?.avgPrice}</Text>
-          </View>
+          <Card style={style.priceCard}>
+            <Card.Content style={style.priceCardContent}>
+              <Text style={style.priceCardIcon}>📉</Text>
+              <Text variant="bodySmall" style={style.priceCardTitle}>
+                Precio Mínimo
+              </Text>
+              <Text
+                variant="bodyMedium"
+                style={style.priceCardValue}
+                numberOfLines={1}
+                ellipsizeMode="tail">
+                {productScrapedRecord?.minPrice}
+              </Text>
+            </Card.Content>
+          </Card>
+          <Card style={style.priceCard}>
+            <Card.Content style={style.priceCardContent}>
+              <Text style={style.priceCardIcon}>📈</Text>
+              <Text variant="bodySmall" style={style.priceCardTitle}>
+                Precio Máximo
+              </Text>
+              <Text
+                variant="bodyMedium"
+                style={style.priceCardValue}
+                numberOfLines={1}
+                ellipsizeMode="tail">
+                {productScrapedRecord?.maxPrice}
+              </Text>
+            </Card.Content>
+          </Card>
+          <Card style={style.priceCard}>
+            <Card.Content style={style.priceCardContent}>
+              <Text style={style.priceCardIcon}>⚖️</Text>
+              <Text variant="bodySmall" style={style.priceCardTitle}>
+                Precio Promedio
+              </Text>
+              <Text
+                variant="bodyMedium"
+                style={style.priceCardValue}
+                numberOfLines={1}
+                ellipsizeMode="tail">
+                {productScrapedRecord?.avgPrice}
+              </Text>
+            </Card.Content>
+          </Card>
         </View>
         <View style={style.buttonSection}>
           <Text variant="bodySmall">{productDetail?.urlScrapedDomainName}</Text>
+          <Button
+            mode="contained"
+            onPress={() => {
+              Linking.openURL(productDetail?.urlToScrape);
+            }}
+            style={style.button}>
+            Abrir en el navegador
+          </Button>
         </View>
-        <Button
-          mode="contained"
-          onPress={() => {
-            Linking.openURL(productDetail?.urlToScrape);
-          }}>
-          Abrir en el navegador
-        </Button>
       </View>
     </ScrollView>
   );
