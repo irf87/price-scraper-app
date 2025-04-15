@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 
-import ProductList from '@components/products/ProductsScrapedList/ProductsScrapedList';
+import ProductList from '@domains/products/presentation/ProductsScrapedList/ProductsScrapedList';
 
 const defaultArray = [
   {
