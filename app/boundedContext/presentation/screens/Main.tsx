@@ -4,11 +4,11 @@ import {ActivityIndicator, SafeAreaView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppStackParamList} from 'boundedContext/presentation/navigation';
-import {ProductScrapedFormated} from 'boundedContext/products/application/useProducts';
-import {useProductsScraped} from 'boundedContext/products/application/useProducts';
+import {AppStackParamList} from '@navigation/navigationTypes';
+import {ProductScrapedFormatted} from '@domains/products/application/useProducts';
+import {useProductsScraped} from '@domains/products/application/useProducts';
 
-import ProductsScrapedList from '@components/products/ProductsScrapedList/ProductsScrapedList';
+import ProductsScrapedList from '@domains/products/presentation/ProductsScrapedList/ProductsScrapedList';
 
 function Main() {
   const {navigate} =
@@ -16,9 +16,8 @@ function Main() {
   const {productsScrapedState, productsScraped, refetchProductScraped} =
     useProductsScraped();
 
-  function handleOnPressProduct(productScraped: ProductScrapedFormated) {
+  function handleOnPressProduct(productScraped: ProductScrapedFormatted) {
     navigate('ProductDetail', productScraped);
-    // navigate('ProductDetail');
   }
 
   return (

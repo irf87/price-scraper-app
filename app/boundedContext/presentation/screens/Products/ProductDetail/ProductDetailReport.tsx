@@ -5,7 +5,7 @@ import * as scale from 'd3-scale';
 import * as shape from 'd3-shape';
 import {View, ScrollView} from 'react-native';
 
-import {useGetStoredProductScrapedRecords} from 'boundedContext/products/application/useProductsRecords';
+import {useGetStoredProductScrapedRecords} from '@domains/products/application/useProductsRecords';
 import {convertToPrice} from '@utils/currency';
 
 import {formatDay} from '@utils/date';

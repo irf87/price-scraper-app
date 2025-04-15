@@ -1,11 +1,11 @@
 import React from 'react';
 import {SafeAreaView, ActivityIndicator} from 'react-native';
 
-import {StackScreenProductDetailProps} from 'boundedContext/presentation/navigation';
+import {StackScreenProductDetailProps} from '@navigation/navigationTypes';
 
-import {useProductScrapedRecords} from 'boundedContext/products/application/useProductsRecords';
+import {useProductScrapedRecords} from '@domains/products/application/useProductsRecords';
 
-import ProductScrapedDetail from '@components/products/ProductScrapedDetail/ProductScrapedDetail';
+import ProductScrapedDetail from '@domains/products/presentation/ProductScrapedDetail/ProductScrapedDetail';
 
 interface Props extends StackScreenProductDetailProps<'ProductDetailData'> {}
 
