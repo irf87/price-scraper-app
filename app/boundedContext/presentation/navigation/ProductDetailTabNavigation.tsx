@@ -16,7 +16,10 @@ interface Props extends StackScreenProps<'ProductDetail'> {}
 function ProductDetailTabNavigation({route}: Props) {
   const productParams = route.params;
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Tab.Screen
         initialParams={productParams}
         name="ProductDetailData"

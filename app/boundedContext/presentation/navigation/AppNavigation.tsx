@@ -2,11 +2,9 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {NavigationRoute} from '@navigation/AppNavigation';
-
-import Main from '@screens/Main';
+import ProductList from '@screens/Products/List/ProductList';
 import ConfigServer from '@screens/ConfigServer/ConfigServer';
-// import ProductDetail from '@screens/Products/ProductDetail';
+
 import ProductDetailTabNavigation from '@navigation/ProductDetailTabNavigation';
 
 const Stack = createNativeStackNavigator();
@@ -20,15 +18,13 @@ export default function AppNavigation() {
         component={ConfigServer}
       />
       <Stack.Screen
-        name="Main"
+        name="ProductList"
         options={{title: 'Productos activos'}}
-        component={Main}
+        component={ProductList}
       />
       <Stack.Screen
         name="ProductDetail"
-        options={({route}: {route: NavigationRoute<'ProductDetail'>}) => ({
-          title: route?.params?.name || 'Detalle del producto',
-        })}
+        options={{title: 'Detalle del producto'}}
         component={ProductDetailTabNavigation}
       />
     </Stack.Navigator>

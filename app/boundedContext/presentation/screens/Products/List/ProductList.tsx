@@ -10,7 +10,7 @@ import {useProductsScraped} from '@domains/products/application/useProducts';
 
 import ProductsScrapedList from '@domains/products/presentation/ProductsScrapedList/ProductsScrapedList';
 
-function Main() {
+function ProductList() {
   const {navigate} =
     useNavigation<NativeStackNavigationProp<AppStackParamList>>();
   const {productsScrapedState, productsScraped, refetchProductScraped} =
@@ -34,4 +34,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default ProductList;
