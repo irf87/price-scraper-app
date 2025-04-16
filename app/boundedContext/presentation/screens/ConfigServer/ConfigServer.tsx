@@ -7,6 +7,7 @@ import {Text, TextInput, Button} from 'react-native-paper';
 
 import {AppStackParamList} from '@navigation/navigationTypes';
 import useLocalStorage from '@infrastructure/storage/useLocalStorage';
+import {updateAxiosBaseUrl} from '@infrastructure/repositories/axiosBase';
 
 import style from './styles';
 
@@ -20,6 +21,7 @@ const ConfigServer = ({navigation}: Props) => {
 
   function handleOnAddServer() {
     saveData('urlServer', urlServer);
+    updateAxiosBaseUrl();
     setTimeout(() => {
       navigation.navigate('Main');
     }, 300);
