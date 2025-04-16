@@ -5,9 +5,11 @@ import {ProductScrapedFormatted} from '@domains/products/application/useProducts
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 export type AppStackParamList = {
-  Main: undefined;
   ConfigServer: undefined;
   ProductDetail: ProductScrapedFormatted;
+  ProductList: undefined;
+  Lists: undefined;
+  Categories: undefined;
 };
 
 export type ProductDetailStackPramList = {

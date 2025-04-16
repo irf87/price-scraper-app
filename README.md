@@ -110,3 +110,37 @@ $ ./gradlew :app:installDebug
 ## the apk new apk is in:
 
 /android/app/build/outputs/apk/debug
+
+## Icon Configuration
+
+### Android
+The project is already configured to use Material Icons from `react-native-vector-icons`. The configuration is done in `android/app/build.gradle`.
+
+### iOS
+To ensure icons work properly on iOS:
+
+1. Make sure the following fonts are listed in `ios/PriceScrapperApp/Info.plist` under `UIAppFonts`:
+```xml
+<key>UIAppFonts</key>
+<array>
+    <string>MaterialIcons.ttf</string>
+    <string>MaterialCommunityIcons.ttf</string>
+</array>
+```
+
+2. Run the following commands to link the fonts:
+```bash
+cd ios
+pod install
+cd ..
+```
+
+### Building APK for Android
+When building the APK for Android, the icons will be automatically included in the build. No additional steps are required.
+
+To generate a release APK:
+```bash
+cd android
+./gradlew assembleRelease
+```
+The APK will be generated at `android/app/build/outputs/apk/release/app-release.apk`

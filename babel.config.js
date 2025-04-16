@@ -13,6 +13,8 @@ module.exports = {
           '@repositories': './app/boundedContext/infrastructure/repositories',
           '@utils': './app/utils',
           '@design-system': './app/design-system',
+          '@hooks': './app/boundedContext/presentation/hooks',
+          '@components': './app/boundedContext/presentation/components',
         },
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },

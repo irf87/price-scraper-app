@@ -23,14 +23,14 @@ const ConfigServer = ({navigation}: Props) => {
     saveData('urlServer', urlServer);
     updateAxiosBaseUrl();
     setTimeout(() => {
-      navigation.navigate('Main');
+      navigation.navigate('ProductList');
     }, 300);
   }
 
   useEffect(() => {
     const server = getData('urlServer');
     if (server) {
-      navigation.navigate('Main');
+      navigation.navigate('ProductList');
     }
   }, []);
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableRipple} from 'react-native-paper';
-import {ScrollView, RefreshControl} from 'react-native';
+import {ScrollView, RefreshControl, Animated} from 'react-native';
 
 import {ProductScrapedFormatted} from '@domains/products/application/useProducts';
 
@@ -10,6 +10,46 @@ interface Props {
   productsScrapedList: ProductScrapedFormatted[];
   onPressProduct: (productScrapedFormatted: ProductScrapedFormatted) => void;
   onRefetch: () => void;
+}
+
+interface ProductItemProps {
+  product: ProductScrapedFormatted;
+  onPress: () => void;
+}
+
+function ProductItem({product, onPress}: ProductItemProps) {
+  const scaleAnim = React.useRef(new Animated.Value(1)).current;
+
+  const handlePressIn = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 0.95,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const handlePressOut = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  return (
+    <TouchableRipple
+      rippleColor="rgba(0, 0, 0, .12)"
+      onPress={onPress}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}>
+      <Animated.View style={{transform: [{scale: scaleAnim}]}}>
+        <ProductRow
+          urlImg={product.urlImg}
+          name={product.name}
+          urlScrapedDomainName={product.urlScrapedDomainName || ''}
+          price={product.price.toString()}
+        />
+      </Animated.View>
+    </TouchableRipple>
+  );
 }
 
 function ProductsScrapedList({
@@ -23,17 +63,11 @@ function ProductsScrapedList({
         <RefreshControl refreshing={false} onRefresh={onRefetch} />
       }>
       {productsScrapedList.map(productScraped => (
-        <TouchableRipple
+        <ProductItem
           key={productScraped.productScrapedId}
-          rippleColor="rgba(0, 0, 0, .12)"
-          onPress={() => onPressProduct(productScraped)}>
-          <ProductRow
-            urlImg={productScraped.urlImg}
-            name={productScraped.name}
-            urlScrapedDomainName={productScraped.urlScrapedDomainName || ''}
-            price={productScraped.price.toString()}
-          />
-        </TouchableRipple>
+          product={productScraped}
+          onPress={() => onPressProduct(productScraped)}
+        />
       ))}
     </ScrollView>
   );
