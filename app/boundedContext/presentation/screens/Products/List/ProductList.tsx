@@ -29,7 +29,8 @@ const {width} = Dimensions.get('window');
 const DRAWER_WIDTH = width * 0.85;
 
 function ProductList() {
-  const {navigate} = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
+  const {navigate} =
+    useNavigation<NativeStackNavigationProp<AppStackParamList>>();
   const {productsScrapedState, productsScraped, refetchProductScraped} =
     useProductsScraped();
   const {isOpen, toggleDrawer, spin} = useDrawer();
@@ -49,7 +50,8 @@ function ProductList() {
   }
 
   return (
-    <SafeAreaView style={[styles.container, {backgroundColor: theme.colors.background}]}>
+    <SafeAreaView
+      style={[styles.container, {backgroundColor: theme.colors.background}]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={toggleDrawer} style={styles.menuButton}>
           <Animated.View style={{transform: [{rotate: spin}]}}>

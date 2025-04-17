@@ -8,6 +8,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import ProductDetailData from '@screens/Products/ProductDetail/ProductDetailData';
 import ProductDetailReport from '@screens/Products/ProductDetail/ProductDetailReport';
+import ProductScrapperSettings from '@screens/Products/ProductDetail/ProductScrapperSettings';
 
 const Tab = createBottomTabNavigator<ProductDetailStackPramList>();
 
@@ -44,6 +45,17 @@ function ProductDetailTabNavigation({route}: Props) {
           ),
         }}
         component={ProductDetailReport}
+      />
+      <Tab.Screen
+        initialParams={productParams}
+        name="ScrapperProductoSetting"
+        options={{
+          title: 'Configuración',
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons name="cog" color={color} size={size} />
+          ),
+        }}
+        component={ProductScrapperSettings}
       />
     </Tab.Navigator>
   );

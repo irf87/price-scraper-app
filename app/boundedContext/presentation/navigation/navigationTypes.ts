@@ -15,6 +15,7 @@ export type AppStackParamList = {
 export type ProductDetailStackPramList = {
   ProductDetailData: ProductScrapedFormatted;
   ProductDetailReport: undefined;
+  ScrapperProductoSetting: ProductScrapedFormatted;
 };
 
 export type NavigationRoute<T extends string> = RouteProp<ParamListBase, T>;
