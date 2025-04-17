@@ -1,0 +1,19 @@
+{
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito"
+  },
+  "configServer": {
+    "title": "Configuración del Servidor",
+    "serverUrl": "URL del Servidor",
+    "apiKey": "Clave API",
+    "saveConfig": "Guardar Configuración",
+    "configSaved": "Configuración guardada exitosamente",
+    "configError": "Error al guardar la configuración"
+  }
+} 

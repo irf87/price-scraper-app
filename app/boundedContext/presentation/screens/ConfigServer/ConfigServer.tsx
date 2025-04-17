@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useTranslation} from 'react-i18next';
 
 import {Text, TextInput, Button} from 'react-native-paper';
 
@@ -16,6 +17,7 @@ interface Props {
 }
 
 const ConfigServer = ({navigation}: Props) => {
+  const {t} = useTranslation();
   const [urlServer, setUrlServer] = useState('');
   const {saveData, getData} = useLocalStorage();
 
@@ -36,19 +38,17 @@ const ConfigServer = ({navigation}: Props) => {
 
   return (
     <SafeAreaView style={style.container}>
-      <Text variant="bodyMedium">
-        Ingresa la URL de tu servidor, ejemplo: http://198.168.1.0
-      </Text>
+      <Text variant="bodyMedium">{t('configServer.serverUrl')}</Text>
       <View style={style.section}>
         <TextInput
-          label="URL"
+          label={t('configServer.serverUrl')}
           keyboardType="url"
           style={style.input}
           onChangeText={text => setUrlServer(text)}
           value={urlServer}
         />
         <Button mode="contained" onPress={() => handleOnAddServer()}>
-          Agregar
+          {t('common.save')}
         </Button>
       </View>
     </SafeAreaView>

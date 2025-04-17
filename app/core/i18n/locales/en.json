@@ -1,0 +1,19 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "configServer": {
+    "title": "Server Configuration",
+    "serverUrl": "Server URL",
+    "apiKey": "API Key",
+    "saveConfig": "Save Configuration",
+    "configSaved": "Configuration saved successfully",
+    "configError": "Error saving configuration"
+  }
+} 
