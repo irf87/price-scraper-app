@@ -1,8 +1,9 @@
 // @ts-nocheck
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {useTranslation} from 'react-i18next';
 
-import ProductList from '@screens/Products/List/ProductList';
+import ProductScrapedList from '@screens/ScrapedProducts/ScrapedProductsListScreen';
 import ConfigServer from '@screens/ConfigServer/ConfigServer';
 import ListScreen from '@screens/Lists/ListScreen';
 import CategoriesScreen from '@screens/Categories/CategoriesScreen';
@@ -12,17 +13,18 @@ import ProductDetailTabNavigation from '@navigation/ProductDetailTabNavigation';
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigation() {
+  const {t} = useTranslation();
   return (
     <Stack.Navigator initialRouteName="ConfigServer">
       <Stack.Screen
         name="ConfigServer"
-        options={{title: 'Servidor'}}
+        options={{title: t('navigation.server')}}
         component={ConfigServer}
       />
       <Stack.Screen
-        name="ProductList"
+        name="ProductScrapedList"
         options={{headerShown: false}}
-        component={ProductList}
+        component={ProductScrapedList}
       />
       <Stack.Screen
         name="Lists"
@@ -36,7 +38,7 @@ export default function AppNavigation() {
       />
       <Stack.Screen
         name="ProductDetail"
-        options={{title: 'Detalle del producto'}}
+        options={{title: t('scrapedProducts.productDetail')}}
         component={ProductDetailTabNavigation}
       />
     </Stack.Navigator>

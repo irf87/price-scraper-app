@@ -15,5 +15,27 @@
     "saveConfig": "Save Configuration",
     "configSaved": "Configuration saved successfully",
     "configError": "Error saving configuration"
+  },
+  "scrapedProducts": {
+    "errors": {
+      "idRequired": "ID is required for getScrapedProductById",
+      "categoryIdRequired": "Category ID is required for getScrapedProductByCategory",
+      "listIdRequired": "List ID is required for getScrapedProductByList",
+      "unknownQueryFunction": "Unknown query function: {{function}}"
+    },
+    "activeProducts": "Active Products",
+    "productDetail": "Product Detail"
+  },
+  "navigation": {
+    "server": "Server",
+    "lists": "Lists",
+    "categories": "Categories"
+  },
+  "drawer": {
+    "sections": "Sections",
+    "products": "Products",
+    "lists": "Lists",
+    "categories": "Categories",
+    "setup": "Set Up"
   }
 } 

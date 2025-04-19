@@ -25,14 +25,18 @@ const ConfigServer = ({navigation}: Props) => {
     saveData('urlServer', urlServer);
     updateAxiosBaseUrl();
     setTimeout(() => {
-      navigation.navigate('ProductList');
+      navigation.navigate('ProductScrapedList', {
+        queryFunction: 'getAllScrapedProductsEnabled',
+      });
     }, 300);
   }
 
   useEffect(() => {
     const server = getData('urlServer');
     if (server) {
-      navigation.navigate('ProductList');
+      navigation.navigate('ProductScrapedList', {
+        queryFunction: 'getAllScrapedProductsEnabled',
+      });
     }
   }, []);
 

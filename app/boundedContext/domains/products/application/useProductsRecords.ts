@@ -1,5 +1,5 @@
 import {useQuery, useQueryClient} from 'react-query';
-import {getProductScrapedRecords} from '@domains/products/infrastructure/products';
+import {getProductScrapedRecords} from '@domains/products/infrastructure/productRepositoryImpl';
 
 import {convertToPrice} from '@utils/currency';
 import {ProductScrapedRecords} from '@domains/products/domain/productRecords';

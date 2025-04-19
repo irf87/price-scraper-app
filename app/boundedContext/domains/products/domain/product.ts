@@ -6,23 +6,7 @@ export interface Product {
   urlImg?: string;
 }
 
-export interface ProductScraped extends Product {
-  productScrapedId: number;
-  urlToScrape: string;
-  price: number | string;
-  date: string;
-}
+export type ProductWithRequiredId = Pick<Product, 'id'> &
+  Partial<Omit<Product, 'id'>>;
 
-export const getDomain = (url?: string) => {
-  if (!url) {
-    return '';
-  }
-  const regex = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/g;
-  const match = regex.exec(url);
-
-  if (match && match.length > 1) {
-    return match[1];
-  } else {
-    return '';
-  }
-};
+export type ProductWithOptionalId = Partial<Product>;

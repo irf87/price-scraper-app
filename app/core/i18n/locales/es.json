@@ -15,5 +15,27 @@
     "saveConfig": "Guardar Configuración",
     "configSaved": "Configuración guardada exitosamente",
     "configError": "Error al guardar la configuración"
+  },
+  "scrapedProducts": {
+    "errors": {
+      "idRequired": "Se requiere ID para getScrapedProductById",
+      "categoryIdRequired": "Se requiere ID de categoría para getScrapedProductByCategory",
+      "listIdRequired": "Se requiere ID de lista para getScrapedProductByList",
+      "unknownQueryFunction": "Función de consulta desconocida: {{function}}"
+    },
+    "activeProducts": "Productos activos",
+    "productDetail": "Detalle del producto"
+  },
+  "navigation": {
+    "server": "Servidor",
+    "lists": "Listas",
+    "categories": "Categorías"
+  },
+  "drawer": {
+    "sections": "Secciones",
+    "products": "Productos",
+    "lists": "Listas",
+    "categories": "Categorías",
+    "setup": "Configuración"
   }
 } 

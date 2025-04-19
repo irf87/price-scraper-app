@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, StyleSheet, Dimensions} from 'react-native
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useTranslation} from 'react-i18next';
 
 import {AppStackParamList} from '@navigation/navigationTypes';
 
@@ -15,44 +16,45 @@ type DrawerProps = {
 
 const Drawer: React.FC<DrawerProps> = ({onClose}) => {
   const navigation = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
+  const {t} = useTranslation();
 
-  const handleNavigation = (screen: keyof AppStackParamList) => {
+  const handleNavigation = (screen: keyof AppStackParamList, params?: any) => {
     onClose();
-    navigation.navigate(screen);
+    navigation.navigate(screen, params);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Secciones</Text>
+        <Text style={styles.headerText}>{t('drawer.sections')}</Text>
       </View>
 
       <View style={styles.sections}>
         <TouchableOpacity
           style={styles.sectionItem}
-          onPress={() => handleNavigation('ProductList')}>
+          onPress={() => handleNavigation('ProductScrapedList', {queryFunction: 'getAllScrapedProductsEnabled'})}>
           <View style={styles.iconContainer}>
             <Icon name="shopping-cart" size={24} color="#1a73e8" />
           </View>
-          <Text style={styles.sectionText}>Productos</Text>
+          <Text style={styles.sectionText}>{t('drawer.products')}</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.sectionItem}
           onPress={() => handleNavigation('Lists')}>
           <View style={styles.iconContainer}>
             <Icon name="list" size={24} color="#1a73e8" />
           </View>
-          <Text style={styles.sectionText}>Listas</Text>
+          <Text style={styles.sectionText}>{t('drawer.lists')}</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.sectionItem}
           onPress={() => handleNavigation('Categories')}>
           <View style={styles.iconContainer}>
             <Icon name="category" size={24} color="#1a73e8" />
           </View>
-          <Text style={styles.sectionText}>Categorías</Text>
+          <Text style={styles.sectionText}>{t('drawer.categories')}</Text>
         </TouchableOpacity>
       </View>
 
@@ -65,7 +67,7 @@ const Drawer: React.FC<DrawerProps> = ({onClose}) => {
           <View style={styles.iconContainer}>
             <Icon name="settings" size={24} color="#5f6368" />
           </View>
-          <Text style={styles.setupText}>Set Up</Text>
+          <Text style={styles.setupText}>{t('drawer.setup')}</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -1,12 +1,14 @@
 import React from 'react';
 import {View, Text, StyleSheet, Animated, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useTranslation} from 'react-i18next';
 
 import {useDrawer} from '@hooks/useDrawer';
 import Drawer from '@components/Drawer/Drawer';
 
 const CategoriesScreen = () => {
   const {isOpen, toggleDrawer, spin} = useDrawer();
+  const {t} = useTranslation();
 
   return (
     <View style={styles.container}>
@@ -16,13 +18,13 @@ const CategoriesScreen = () => {
             <Icon name="menu" size={24} color="#000" />
           </Animated.View>
         </TouchableOpacity>
-        <Text style={styles.title}>Categorías</Text>
+        <Text style={styles.title}>{t('navigation.categories')}</Text>
       </View>
 
       {isOpen && <Drawer onClose={toggleDrawer} />}
 
       <View style={styles.content}>
-        <Text>Categorías Screen Content</Text>
+        <Text>{t('navigation.categories')} Screen Content</Text>
       </View>
     </View>
   );
