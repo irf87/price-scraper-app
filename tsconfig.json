@@ -12,7 +12,8 @@
       "@utils/*": ["app/utils/*"],
       "@design-system/*": ["app/design-system/*"],
       "@hooks/*": ["app/boundedContext/presentation/hooks/*"],
-      "@components/*": ["app/boundedContext/presentation/components/*"]
+      "@components/*": ["app/boundedContext/presentation/components/*"],
+      "@core/*": ["app/core/*"]
     },
   },
 }

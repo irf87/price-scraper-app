@@ -30,11 +30,6 @@ export const useProductsScrapedList = ({
     switch (queryFunction) {
       case 'getAllScrapedProductsEnabled':
         return scrapedProductUseCase.getAllScrapedProductsEnabled();
-      // case 'getScrapedProductById':
-      //   if (id === undefined) {
-      //     throw new Error(t('scrapedProducts.errors.idRequired'));
-      //   }
-      //   return scrapedProductUseCase.getScrapedProductById(id);
       case 'getScrapedProductByCategory':
         if (id === undefined) {
           throw new Error(t('scrapedProducts.errors.categoryIdRequired'));

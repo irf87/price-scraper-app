@@ -24,7 +24,20 @@
       "unknownQueryFunction": "Unknown query function: {{function}}"
     },
     "activeProducts": "Active Products",
-    "productDetail": "Product Detail"
+    "productDetail": "Product Detail",
+    "screens": {
+      "detail": "Detail",
+      "trend": "Trend",
+      "settings": "Settings"
+    },
+    "detail": {
+      "lastUpdate": "Last update: {{date}}",
+      "currentPrice": "Current price:",
+      "minPrice": "Min Price",
+      "maxPrice": "Max Price",
+      "avgPrice": "Avg Price",
+      "visitWebsite": "Visit Website"
+    }
   },
   "navigation": {
     "server": "Server",
@@ -36,6 +49,7 @@
     "products": "Products",
     "lists": "Lists",
     "categories": "Categories",
-    "setup": "Set Up"
+    "setup": "Setup",
+    "scrapedProducts": "Scraped Products"
   }
 } 

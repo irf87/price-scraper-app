@@ -5,17 +5,17 @@ import * as scale from 'd3-scale';
 import * as shape from 'd3-shape';
 import {View, ScrollView} from 'react-native';
 
-import {useGetStoredProductScrapedRecords} from '@domains/products/application/useProductsRecords';
+import {useGetStoredScrapedProductRecord} from '@domains/scrapedProductsRecord/application/useScrapedProductRecord';
 import {convertToPrice} from '@utils/currency';
 
 import {formatDay} from '@utils/date';
 
 function ProductDetailReport() {
-  const {getRecords} = useGetStoredProductScrapedRecords();
+  const {getStoredData} = useGetStoredScrapedProductRecord();
 
   const data = useMemo(() => {
-    return getRecords();
-  }, [getRecords]);
+    return getStoredData()?.records || [];
+  }, [getStoredData]);
 
   const prices = useMemo(() => {
     return data.map(item => item.price);

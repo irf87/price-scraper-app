@@ -26,6 +26,8 @@ import Drawer from '@components/Drawer/Drawer';
 
 import {QueryProductScrapedFunction} from '@domains/scrapedProducts/domain/scrapedProductRepository';
 
+import {SCREEN_NAMES} from '@screens/screenTypes';
+
 interface Props {
   route: {params: {queryFunction: QueryProductScrapedFunction}};
 }
@@ -55,7 +57,7 @@ function ScrapedProductsListScreen({route}: Props) {
   }, [isOpen, slideAnim]);
 
   function handleOnPressProduct(productScraped: ScrapedProduct) {
-    navigate('ProductDetail', productScraped);
+    navigate(SCREEN_NAMES.PRODUCT_DETAIL, productScraped);
   }
 
   return (

@@ -1,12 +1,12 @@
-export interface ProductScrapedRecord {
+export interface ScrapedProductRecord {
   id: string;
   price: number;
   availability: number;
   stock: number;
-  date: string;
+  date: Date;
 }
 
-export interface ProductScrapedRecords {
+export interface ScrapedProductRecords {
   _id: string;
   productId: number;
   productScrapedId: number;
@@ -15,6 +15,6 @@ export interface ProductScrapedRecords {
   minPrice: number | string;
   maxPrice: number | string;
   avgPrice: number | string;
-  lastDateSync: string;
-  records: ProductScrapedRecord[];
+  lastDateSync: Date;
+  records: ScrapedProductRecord[];
 }

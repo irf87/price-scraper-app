@@ -15,6 +15,7 @@ module.exports = {
           '@design-system': './app/design-system',
           '@hooks': './app/boundedContext/presentation/hooks',
           '@components': './app/boundedContext/presentation/components',
+          '@core': './app/core',
         },
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },

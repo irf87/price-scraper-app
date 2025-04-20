@@ -24,7 +24,20 @@
       "unknownQueryFunction": "Función de consulta desconocida: {{function}}"
     },
     "activeProducts": "Productos activos",
-    "productDetail": "Detalle del producto"
+    "productDetail": "Detalle del producto",
+    "screens": {
+      "detail": "Detalle",
+      "trend": "Tendencia",
+      "settings": "Configuración"
+    },
+    "detail": {
+      "lastUpdate": "Última actualización: {{date}}",
+      "currentPrice": "Precio actual:",
+      "minPrice": "Precio Mínimo",
+      "maxPrice": "Precio Máximo",
+      "avgPrice": "Precio Promedio",
+      "visitWebsite": "Visitar Sitio Web"
+    }
   },
   "navigation": {
     "server": "Servidor",
@@ -36,6 +49,7 @@
     "products": "Productos",
     "lists": "Listas",
     "categories": "Categorías",
-    "setup": "Configuración"
+    "setup": "Configuración",
+    "scrapedProducts": "Productos Scrapeados"
   }
 } 

@@ -1,18 +1,8 @@
 import React, {useState} from 'react';
 import {ScrollView, View} from 'react-native';
-import {
-  TextInput,
-  Switch,
-  Text,
-  Divider,
-  useTheme,
-} from 'react-native-paper';
+import {TextInput, Switch, Text, Divider, useTheme} from 'react-native-paper';
 
-import {StackScreenProductDetailProps} from '@navigation/navigationTypes';
-
-interface Props extends StackScreenProductDetailProps<'ScrapperProductoSetting'> {}
-
-function ProductScrapperSettings({_route}: Props) {
+function ProductScrapperSettings() {
   const theme = useTheme();
   const [url, setUrl] = useState('');
   const [enabled, setEnabled] = useState(false);
@@ -34,7 +24,12 @@ function ProductScrapperSettings({_route}: Props) {
           style={{marginBottom: 16}}
         />
 
-        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 24}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginBottom: 24,
+          }}>
           <Text variant="bodyLarge">Enabled</Text>
           <Switch
             value={enabled}
@@ -101,4 +96,4 @@ function ProductScrapperSettings({_route}: Props) {
   );
 }
 
-export default ProductScrapperSettings; 
+export default ProductScrapperSettings;

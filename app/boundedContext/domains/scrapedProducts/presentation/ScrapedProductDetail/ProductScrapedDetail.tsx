@@ -1,24 +1,29 @@
 import React from 'react';
 import {View, Image, Linking, ScrollView} from 'react-native';
 import {Text, Button, Card} from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
 
-import {ProductScrapedFormatted} from '@domains/products/application/useProducts';
-import {ProductScrapedRecords} from '@domains/products/domain/productRecords';
+import {ScrapedProduct} from '@domains/scrapedProducts/domain/scrapedProduct';
+import {ProductScrapedRecords} from '@domains/scrapedProductsRecord/domain/scrapedProductRecord';
 
 import style from './styles';
 
 interface Props {
-  productDetail: Readonly<ProductScrapedFormatted>;
+  productDetail: Readonly<ScrapedProduct>;
   productScrapedRecord: Readonly<ProductScrapedRecords>;
 }
 
 function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
+  const {t} = useTranslation();
+
   return (
     <ScrollView>
       <View style={style.container}>
         <View style={style.lastUpdateContainer}>
           <Text variant="bodySmall" style={style.lastUpdateText}>
-            Última actualización: {productDetail?.date}
+            {t('scrapedProducts.detail.lastUpdate', {
+              date: productDetail?.date,
+            })}
           </Text>
         </View>
         <View style={style.productNameContainer}>
@@ -40,7 +45,7 @@ function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
         </View>
         <View style={style.currentPriceSection}>
           <Text variant="titleMedium" style={style.currentPriceLabel}>
-            Precio actual:
+            {t('scrapedProducts.detail.currentPrice')}
           </Text>
           <Text variant="headlineMedium" style={style.currentPriceValue}>
             {productDetail.price}
@@ -51,7 +56,7 @@ function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
             <Card.Content style={style.priceCardContent}>
               <Text style={style.priceCardIcon}>📉</Text>
               <Text variant="bodySmall" style={style.priceCardTitle}>
-                Precio Mínimo
+                {t('scrapedProducts.detail.minPrice')}
               </Text>
               <Text
                 variant="bodyMedium"
@@ -66,7 +71,7 @@ function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
             <Card.Content style={style.priceCardContent}>
               <Text style={style.priceCardIcon}>📈</Text>
               <Text variant="bodySmall" style={style.priceCardTitle}>
-                Precio Máximo
+                {t('scrapedProducts.detail.maxPrice')}
               </Text>
               <Text
                 variant="bodyMedium"
@@ -81,7 +86,7 @@ function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
             <Card.Content style={style.priceCardContent}>
               <Text style={style.priceCardIcon}>⚖️</Text>
               <Text variant="bodySmall" style={style.priceCardTitle}>
-                Precio Promedio
+                {t('scrapedProducts.detail.avgPrice')}
               </Text>
               <Text
                 variant="bodyMedium"
@@ -98,10 +103,9 @@ function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
           <Button
             mode="contained"
             onPress={() => {
-              Linking.openURL(productDetail?.urlToScrape);
-            }}
-            style={style.button}>
-            Abrir en el navegador
+              Linking.openURL(productDetail?.urlToScrape || '');
+            }}>
+            {t('scrapedProducts.detail.visitWebsite')}
           </Button>
         </View>
       </View>

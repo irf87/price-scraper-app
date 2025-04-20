@@ -1,14 +1,15 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {useTranslation} from 'react-i18next';
 
 import {Text, TextInput, Button} from 'react-native-paper';
 
 import {AppStackParamList} from '@navigation/navigationTypes';
 import useLocalStorage from '@infrastructure/storage/useLocalStorage';
 import {updateAxiosBaseUrl} from '@infrastructure/repositories/axiosBase';
+import {useTranslation} from 'react-i18next';
+
+import {SCREEN_NAMES} from '@screens/screenTypes';
 
 import style from './styles';
 
@@ -18,14 +19,14 @@ interface Props {
 
 const ConfigServer = ({navigation}: Props) => {
   const {t} = useTranslation();
-  const [urlServer, setUrlServer] = useState('');
   const {saveData, getData} = useLocalStorage();
+  const [urlServer, setUrlServer] = useState(getData('urlServer') || '');
 
   function handleOnAddServer() {
     saveData('urlServer', urlServer);
     updateAxiosBaseUrl();
     setTimeout(() => {
-      navigation.navigate('ProductScrapedList', {
+      navigation.navigate(SCREEN_NAMES.PRODUCT_SCRAPED_LIST, {
         queryFunction: 'getAllScrapedProductsEnabled',
       });
     }, 300);
@@ -34,11 +35,11 @@ const ConfigServer = ({navigation}: Props) => {
   useEffect(() => {
     const server = getData('urlServer');
     if (server) {
-      navigation.navigate('ProductScrapedList', {
+      navigation.navigate(SCREEN_NAMES.PRODUCT_SCRAPED_LIST, {
         queryFunction: 'getAllScrapedProductsEnabled',
       });
     }
-  }, []);
+  }, [getData, navigation]);
 
   return (
     <SafeAreaView style={style.container}>

@@ -1,21 +1,20 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
+import {useTranslation} from 'react-i18next';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {useTranslation} from 'react-i18next';
 
 import {AppStackParamList} from '@navigation/navigationTypes';
-
-const {width} = Dimensions.get('window');
-const DRAWER_WIDTH = width * 0.85;
+import {SCREEN_NAMES} from '@screens/screenTypes';
 
 type DrawerProps = {
   onClose: () => void;
 };
 
 const Drawer: React.FC<DrawerProps> = ({onClose}) => {
-  const navigation = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<AppStackParamList>>();
   const {t} = useTranslation();
 
   const handleNavigation = (screen: keyof AppStackParamList, params?: any) => {
@@ -32,16 +31,20 @@ const Drawer: React.FC<DrawerProps> = ({onClose}) => {
       <View style={styles.sections}>
         <TouchableOpacity
           style={styles.sectionItem}
-          onPress={() => handleNavigation('ProductScrapedList', {queryFunction: 'getAllScrapedProductsEnabled'})}>
+          onPress={() =>
+            handleNavigation(SCREEN_NAMES.PRODUCT_SCRAPED_LIST, {
+              queryFunction: 'getAllScrapedProductsEnabled',
+            })
+          }>
           <View style={styles.iconContainer}>
             <Icon name="shopping-cart" size={24} color="#1a73e8" />
           </View>
-          <Text style={styles.sectionText}>{t('drawer.products')}</Text>
+          <Text style={styles.sectionText}>{t('drawer.scrapedProducts')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sectionItem}
-          onPress={() => handleNavigation('Lists')}>
+          onPress={() => handleNavigation(SCREEN_NAMES.LISTS)}>
           <View style={styles.iconContainer}>
             <Icon name="list" size={24} color="#1a73e8" />
           </View>
@@ -50,7 +53,7 @@ const Drawer: React.FC<DrawerProps> = ({onClose}) => {
 
         <TouchableOpacity
           style={styles.sectionItem}
-          onPress={() => handleNavigation('Categories')}>
+          onPress={() => handleNavigation(SCREEN_NAMES.CATEGORIES)}>
           <View style={styles.iconContainer}>
             <Icon name="category" size={24} color="#1a73e8" />
           </View>
@@ -63,7 +66,7 @@ const Drawer: React.FC<DrawerProps> = ({onClose}) => {
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.setupItem}
-          onPress={() => handleNavigation('ConfigServer')}>
+          onPress={() => handleNavigation(SCREEN_NAMES.CONFIG_SERVER)}>
           <View style={styles.iconContainer}>
             <Icon name="settings" size={24} color="#5f6368" />
           </View>
@@ -134,4 +137,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Drawer; 
+export default Drawer;
