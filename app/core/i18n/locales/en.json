@@ -1,0 +1,70 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "configServer": {
+    "title": "Server Configuration",
+    "serverUrl": "Server URL",
+    "apiKey": "API Key",
+    "saveConfig": "Save Configuration",
+    "configSaved": "Configuration saved successfully",
+    "configError": "Error saving configuration"
+  },
+  "scrapedProducts": {
+    "errors": {
+      "idRequired": "ID is required for getScrapedProductById",
+      "categoryIdRequired": "Category ID is required for getScrapedProductByCategory",
+      "listIdRequired": "List ID is required for getScrapedProductByList",
+      "unknownQueryFunction": "Unknown query function: {{function}}"
+    },
+    "activeProducts": "Active Products",
+    "productDetail": "Product Detail",
+    "screens": {
+      "detail": "Detail",
+      "trend": "Trend",
+      "settings": "Settings"
+    },
+    "detail": {
+      "lastUpdate": "Last update: {{date}}",
+      "currentPrice": "Current price:",
+      "minPrice": "Min Price",
+      "maxPrice": "Max Price",
+      "avgPrice": "Avg Price",
+      "visitWebsite": "Visit Website"
+    },
+    "scraperSettings": {
+      "enabled": "Enabled",
+      "url": "URL",
+      "urlPlaceholder": "URL Scrapped"
+    }
+  },
+  "scraperRules": {
+    "title": "Scraper Rules",
+    "priceLessThan": "Notify when price is less than or equal",
+    "priceLessThanPlaceholder": "Less than or equal to",
+    "priceGreaterThan": "Notify when price is greater than or equal",
+    "priceGreaterThanPlaceholder": "Greater than or equal to",
+    "notifyAvailability": "Notify availability changes",
+    "notifyPrice": "Notify price changes",
+    "notifyStock": "Notify stock changes"
+  },
+  "navigation": {
+    "server": "Server",
+    "lists": "Lists",
+    "categories": "Categories"
+  },
+  "drawer": {
+    "sections": "Sections",
+    "products": "Products",
+    "lists": "Lists",
+    "categories": "Categories",
+    "setup": "Setup",
+    "scrapedProducts": "Scraped Products"
+  }
+} 

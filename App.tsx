@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {NavigationContainer} from '@react-navigation/native';
-
-// import { StatusBar } from 'expo-status-bar';
-// import { StyleSheet, Text, View } from 'react-native';
+import {I18nextProvider} from 'react-i18next';
 
 import AppNavigation from '@navigation/AppNavigation';
+import {i18n} from './app/core/i18n';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,11 +15,20 @@ const queryClient = new QueryClient({
 });
 
 export default function App() {
+  useEffect(() => {
+    // Asegurarse de que i18n esté inicializado
+    if (!i18n.isInitialized) {
+      i18n.init();
+    }
+  }, []);
+
   return (
-    <NavigationContainer>
-      <QueryClientProvider client={queryClient}>
-        <AppNavigation />
-      </QueryClientProvider>
-    </NavigationContainer>
+    <I18nextProvider i18n={i18n}>
+      <NavigationContainer>
+        <QueryClientProvider client={queryClient}>
+          <AppNavigation />
+        </QueryClientProvider>
+      </NavigationContainer>
+    </I18nextProvider>
   );
 }

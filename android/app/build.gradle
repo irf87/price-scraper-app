@@ -105,7 +105,7 @@ android {
 
     // Add this for react-native-vector-icons
     project.ext.vectoricons = [
-        iconFontNames: [ 'MaterialCommunityIcons.ttf' ]
+        iconFontNames: [ 'MaterialIcons.ttf', 'MaterialCommunityIcons.ttf' ]
     ]
     apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 }

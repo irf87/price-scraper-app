@@ -2,7 +2,10 @@ import { StorybookConfig } from '@storybook/react-native';
 import path from 'path';
 
 const main: StorybookConfig = {
-  stories: ['./stories/**/*.stories.?(ts|tsx|js|jsx)'],
+  stories: [
+    './stories/**/*.stories.?(ts|tsx|js|jsx)',
+    '../app/design-system/**/*.stories.?(ts|tsx|js|jsx)'
+  ],
   addons: [
     // '@storybook/addon-ondevice-controls',
     // '@storybook/addon-ondevice-actions',
@@ -41,6 +44,9 @@ const main: StorybookConfig = {
         '@repositories': path.resolve(__dirname, '../app/boundedContext/infrastructure/repositories'),
         '@utils': path.resolve(__dirname, '../app/utils'),
         '@design-system': path.resolve(__dirname, '../app/design-system'),
+        '@hooks': path.resolve(__dirname, '../app/boundedContext/presentation/hooks'),
+        '@components': path.resolve(__dirname, '../app/boundedContext/presentation/components'),
+        '@core': path.resolve(__dirname, '../app/core'),
       };
     }
     return config;

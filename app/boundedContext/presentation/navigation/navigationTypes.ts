@@ -1,18 +1,22 @@
 import {RouteProp, ParamListBase} from '@react-navigation/native';
 
-import {ProductScrapedFormatted} from '@domains/products/application/useProducts';
+import {ScrapedProduct} from '@domains/scrapedProducts/domain/scrapedProduct';
+import {QueryProductScrapedFunction} from '@domains/scrapedProducts/domain/scrapedProductRepository';
 
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 export type AppStackParamList = {
-  Main: undefined;
   ConfigServer: undefined;
-  ProductDetail: ProductScrapedFormatted;
+  ProductDetail: ScrapedProduct;
+  ProductScrapedList: {queryFunction: QueryProductScrapedFunction};
+  Lists: undefined;
+  Categories: undefined;
 };
 
 export type ProductDetailStackPramList = {
-  ProductDetailData: ProductScrapedFormatted;
+  ProductDetailData: ScrapedProduct;
   ProductDetailReport: undefined;
+  ScrapedProductSettings: undefined;
 };
 
 export type NavigationRoute<T extends string> = RouteProp<ParamListBase, T>;
