@@ -37,7 +37,22 @@
       "maxPrice": "Max Price",
       "avgPrice": "Avg Price",
       "visitWebsite": "Visit Website"
+    },
+    "scraperSettings": {
+      "enabled": "Enabled",
+      "url": "URL",
+      "urlPlaceholder": "URL Scrapped"
     }
+  },
+  "scraperRules": {
+    "title": "Scraper Rules",
+    "priceLessThan": "Notify when price is less than or equal",
+    "priceLessThanPlaceholder": "Less than or equal to",
+    "priceGreaterThan": "Notify when price is greater than or equal",
+    "priceGreaterThanPlaceholder": "Greater than or equal to",
+    "notifyAvailability": "Notify availability changes",
+    "notifyPrice": "Notify price changes",
+    "notifyStock": "Notify stock changes"
   },
   "navigation": {
     "server": "Server",

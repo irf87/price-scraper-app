@@ -37,7 +37,22 @@
       "maxPrice": "Precio Máximo",
       "avgPrice": "Precio Promedio",
       "visitWebsite": "Visitar Sitio Web"
+    },
+    "scraperSettings": {
+      "enabled": "Habilitado",
+      "url": "URL",
+      "urlPlaceholder": "URL Scrapeada"
     }
+  },
+  "scraperRules": {
+    "title": "Reglas del Scraper",
+    "priceLessThan": "Notificar cuando el precio sea menor o igual",
+    "priceLessThanPlaceholder": "Menor o igual que",
+    "priceGreaterThan": "Notificar cuando el precio sea mayor o igual",
+    "priceGreaterThanPlaceholder": "Mayor o igual que",
+    "notifyAvailability": "Notificar cambios de disponibilidad",
+    "notifyPrice": "Notificar cambios de precio",
+    "notifyStock": "Notificar cambios de stock"
   },
   "navigation": {
     "server": "Servidor",
