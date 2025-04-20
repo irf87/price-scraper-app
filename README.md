@@ -77,17 +77,17 @@ yarn run storybook:web
 
 # To generate apk
 
-## create assets folder in the current project
+## create assets folder in the current project (only if doesn't exist)
 ```bash
 $ mkdir android/app/src/main/assets
 ```
 
-## create bundle script
+## create bundle script (if you already install in local react-native, omit npx)
 ```bash
-$ react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+$ npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
 ```
 
-## execute command to run android to create debug apk
+## execute command to run android to create debug apk (if you already install in local react-native, omit npx)
 ```bash
 $ react-native run-android
 ```

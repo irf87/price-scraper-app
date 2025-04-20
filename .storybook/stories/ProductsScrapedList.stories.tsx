@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 
-import ProductList from '@domains/products/presentation/ProductsScrapedList/ProductsScrapedList';
+import ProductList from '@domains/scrapedProducts/presentation/ProductsScrapedList/ProductsScrapedList';
 
 const defaultArray = [
   {
@@ -51,7 +51,7 @@ const defaultArray = [
 ];
 
 const meta = {
-  title: '@components/List/ProductList',
+  title: '@domains/scrapedProducts/ProductsScrapedList',
   component: ProductList,
 } satisfies Meta<typeof ProductList>;
 

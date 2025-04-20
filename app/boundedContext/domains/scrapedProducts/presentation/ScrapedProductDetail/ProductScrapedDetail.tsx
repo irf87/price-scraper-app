@@ -4,13 +4,13 @@ import {Text, Button, Card} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 
 import {ScrapedProduct} from '@domains/scrapedProducts/domain/scrapedProduct';
-import {ProductScrapedRecords} from '@domains/scrapedProductsRecord/domain/scrapedProductRecord';
+import {ScrapedProductRecords} from '@domains/scrapedProductsRecord/domain/scrapedProductRecord';
 
 import style from './styles';
 
 interface Props {
   productDetail: Readonly<ScrapedProduct>;
-  productScrapedRecord: Readonly<ProductScrapedRecords>;
+  productScrapedRecord: Readonly<ScrapedProductRecords>;
 }
 
 function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
