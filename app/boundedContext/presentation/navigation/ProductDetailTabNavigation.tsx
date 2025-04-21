@@ -32,6 +32,8 @@ const SettingsIcon = ({color, size}: {color: string; size: number}) => (
 function ProductDetailTabNavigation({route}: Props) {
   const {t} = useTranslation();
   const productParams = route.params;
+  console.log('productParams', productParams);
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -56,6 +58,11 @@ function ProductDetailTabNavigation({route}: Props) {
       />
       <Tab.Screen
         name={SCRAPED_PRODUCT_DETAIL_SCREEN.SCRAPER_PRODUCT_SETTINGS}
+        initialParams={{
+          scrapedId: productParams.id,
+          enable: productParams.enable,
+          urlToScrape: productParams.urlToScrape,
+        }}
         options={{
           title: t('scrapedProducts.screens.settings'),
           tabBarIcon: SettingsIcon,

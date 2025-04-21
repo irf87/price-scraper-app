@@ -2,6 +2,18 @@ export interface ScraperRule {
   id: number;
   productScrapedId: number;
   match: string;
+  notifyWhenIsAvailable: boolean;
+  notifyPriceMoreEqualThan?: number | null;
+  notifyPriceSmallerEqualThan?: number | null;
+  notifyStockChanges: boolean;
+  notifyPriceChanges: boolean;
+  notifyAvailabilityChanges: boolean;
+}
+
+export interface ScraperRuleFromApi {
+  id: number;
+  productScrapedId: number;
+  match: string;
   notifyWhenIsAvailable: number;
   notifyPriceMoreEqualThan?: number | null;
   notifyPriceSmallerEqualThan?: number | null;

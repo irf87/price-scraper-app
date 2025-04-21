@@ -17,7 +17,6 @@ export const api = axios.create({
   headers,
 });
 
-// Función para actualizar la URL base de axios
 export const updateAxiosBaseUrl = () => {
   localStorage.getData();
   const newUrl = localStorage.valueStoraged;

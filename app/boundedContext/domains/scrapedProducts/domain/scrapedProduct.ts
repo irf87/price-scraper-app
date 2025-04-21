@@ -6,4 +6,5 @@ export interface ScrapedProduct extends Product {
   price: number | string;
   date: string;
   urlScrapedDomainName?: string;
+  enable: boolean;
 }
