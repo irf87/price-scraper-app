@@ -39,7 +39,8 @@ const ConfigServer = ({navigation}: Props) => {
         queryFunction: 'getAllScrapedProductsEnabled',
       });
     }
-  }, [getData, navigation]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <SafeAreaView style={style.container}>

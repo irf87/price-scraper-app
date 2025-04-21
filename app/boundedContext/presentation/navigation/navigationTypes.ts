@@ -16,7 +16,11 @@ export type AppStackParamList = {
 export type ProductDetailStackPramList = {
   ProductDetailData: ScrapedProduct;
   ProductDetailReport: undefined;
-  ScrapedProductSettings: undefined;
+  ScrapedProductSettings: {
+    scrapedId: number;
+    enable: boolean;
+    urlToScrape: string;
+  };
 };
 
 export type NavigationRoute<T extends string> = RouteProp<ParamListBase, T>;

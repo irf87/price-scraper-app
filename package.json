@@ -11,12 +11,14 @@
     "storybook:web": "storybook dev -p 6006"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.0.1",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "axios": "^1.6.8",
     "i18next": "^25.0.0",
     "react": "18.2.0",
+    "react-hook-form": "^7.56.0",
     "react-i18next": "^15.4.1",
     "react-native": "0.73.6",
     "react-native-mmkv": "^2.12.2",
@@ -27,7 +29,8 @@
     "react-native-svg": "^15.1.0",
     "react-native-svg-charts": "^5.4.0",
     "react-native-vector-icons": "^10.0.3",
-    "react-query": "^3.39.3"
+    "react-query": "^3.39.3",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

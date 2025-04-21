@@ -1,17 +1,46 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ScrollView, View} from 'react-native';
 import {TextInput, Switch, Text, Button, useTheme} from 'react-native-paper';
 import {useTranslation} from '@core/i18n';
+import {useForm, Controller} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {
+  scraperSettingsSchema,
+  ScraperSettingsFormData,
+} from './scraperSettingsSchema';
 
-function ScraperSettingsForm() {
+interface Props {
+  urlToScrape: string;
+  enable: boolean;
+  onSubmit?: (data: ScraperSettingsFormData) => void;
+}
+
+function ScraperSettingsForm({
+  urlToScrape,
+  enable: initialEnabled,
+  onSubmit,
+}: Props) {
   const theme = useTheme();
   const {t} = useTranslation();
-  const [url, setUrl] = useState('');
-  const [enabled, setEnabled] = useState(false);
 
-  const handleSave = () => {
-    // TODO: Implement save functionality
-    console.log('Saving scraper settings:', {url, enabled});
+  console.log('initialEnabled', initialEnabled);
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm<ScraperSettingsFormData>({
+    resolver: yupResolver(scraperSettingsSchema),
+    defaultValues: {
+      url: urlToScrape || '',
+      enabled: initialEnabled || false,
+    },
+  });
+
+  const handleFormSubmit = (data: ScraperSettingsFormData) => {
+    if (onSubmit) {
+      onSubmit(data);
+    }
   };
 
   return (
@@ -23,32 +52,53 @@ function ScraperSettingsForm() {
           {t('scrapedProducts.screens.settings')}
         </Text>
 
-        <TextInput
-          label={t('scrapedProducts.scraperSettings.url')}
-          placeholder={t('scrapedProducts.scraperSettings.urlPlaceholder')}
-          value={url}
-          onChangeText={setUrl}
-          mode="outlined"
-          style={{marginBottom: 16}}
+        <Controller
+          control={control}
+          name="url"
+          render={({field: {onChange, value}}) => (
+            <TextInput
+              label={t('scrapedProducts.scraperSettings.url')}
+              placeholder={t('scrapedProducts.scraperSettings.urlPlaceholder')}
+              value={value}
+              onChangeText={onChange}
+              mode="outlined"
+              style={{marginBottom: 16}}
+              error={!!errors.url}
+            />
+          )}
+        />
+        {errors.url && (
+          <Text style={{color: 'red', marginBottom: 16}}>
+            {errors.url.message}
+          </Text>
+        )}
+
+        <Controller
+          control={control}
+          name="enabled"
+          render={({field: {onChange, value}}) => (
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginBottom: 24,
+              }}>
+              <Text variant="bodyLarge">
+                {t('scrapedProducts.scraperSettings.enabled')}
+              </Text>
+              <Switch
+                value={value}
+                onValueChange={onChange}
+                style={{marginLeft: 8}}
+              />
+            </View>
+          )}
         />
 
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginBottom: 24,
-          }}>
-          <Text variant="bodyLarge">
-            {t('scrapedProducts.scraperSettings.enabled')}
-          </Text>
-          <Switch
-            value={enabled}
-            onValueChange={setEnabled}
-            style={{marginLeft: 8}}
-          />
-        </View>
-
-        <Button mode="contained" onPress={handleSave} style={{marginTop: 16}}>
+        <Button
+          mode="contained"
+          onPress={handleSubmit(handleFormSubmit)}
+          style={{marginTop: 16}}>
           {t('common.save')}
         </Button>
       </View>

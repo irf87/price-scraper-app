@@ -1,11 +1,15 @@
 import {useQuery, useMutation, useQueryClient} from 'react-query';
-import {ScraperRule} from '@domains/scraperRules/domain/scraperRules';
-import {ScraperRulesUseCase} from '../scraperRulesUseCase';
+import {api} from '@infrastructure/repositories/axiosBase';
 
-export const useScraperRule = (
-  scraperRulesUseCase: ScraperRulesUseCase,
-  id: number,
-) => {
+import {ScraperRulesRepositoryImpl} from '@domains/scraperRules/infrastructure/scraperRulesRepositoryImpl';
+import {ScraperRule} from '@domains/scraperRules/domain/scraperRules';
+import {ScraperRulesUseCase} from '@domains/scraperRules/application/scraperRulesUseCase';
+
+const scraperRulesUseCase = new ScraperRulesUseCase(
+  new ScraperRulesRepositoryImpl(api),
+);
+
+export const useScraperRule = (id: number) => {
   const {data, isError, isFetching} = useQuery({
     queryKey: ['scraperRule', id],
     queryFn: () => scraperRulesUseCase.getScraperRuleByScraperId(id),
@@ -13,7 +17,7 @@ export const useScraperRule = (
   });
 
   return {
-    scraperRules: data || [],
+    scraperRules: data,
     scraperRulesState: {
       isError,
       isFetching,
@@ -21,9 +25,7 @@ export const useScraperRule = (
   };
 };
 
-export const useScraperRuleMutation = (
-  scraperRulesUseCase: ScraperRulesUseCase,
-) => {
+export const useScraperRuleMutation = () => {
   const queryClient = useQueryClient();
 
   const createMutation = useMutation({
