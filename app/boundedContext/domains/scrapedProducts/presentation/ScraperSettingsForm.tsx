@@ -23,8 +23,6 @@ function ScraperSettingsForm({
   const theme = useTheme();
   const {t} = useTranslation();
 
-  console.log('initialEnabled', initialEnabled);
-
   const {
     control,
     handleSubmit,

@@ -1,9 +1,12 @@
 import {useQuery, useMutation, useQueryClient} from 'react-query';
+import {useTranslation} from '@core/i18n';
 import {api} from '@infrastructure/repositories/axiosBase';
 
 import {ScraperRulesRepositoryImpl} from '@domains/scraperRules/infrastructure/scraperRulesRepositoryImpl';
 import {ScraperRule} from '@domains/scraperRules/domain/scraperRules';
 import {ScraperRulesUseCase} from '@domains/scraperRules/application/scraperRulesUseCase';
+
+import {useSnackbarStore} from '@components/SnackbarInternal/useSnackbarStore';
 
 const scraperRulesUseCase = new ScraperRulesUseCase(
   new ScraperRulesRepositoryImpl(api),
@@ -26,21 +29,36 @@ export const useScraperRule = (id: number) => {
 };
 
 export const useScraperRuleMutation = () => {
+  const {t} = useTranslation();
+  const setSnackbarOptions = useSnackbarStore(state => state.setOptions);
+  const showSnackbar = useSnackbarStore(state => state.show);
   const queryClient = useQueryClient();
 
   const createMutation = useMutation({
     mutationFn: (scraperRule: ScraperRule) =>
       scraperRulesUseCase.createScraperRule(scraperRule),
-    onSuccess: (data: ScraperRule) => {
-      queryClient.invalidateQueries({queryKey: ['scraperRule', data.id]});
+    onSuccess: () => {
+      setSnackbarOptions({type: 'success', message: t('common.success')});
+      showSnackbar();
+      queryClient.invalidateQueries({queryKey: ['scraperRule']});
+    },
+    onError: () => {
+      setSnackbarOptions({type: 'error', message: t('common.error')});
+      showSnackbar();
     },
   });
 
   const updateMutation = useMutation({
     mutationFn: ({id, scraperRule}: {id: number; scraperRule: ScraperRule}) =>
       scraperRulesUseCase.updateScraperRule(id, scraperRule),
-    onSuccess: (data: ScraperRule) => {
-      queryClient.invalidateQueries({queryKey: ['scraperRule', data.id]});
+    onSuccess: () => {
+      setSnackbarOptions({type: 'success', message: t('common.success')});
+      showSnackbar();
+      queryClient.invalidateQueries({queryKey: ['scraperRule']});
+    },
+    onError: () => {
+      setSnackbarOptions({type: 'error', message: t('common.error')});
+      showSnackbar();
     },
   });
 

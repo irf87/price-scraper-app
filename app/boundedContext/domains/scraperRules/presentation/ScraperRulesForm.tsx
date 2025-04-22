@@ -1,13 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {ScrollView, View} from 'react-native';
-import {
-  TextInput,
-  Switch,
-  Text,
-  Button,
-  useTheme,
-  Snackbar,
-} from 'react-native-paper';
+import {TextInput, Switch, Text, Button, useTheme} from 'react-native-paper';
 import {useTranslation} from '@core/i18n';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
@@ -18,53 +11,11 @@ interface Props {
   scraperRule?: ScraperRule;
   onSubmit?: (data: ScraperRulesFormData) => void;
   isLoading?: boolean;
-  isSuccess?: boolean;
-  isError?: boolean;
 }
 
-function ScraperRulesForm({
-  scraperRule,
-  onSubmit,
-  isLoading = false,
-  isSuccess = false,
-  isError = false,
-}: Props) {
-  console.log('scraperRule', scraperRule);
+function ScraperRulesForm({scraperRule, onSubmit, isLoading = false}: Props) {
   const theme = useTheme();
   const {t} = useTranslation();
-  const [snackbarVisible, setSnackbarVisible] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackbarType, setSnackbarType] = useState<'success' | 'error'>(
-    'success',
-  );
-
-  // Show snackbar when operation completes
-  useEffect(() => {
-    if (isSuccess) {
-      setSnackbarMessage(t('common.success'));
-      setSnackbarType('success');
-      setSnackbarVisible(true);
-    } else if (isError) {
-      setSnackbarMessage(t('common.error'));
-      setSnackbarType('error');
-      setSnackbarVisible(true);
-    }
-  }, [isSuccess, isError, t]);
-
-  // Auto-hide snackbar after 60 seconds
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (snackbarVisible) {
-      timer = setTimeout(() => {
-        setSnackbarVisible(false);
-      }, 60000);
-    }
-    return () => {
-      if (timer) {
-        clearTimeout(timer);
-      }
-    };
-  }, [snackbarVisible]);
 
   const {
     control,
@@ -190,19 +141,6 @@ function ScraperRulesForm({
           {isLoading ? t('common.loading') : t('common.save')}
         </Button>
       </View>
-
-      <Snackbar
-        visible={snackbarVisible}
-        onDismiss={() => setSnackbarVisible(false)}
-        duration={60000}
-        style={{
-          backgroundColor:
-            snackbarType === 'success'
-              ? theme.colors.primary
-              : theme.colors.error,
-        }}>
-        {snackbarMessage}
-      </Snackbar>
     </ScrollView>
   );
 }

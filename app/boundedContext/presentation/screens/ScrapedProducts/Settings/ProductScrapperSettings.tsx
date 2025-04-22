@@ -11,6 +11,8 @@ import {ScraperRule} from '@domains/scraperRules/domain/scraperRules';
 import {ScraperSettingsFormData} from '@domains/scrapedProducts/presentation/scraperSettingsSchema';
 import {ScraperRulesFormData} from '@domains/scraperRules/presentation/scraperRulesSchema';
 
+import SnackbarInternal from '@components/SnackbarInternal/SnackbarInternal';
+
 interface Props
   extends StackScreenProductDetailProps<'ScrapedProductSettings'> {}
 
@@ -23,7 +25,6 @@ function ProductScrapperSettings({route}: Props) {
     createScraperRuleState,
     updateScraperRuleState,
   } = useScraperRuleMutation();
-  console.log('scraperRules', scraperRules);
 
   const handleScraperSettingsSubmit = (data: ScraperSettingsFormData) => {
     console.log('Scraper settings submitted:', data);
@@ -67,14 +68,6 @@ function ProductScrapperSettings({route}: Props) {
     }
   };
 
-  // Determine loading and success/error states
-  const isLoading =
-    createScraperRuleState.isLoading || updateScraperRuleState.isLoading;
-  const isSuccess =
-    createScraperRuleState.isSuccess || updateScraperRuleState.isSuccess;
-  const isError =
-    createScraperRuleState.isError || updateScraperRuleState.isError;
-
   return (
     <View style={{flex: 1}}>
       <ScraperSettings
@@ -91,11 +84,12 @@ function ProductScrapperSettings({route}: Props) {
         <ScraperRules
           scraperRule={scraperRules || undefined}
           onSubmit={handleScraperRulesSubmit}
-          isLoading={isLoading}
-          isSuccess={isSuccess}
-          isError={isError}
+          isLoading={
+            createScraperRuleState.isLoading || updateScraperRuleState.isLoading
+          }
         />
       )}
+      <SnackbarInternal />
     </View>
   );
 }
