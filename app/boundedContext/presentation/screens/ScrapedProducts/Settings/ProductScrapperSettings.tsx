@@ -6,6 +6,7 @@ import {StackScreenProductDetailProps} from '@navigation/navigationTypes';
 import ScraperSettings from '@domains/scrapedProducts/presentation/ScraperSettingsForm';
 import ScraperRules from '@domains/scraperRules/presentation/ScraperRulesForm';
 import {useScraperRule} from '@domains/scraperRules/application/useScraperRules';
+import {useScraperMutation} from '@domains/scraper/application/useScraperMutation';
 import {useScraperRuleMutation} from '@domains/scraperRules/application/useScraperRules';
 import {ScraperRule} from '@domains/scraperRules/domain/scraperRules';
 import {ScraperSettingsFormData} from '@domains/scrapedProducts/presentation/scraperSettingsSchema';
@@ -26,9 +27,15 @@ function ProductScrapperSettings({route}: Props) {
     updateScraperRuleState,
   } = useScraperRuleMutation();
 
+  const {updateScraper, updateScraperState} = useScraperMutation();
+
   const handleScraperSettingsSubmit = (data: ScraperSettingsFormData) => {
     console.log('Scraper settings submitted:', data);
-    // TODO: Implement scraper settings update
+    updateScraper({
+      id: scrapedId,
+      urlToScrape: data.url,
+      enable: data.enabled,
+    });
   };
 
   const handleScraperRulesSubmit = (data: ScraperRulesFormData) => {
@@ -74,6 +81,7 @@ function ProductScrapperSettings({route}: Props) {
         enable={enable}
         urlToScrape={urlToScrape}
         onSubmit={handleScraperSettingsSubmit}
+        isLoading={updateScraperState.isLoading}
       />
 
       {scraperRulesState.isFetching ? (

@@ -13,12 +13,14 @@ interface Props {
   urlToScrape: string;
   enable: boolean;
   onSubmit?: (data: ScraperSettingsFormData) => void;
+  isLoading: boolean;
 }
 
 function ScraperSettingsForm({
   urlToScrape,
   enable: initialEnabled,
   onSubmit,
+  isLoading,
 }: Props) {
   const theme = useTheme();
   const {t} = useTranslation();
@@ -96,8 +98,10 @@ function ScraperSettingsForm({
         <Button
           mode="contained"
           onPress={handleSubmit(handleFormSubmit)}
-          style={{marginTop: 16}}>
-          {t('common.save')}
+          style={{marginTop: 16}}
+          loading={isLoading}
+          disabled={isLoading}>
+          {isLoading ? t('common.loading') : t('common.save')}
         </Button>
       </View>
     </ScrollView>
