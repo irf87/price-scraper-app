@@ -1,11 +1,11 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const style = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    justifyContent: 'center', /* Centrado horizontal */
-    alignItems: 'center', /* Centrado vertical */
-    height: '100%', /* Opcional: ajustar la altura según sea necesario */
+    justifyContent: 'center' /* Centrado horizontal */,
+    alignItems: 'center' /* Centrado vertical */,
+    height: '100%' /* Opcional: ajustar la altura según sea necesario */,
     padding: 8,
     marginTop: '-15%',
   },
@@ -17,7 +17,7 @@ const style = StyleSheet.create({
   input: {
     marginTop: 16,
     marginBottom: 24,
-  }
+  },
 });
 
 export default style;

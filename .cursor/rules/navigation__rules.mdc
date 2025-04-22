@@ -1,0 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+   - Use React Navigation for all routing
+   - Implement type-safe navigation using TypeScript
+   - Follow nested navigation patterns when needed

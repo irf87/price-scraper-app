@@ -1,18 +1,19 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./app",
+    "baseUrl": ".",
+    "allowJs": true,
     "paths": {
-      "@screens/*": ["./boundedContext/presentation/screens/*"],
-      "@navigations/*": ["./boundedContext/presentation/navigations/*"],
-      "@hooks/*": ["./boundedContext/application/hooks/*"],
-      "@domain/*": ["./boundedContext/domain/*"],
-      "@infrastructure/*": ["./boundedContext/infrastructure/*"],
-      "@storage/*": ["./boundedContext/infrastructure/storage/*"],
-      "@repositories/*": ["./boundedContext/infrastructure/repositories/*"],
-      "@components/*": ["./boundedContext/presentation/components/*"],
-      "@application/*": ["./boundedContext/application/*"],
-      "@utils/*": ["./utils/*"],
-    }
-  }
+      "@screens/*": ["app/boundedContext/presentation/screens/*"],
+      "@navigation/*": ["app/boundedContext/presentation/navigation/*"],
+      "@domains/*": ["app/boundedContext/domains/*"],
+      "@infrastructure/*": ["app/boundedContext/infrastructure/*"],
+      "@repositories/*": ["app/boundedContext/infrastructure/repositories/*"],
+      "@utils/*": ["app/utils/*"],
+      "@design-system/*": ["app/design-system/*"],
+      "@hooks/*": ["app/boundedContext/presentation/hooks/*"],
+      "@components/*": ["app/boundedContext/presentation/components/*"],
+      "@core/*": ["app/core/*"]
+    },
+  },
 }

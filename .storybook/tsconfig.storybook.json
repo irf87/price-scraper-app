@@ -1,0 +1,21 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "..",
+    "paths": {
+      "@screens/*": ["app/boundedContext/presentation/screens/*"],
+      "@navigation/*": ["app/boundedContext/presentation/navigation/*"],
+      "@domains/*": ["app/boundedContext/domains/*"],
+      "@infrastructure/*": ["app/boundedContext/infrastructure/*"],
+      "@repositories/*": ["app/boundedContext/infrastructure/repositories/*"],
+      "@utils/*": ["app/utils/*"],
+      "@design-system/*": ["app/design-system/*"]
+    }
+  },
+  "include": [
+    "../app/**/*.ts",
+    "../app/**/*.tsx",
+    "./**/*.ts",
+    "./**/*.tsx"
+  ]
+} 

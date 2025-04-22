@@ -1,0 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+   - Use Axios for API calls
+   - Implement proper error handling
+   - Use React Query for caching and state management

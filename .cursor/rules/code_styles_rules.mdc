@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+   - Use TypeScript for all new files
+   - Follow ESLint and Prettier configurations
+   - Use functional components with React hooks
+   - Implement proper type definitions for all props and functions
+   - Always try to use alias paths from this file tsconfig.json

@@ -1,9 +1,9 @@
 import type {Meta, StoryObj} from '@storybook/react';
 
-import ProductScrapedDetail from '@components/products/ProductScrapedDetail/ProductScrapedDetail';
+import ProductScrapedDetail from '@domains/scrapedProducts/presentation/ScrapedProductDetail/ProductScrapedDetail';
 
 const meta = {
-  title: '@components/Product/ProductScrapedDetail',
+  title: '@domains/scrapedProducts/ScrapedProductDetail',
   component: ProductScrapedDetail,
 } satisfies Meta<typeof ProductScrapedDetail>;
 

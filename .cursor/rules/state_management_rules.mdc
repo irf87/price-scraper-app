@@ -1,0 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+   - Use React Query for API calls and server state
+   - Use MMKV for persistent local storage
+   - Implement proper error handling and loading states
