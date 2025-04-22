@@ -30,7 +30,6 @@ function ProductScrapperSettings({route}: Props) {
   const {updateScraper, updateScraperState} = useScraperMutation();
 
   const handleScraperSettingsSubmit = (data: ScraperSettingsFormData) => {
-    console.log('Scraper settings submitted:', data);
     updateScraper({
       id: scrapedId,
       urlToScrape: data.url,
