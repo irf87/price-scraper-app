@@ -1,13 +1,5 @@
-import React, {useRef, useEffect} from 'react';
-import {
-  ActivityIndicator,
-  SafeAreaView,
-  View,
-  Text,
-  Animated,
-  TouchableOpacity,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import React from 'react';
+import {ActivityIndicator, SafeAreaView, StyleSheet} from 'react-native';
 import {useTheme} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 
@@ -21,6 +13,7 @@ import {useDrawer} from '@hooks/useDrawer';
 
 import ProductsScrapedList from '@domains/scrapedProducts/presentation/ProductsScrapedList/ProductsScrapedList';
 import Drawer from '@components/Drawer/Drawer';
+import NavigationHeader from '@design-system/atoms/navagation/navigationHeader/NavigationHeader';
 
 import {QueryProductScrapedFunction} from '@domains/scrapedProducts/domain/scrapedProductRepository';
 
@@ -29,8 +22,6 @@ import {SCREEN_NAMES} from '@screens/screenTypes';
 interface Props {
   route: {params: {queryFunction: QueryProductScrapedFunction}};
 }
-
-import styles, {DRAWER_WIDTH} from './styles';
 
 function ScrapedProductsListScreen({route}: Props) {
   const {queryFunction} = route.params;
@@ -43,16 +34,7 @@ function ScrapedProductsListScreen({route}: Props) {
   } = useProductsScrapedList({queryFunction});
   const {isOpen, toggleDrawer, spin} = useDrawer();
   const theme = useTheme();
-  const slideAnim = useRef(new Animated.Value(-DRAWER_WIDTH)).current;
   const {t} = useTranslation();
-
-  useEffect(() => {
-    Animated.timing(slideAnim, {
-      toValue: isOpen ? 0 : -DRAWER_WIDTH,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
-  }, [isOpen, slideAnim]);
 
   function handleOnPressProduct(productScraped: ScrapedProduct) {
     navigate(SCREEN_NAMES.PRODUCT_DETAIL, productScraped);
@@ -61,14 +43,11 @@ function ScrapedProductsListScreen({route}: Props) {
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: theme.colors.background}]}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={toggleDrawer} style={styles.menuButton}>
-          <Animated.View style={{transform: [{rotate: spin}]}}>
-            <Icon name="menu" size={24} color="#000" />
-          </Animated.View>
-        </TouchableOpacity>
-        <Text style={styles.title}>{t('scrapedProducts.activeProducts')}</Text>
-      </View>
+      <NavigationHeader
+        title={t('scrapedProducts.activeProducts')}
+        toggleDrawer={toggleDrawer}
+        spin={spin}
+      />
 
       <Drawer toggleDrawer={toggleDrawer} isOpen={isOpen} />
 
@@ -83,5 +62,11 @@ function ScrapedProductsListScreen({route}: Props) {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default ScrapedProductsListScreen;

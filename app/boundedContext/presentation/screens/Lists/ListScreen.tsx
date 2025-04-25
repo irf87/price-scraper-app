@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text, StyleSheet, Animated, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import {View, Text, StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import {useDrawer} from '@hooks/useDrawer';
 import Drawer from '@components/Drawer/Drawer';
+import NavigationHeader from '@design-system/atoms/navagation/navigationHeader/NavigationHeader';
 
 const ListScreen = () => {
   const {isOpen, toggleDrawer, spin} = useDrawer();
@@ -12,14 +12,11 @@ const ListScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={toggleDrawer} style={styles.menuButton}>
-          <Animated.View style={{transform: [{rotate: spin}]}}>
-            <Icon name="menu" size={24} color="#000" />
-          </Animated.View>
-        </TouchableOpacity>
-        <Text style={styles.title}>{t('navigation.lists')}</Text>
-      </View>
+      <NavigationHeader
+        title={t('navigation.lists')}
+        toggleDrawer={toggleDrawer}
+        spin={spin}
+      />
 
       <Drawer toggleDrawer={toggleDrawer} isOpen={isOpen} />
 
@@ -34,23 +31,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-    backgroundColor: '#fff',
-  },
-  menuButton: {
-    marginRight: 16,
-    padding: 8,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#000000',
   },
   content: {
     flex: 1,
