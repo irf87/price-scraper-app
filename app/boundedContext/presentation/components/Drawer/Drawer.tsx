@@ -32,6 +32,11 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, toggleDrawer}) => {
       title={t('drawer.sections')}>
       <MenuDrawer.Section>
         <MenuDrawer.Item
+          text={t('drawer.products')}
+          iconName="product-hunt"
+          onPress={() => handleNavigation(SCREEN_NAMES.PRODUCTS)}
+        />
+        <MenuDrawer.Item
           text={t('drawer.scrapedProducts')}
           iconName="shopping-cart"
           onPress={() =>

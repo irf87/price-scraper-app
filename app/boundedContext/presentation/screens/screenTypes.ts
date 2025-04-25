@@ -4,6 +4,7 @@ export const SCREEN_NAMES = {
   LISTS: 'Lists',
   CATEGORIES: 'Categories',
   PRODUCT_DETAIL: 'ProductDetail',
+  PRODUCTS: 'Products',
 } as const;
 
 export const SCRAPED_PRODUCT_DETAIL_SCREEN = {

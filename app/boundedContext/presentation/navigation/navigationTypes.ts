@@ -11,6 +11,7 @@ export type AppStackParamList = {
   ProductScrapedList: {queryFunction: QueryProductScrapedFunction};
   Lists: undefined;
   Categories: undefined;
+  Products: undefined;
 };
 
 export type ProductDetailStackPramList = {

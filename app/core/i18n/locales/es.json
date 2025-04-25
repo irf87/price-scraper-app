@@ -57,7 +57,8 @@
   "navigation": {
     "server": "Servidor",
     "lists": "Listas",
-    "categories": "Categorías"
+    "categories": "Categorías",
+    "products": "Productos"
   },
   "drawer": {
     "sections": "Secciones",

@@ -7,6 +7,7 @@ import ProductScrapedList from '@screens/ScrapedProducts/List/ScrapedProductsLis
 import ConfigServer from '@screens/ConfigServer/ConfigServer';
 import ListScreen from '@screens/Lists/ListScreen';
 import CategoriesScreen from '@screens/Categories/CategoriesScreen';
+import ProductsScreen from '@screens/Products/ProductsScreen';
 import {SCREEN_NAMES} from '@screens/screenTypes';
 
 import ProductDetailTabNavigation from '@navigation/ProductDetailTabNavigation';
@@ -41,6 +42,11 @@ export default function AppNavigation() {
         name={SCREEN_NAMES.PRODUCT_DETAIL}
         options={{title: t('scrapedProducts.productDetail')}}
         component={ProductDetailTabNavigation}
+      />
+      <Stack.Screen
+        name={SCREEN_NAMES.PRODUCTS}
+        options={{headerShown: false}}
+        component={ProductsScreen}
       />
     </Stack.Navigator>
   );

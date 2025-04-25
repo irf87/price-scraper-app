@@ -40,8 +40,8 @@ export function useProductsList(forceRefetch = false) {
       isSuccess,
     },
     products: data || [],
-    refetch,
-    invalidateCache,
+    refetchProducts: refetch,
+    invalidateProductsCache: invalidateCache,
   };
 }
 

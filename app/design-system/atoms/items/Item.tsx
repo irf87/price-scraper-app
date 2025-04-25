@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 interface ItemProps {
   imageUrl?: string;
   title: string;
-  description: string;
+  description?: string;
   onPress?: () => void;
   showOptions?: boolean;
   onOptionsPress?: () => void;
