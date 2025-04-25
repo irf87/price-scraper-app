@@ -21,7 +21,7 @@ const ListScreen = () => {
         <Text style={styles.title}>{t('navigation.lists')}</Text>
       </View>
 
-      {isOpen && <Drawer onClose={toggleDrawer} />}
+      <Drawer toggleDrawer={toggleDrawer} isOpen={isOpen} />
 
       <View style={styles.content}>
         <Text>{t('navigation.lists')} Screen Content</Text>
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListScreen; 
+export default ListScreen;

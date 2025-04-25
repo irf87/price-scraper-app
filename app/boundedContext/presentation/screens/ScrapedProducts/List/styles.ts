@@ -24,32 +24,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000000',
   },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  drawerContainer: {
-    width: DRAWER_WIDTH,
-    height: '100%',
-    backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 2,
-      height: 0,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  drawerHeader: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    paddingHorizontal: 12,
-    paddingVertical: 12,
-  },
-  closeButton: {
-    padding: 12,
-  },
 });
 
 export default styles;

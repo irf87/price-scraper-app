@@ -1,5 +1,12 @@
 import React from 'react';
-import { TouchableOpacity, View, Text, Image, StyleSheet, Pressable } from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Pressable,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 interface ItemProps {
@@ -28,15 +35,11 @@ export const Item: React.FC<ItemProps> = ({
     <TouchableOpacity
       style={styles.container}
       onPress={onPress}
-      activeOpacity={0.7}
-    >
+      activeOpacity={0.7}>
       <View style={styles.content}>
         <View style={styles.imageContainer}>
           {imageUrl ? (
-            <Image
-              source={{ uri: imageUrl }}
-              style={styles.image}
-            />
+            <Image source={{uri: imageUrl}} style={styles.image} />
           ) : (
             <Icon name="image" size={24} color="#666" />
           )}
@@ -54,8 +57,7 @@ export const Item: React.FC<ItemProps> = ({
         <Pressable
           style={styles.optionsButton}
           onPress={handleOptionsPress}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-        >
+          hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}>
           <Icon name="more-vert" size={20} color="#666" />
         </Pressable>
       )}
@@ -107,4 +109,4 @@ const styles = StyleSheet.create({
   optionsButton: {
     padding: 8,
   },
-}); 
+});

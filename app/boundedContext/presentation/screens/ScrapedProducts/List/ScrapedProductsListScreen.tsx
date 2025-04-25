@@ -6,8 +6,6 @@ import {
   Text,
   Animated,
   TouchableOpacity,
-  Modal,
-  TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useTheme} from 'react-native-paper';
@@ -72,28 +70,7 @@ function ScrapedProductsListScreen({route}: Props) {
         <Text style={styles.title}>{t('scrapedProducts.activeProducts')}</Text>
       </View>
 
-      <Modal visible={isOpen} transparent onRequestClose={toggleDrawer}>
-        <TouchableWithoutFeedback onPress={toggleDrawer}>
-          <View style={styles.modalOverlay}>
-            <TouchableWithoutFeedback>
-              <Animated.View
-                style={[
-                  styles.drawerContainer,
-                  {transform: [{translateX: slideAnim}]},
-                ]}>
-                <View style={styles.drawerHeader}>
-                  <TouchableOpacity
-                    onPress={toggleDrawer}
-                    style={styles.closeButton}>
-                    <Icon name="close" size={24} color="#5f6368" />
-                  </TouchableOpacity>
-                </View>
-                <Drawer onClose={toggleDrawer} />
-              </Animated.View>
-            </TouchableWithoutFeedback>
-          </View>
-        </TouchableWithoutFeedback>
-      </Modal>
+      <Drawer toggleDrawer={toggleDrawer} isOpen={isOpen} />
 
       {isFetching && (
         <ActivityIndicator style={{paddingTop: 24}} color="black" />

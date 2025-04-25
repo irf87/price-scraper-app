@@ -21,7 +21,7 @@ const CategoriesScreen = () => {
         <Text style={styles.title}>{t('navigation.categories')}</Text>
       </View>
 
-      {isOpen && <Drawer onClose={toggleDrawer} />}
+      <Drawer toggleDrawer={toggleDrawer} isOpen={isOpen} />
 
       <View style={styles.content}>
         <Text>{t('navigation.categories')} Screen Content</Text>
