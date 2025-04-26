@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   TouchableOpacity,
   View,
@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
   Pressable,
+  ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -26,9 +27,23 @@ export const Item: React.FC<ItemProps> = ({
   showOptions = false,
   onOptionsPress,
 }) => {
+  const [isImageLoading, setIsImageLoading] = useState(true);
+
   const handleOptionsPress = (e: any) => {
     e.stopPropagation();
     onOptionsPress?.();
+  };
+
+  const handleImageLoadStart = () => {
+    setIsImageLoading(true);
+  };
+
+  const handleImageLoadEnd = () => {
+    setIsImageLoading(false);
+  };
+
+  const handleImageLoadError = () => {
+    setIsImageLoading(false);
   };
 
   return (
@@ -39,7 +54,20 @@ export const Item: React.FC<ItemProps> = ({
       <View style={styles.content}>
         <View style={styles.imageContainer}>
           {imageUrl ? (
-            <Image source={{uri: imageUrl}} style={styles.image} />
+            <>
+              <Image
+                source={{uri: imageUrl}}
+                style={[styles.image, isImageLoading && styles.hiddenImage]}
+                onLoadStart={handleImageLoadStart}
+                onLoadEnd={handleImageLoadEnd}
+                onError={handleImageLoadError}
+              />
+              {isImageLoading && (
+                <View style={styles.loadingContainer}>
+                  <ActivityIndicator size="small" color="#666" />
+                </View>
+              )}
+            </>
           ) : (
             <Icon name="image" size={24} color="#666" />
           )}
@@ -85,11 +113,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
+    overflow: 'hidden',
   },
   image: {
     width: '100%',
     height: '100%',
     borderRadius: 24,
+  },
+  hiddenImage: {
+    opacity: 0,
+  },
+  loadingContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5',
   },
   textContainer: {
     flex: 1,

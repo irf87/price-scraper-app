@@ -33,7 +33,7 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, toggleDrawer}) => {
       <MenuDrawer.Section>
         <MenuDrawer.Item
           text={t('drawer.products')}
-          iconName="product-hunt"
+          iconName="inventory"
           onPress={() => handleNavigation(SCREEN_NAMES.PRODUCTS)}
         />
         <MenuDrawer.Item

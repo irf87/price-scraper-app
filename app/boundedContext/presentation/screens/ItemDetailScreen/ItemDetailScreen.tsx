@@ -48,6 +48,7 @@ const ItemDetailScreen = ({route}: Props) => {
           onPressProduct={handleOnPressProduct}
           onRefetch={refetchProductScraped}
           productsScrapedList={data || []}
+          refreshing={isFetching}
         />
       </ItemSectionWrapper>
     </View>

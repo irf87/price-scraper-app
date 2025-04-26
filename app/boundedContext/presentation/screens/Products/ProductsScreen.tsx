@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
@@ -11,10 +11,9 @@ import {productsItemAdapter} from '@domains/products/application/productsItemAda
 
 import {useDrawer} from '@hooks/useDrawer';
 import Drawer from '@components/Drawer/Drawer';
-import NavigationHeader from '@design-system/atoms/navagation/navigationHeader/NavigationHeader';
-import ItemList, {
-  ItemProps,
-} from '@design-system/molecules/list/itemList/ItemList';
+import NavigationHeader from '@design-system/atoms/navigation/navigationHeader/NavigationHeader';
+import {ItemProps} from '@design-system/molecules/list/itemList/ItemList';
+import VirtualizedItemList from '@design-system/molecules/list/virtualizedItemList';
 
 import {SCREEN_NAMES} from '@screens/screenTypes';
 
@@ -32,6 +31,11 @@ const ProductsScreen = () => {
       screenTitle: t('navigation.products'),
     });
   }
+
+  const adaptedItems = useMemo(() => {
+    return productsItemAdapter(products);
+  }, [products]);
+
   return (
     <View style={styles.container}>
       <NavigationHeader
@@ -44,10 +48,11 @@ const ProductsScreen = () => {
       {productState.isFetching && (
         <ActivityIndicator style={{paddingTop: 24}} color="black" />
       )}
-      <ItemList
-        items={productsItemAdapter(products)}
+      <VirtualizedItemList
+        items={adaptedItems}
         onPressItem={handleOnPressItem}
         onRefetch={refetchProducts}
+        refreshing={productState.isFetching}
       />
     </View>
   );

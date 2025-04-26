@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next';
 
 import {useDrawer} from '@hooks/useDrawer';
 import Drawer from '@components/Drawer/Drawer';
-import NavigationHeader from '@design-system/atoms/navagation/navigationHeader/NavigationHeader';
+import NavigationHeader from '@design-system/atoms/navigation/navigationHeader/NavigationHeader';
 
 const ListScreen = () => {
   const {isOpen, toggleDrawer, spin} = useDrawer();

@@ -13,7 +13,7 @@ import {useDrawer} from '@hooks/useDrawer';
 
 import ProductsScrapedList from '@domains/scrapedProducts/presentation/ProductsScrapedList/ProductsScrapedList';
 import Drawer from '@components/Drawer/Drawer';
-import NavigationHeader from '@design-system/atoms/navagation/navigationHeader/NavigationHeader';
+import NavigationHeader from '@design-system/atoms/navigation/navigationHeader/NavigationHeader';
 
 import {QueryProductScrapedFunction} from '@domains/scrapedProducts/domain/scrapedProductRepository';
 
