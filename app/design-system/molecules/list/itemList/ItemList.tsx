@@ -13,7 +13,7 @@ export interface ItemProps {
 
 interface Props {
   items: ItemProps[];
-  onPressItem: (itemId: string | number) => void;
+  onPressItem: (item: ItemProps) => void;
   onRefetch: () => void;
 }
 
@@ -29,7 +29,7 @@ const ItemList = ({items, onPressItem, onRefetch}: Props) => {
           imageUrl={item.imageUrl}
           title={item.title}
           description={item.description}
-          onPress={() => onPressItem(item.id)}
+          onPress={() => onPressItem(item)}
         />
       ))}
     </ScrollView>

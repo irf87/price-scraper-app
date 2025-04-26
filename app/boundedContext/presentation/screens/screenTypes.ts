@@ -5,6 +5,7 @@ export const SCREEN_NAMES = {
   CATEGORIES: 'Categories',
   PRODUCT_DETAIL: 'ProductDetail',
   PRODUCTS: 'Products',
+  ITEM_DETAIL: 'ItemDetail',
 } as const;
 
 export const SCRAPED_PRODUCT_DETAIL_SCREEN = {

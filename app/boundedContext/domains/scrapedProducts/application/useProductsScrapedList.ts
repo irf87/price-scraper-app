@@ -23,6 +23,7 @@ export const useProductsScrapedList = ({
   id,
   enabled = true,
 }: UseProductsScrapedListProps) => {
+  console.log('id to', id);
   const {t} = useTranslation();
   const queryKey = [queryFunction, id];
 
@@ -40,6 +41,11 @@ export const useProductsScrapedList = ({
           throw new Error(t('scrapedProducts.errors.listIdRequired'));
         }
         return scrapedProductUseCase.getScrapedProductByList(id);
+      case 'getScrapedProductByProductId':
+        if (id === undefined) {
+          throw new Error(t('scrapedProducts.errors.categoryIdRequired'));
+        }
+        return scrapedProductUseCase.getScrepedProductsByIdProduct(id);
       default:
         throw new Error(
           t('scrapedProducts.errors.unknownQueryFunction', {

@@ -13,13 +13,6 @@ export class ScrapedProductsUseCase {
     return ScrapedProductAdapter.formatProducts(products);
   }
 
-  async getScrapedProductById(idProduct: number): Promise<ScrapedProduct> {
-    const product = await this.scrapedProductRepository.getScrapedProductById(
-      idProduct,
-    );
-    return ScrapedProductAdapter.formatProduct(product);
-  }
-
   async getScrapedProductByCategory(
     idCategory: number,
   ): Promise<ScrapedProduct[]> {
@@ -34,5 +27,15 @@ export class ScrapedProductsUseCase {
     const products =
       await this.scrapedProductRepository.getScrapedProductByList(idList);
     return ScrapedProductAdapter.formatProducts(products);
+  }
+
+  async getScrepedProductsByIdProduct(
+    idProduct: number,
+  ): Promise<ScrapedProduct[]> {
+    const products =
+      await this.scrapedProductRepository.getScrepedProductsByIdProduct(
+        idProduct,
+      );
+    return ScrapedProductAdapter.formatProducts(products || []);
   }
 }

@@ -10,17 +10,28 @@ export class ScrapedProductRepositoryImpl implements ScrapedProductRepository {
     return response.data;
   }
 
-  async getScrapedProductById(id: number): Promise<ScrapedProduct> {
-    return this.api.get(`/scraper/${id}`);
-  }
-
   async getScrapedProductByCategory(
     idCategory: number,
   ): Promise<ScrapedProduct[]> {
-    return this.api.get(`product-category/scraped-product/${idCategory}`);
+    const response = await this.api.get(
+      `product-category/scraped-product/${idCategory}`,
+    );
+    return response.data;
   }
 
   async getScrapedProductByList(idList: number): Promise<ScrapedProduct[]> {
-    return this.api.get(`product-list/scraped-product${idList}`);
+    const response = await this.api.get(
+      `product-list/scraped-product${idList}`,
+    );
+    return response.data;
+  }
+
+  async getScrepedProductsByIdProduct(
+    idProduct: number,
+  ): Promise<ScrapedProduct[]> {
+    const response = await this.api.get(
+      `products/scraped-product/${idProduct}`,
+    );
+    return response.data;
   }
 }

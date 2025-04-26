@@ -8,6 +8,8 @@ import ConfigServer from '@screens/ConfigServer/ConfigServer';
 import ListScreen from '@screens/Lists/ListScreen';
 import CategoriesScreen from '@screens/Categories/CategoriesScreen';
 import ProductsScreen from '@screens/Products/ProductsScreen';
+import ItemDetailScreen from '@screens/ItemDetailScreen/ItemDetailScreen';
+
 import {SCREEN_NAMES} from '@screens/screenTypes';
 
 import ProductDetailTabNavigation from '@navigation/ProductDetailTabNavigation';
@@ -47,6 +49,13 @@ export default function AppNavigation() {
         name={SCREEN_NAMES.PRODUCTS}
         options={{headerShown: false}}
         component={ProductsScreen}
+      />
+      <Stack.Screen
+        name={SCREEN_NAMES.ITEM_DETAIL}
+        options={({route}: {route: NavigationRoute<'ItemDetail'>}) => ({
+          title: route?.params?.screenTitle,
+        })}
+        component={ItemDetailScreen}
       />
     </Stack.Navigator>
   );
