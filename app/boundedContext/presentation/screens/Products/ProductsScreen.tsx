@@ -1,12 +1,12 @@
 import React, {useMemo} from 'react';
-import {View, StyleSheet, ActivityIndicator} from 'react-native';
+import {View, StyleSheet, ActivityIndicator, TextInput} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import {useNavigation} from '@react-navigation/native';
 import {AppStackParamList} from '@navigation/navigationTypes';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {useProductsList} from '@domains/products/application/useProducts';
+import {useProductSearch} from '@domains/products/application/useProductSearch';
 import {productsItemAdapter} from '@domains/products/application/productsItemAdapter';
 
 import {useDrawer} from '@hooks/useDrawer';
@@ -21,7 +21,13 @@ const ProductsScreen = () => {
   const {t} = useTranslation();
   const {navigate} =
     useNavigation<NativeStackNavigationProp<AppStackParamList>>();
-  const {productState, products, refetchProducts} = useProductsList();
+  const {
+    searchTerm,
+    setSearchTerm,
+    searchResults,
+    productState,
+    refetchProducts,
+  } = useProductSearch();
   const {isOpen, toggleDrawer, spin} = useDrawer();
 
   function handleOnPressItem(item: ItemProps) {
@@ -33,8 +39,8 @@ const ProductsScreen = () => {
   }
 
   const adaptedItems = useMemo(() => {
-    return productsItemAdapter(products);
-  }, [products]);
+    return productsItemAdapter(searchResults);
+  }, [searchResults]);
 
   return (
     <View style={styles.container}>
@@ -45,6 +51,14 @@ const ProductsScreen = () => {
       />
 
       <Drawer toggleDrawer={toggleDrawer} isOpen={isOpen} />
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder={t('search.placeholder')}
+          value={searchTerm}
+          onChangeText={setSearchTerm}
+        />
+      </View>
       {productState.isFetching && (
         <ActivityIndicator style={{paddingTop: 24}} color="black" />
       )}
@@ -67,6 +81,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  searchContainer: {
+    padding: 16,
+  },
+  searchInput: {
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    backgroundColor: '#f5f5f5',
   },
 });
 
