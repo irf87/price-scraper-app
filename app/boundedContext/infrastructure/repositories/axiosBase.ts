@@ -4,7 +4,6 @@ import LocalStorage from '@infrastructure/storage/localStorage';
 const localStorage = new LocalStorage('urlServer');
 localStorage.getData();
 const url = localStorage.valueStoraged;
-console.log(`url ${url}`);
 
 const headers = {
   Accept: 'application/json',
@@ -20,6 +19,5 @@ export const api = axios.create({
 export const updateAxiosBaseUrl = () => {
   localStorage.getData();
   const newUrl = localStorage.valueStoraged;
-  console.log(`Actualizando URL base a: ${newUrl}`);
   api.defaults.baseURL = `${newUrl}/api/`;
 };

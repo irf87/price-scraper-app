@@ -6,6 +6,6 @@ import {
 
 export interface ProductRepository {
   getProducts(): Promise<Product[]>;
-  create(product: ProductWithOptionalId): Promise<Product[]>;
-  update(product: ProductWithRequiredId): Promise<Product[]>;
+  create(product: ProductWithOptionalId): Promise<Product>;
+  update(product: ProductWithRequiredId): Promise<Product>;
 }

@@ -9,6 +9,7 @@ import ListScreen from '@screens/Lists/ListScreen';
 import CategoriesScreen from '@screens/Categories/CategoriesScreen';
 import ProductsScreen from '@screens/Products/ProductsScreen';
 import ItemDetailScreen from '@screens/ItemDetailScreen/ItemDetailScreen';
+import Items from '@screens/Items/ItemsScreen';
 
 import {SCREEN_NAMES} from '@screens/screenTypes';
 
@@ -56,6 +57,11 @@ export default function AppNavigation() {
           title: route?.params?.screenTitle,
         })}
         component={ItemDetailScreen}
+      />
+      <Stack.Screen
+        name={SCREEN_NAMES.ITEM}
+        options={{headerShown: false}}
+        component={Items}
       />
     </Stack.Navigator>
   );

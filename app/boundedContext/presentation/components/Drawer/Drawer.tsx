@@ -48,12 +48,22 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, toggleDrawer}) => {
         <MenuDrawer.Item
           text={t('drawer.lists')}
           iconName="list"
-          onPress={() => handleNavigation(SCREEN_NAMES.LISTS)}
+          onPress={() =>
+            handleNavigation(SCREEN_NAMES.ITEM, {
+              screenTitle: t('drawer.lists'),
+              screenType: 'list',
+            })
+          }
         />
         <MenuDrawer.Item
           text={t('drawer.categories')}
           iconName="category"
-          onPress={() => handleNavigation(SCREEN_NAMES.CATEGORIES)}
+          onPress={() =>
+            handleNavigation(SCREEN_NAMES.ITEM, {
+              screenTitle: t('drawer.categories'),
+              screenType: 'category',
+            })
+          }
         />
       </MenuDrawer.Section>
 

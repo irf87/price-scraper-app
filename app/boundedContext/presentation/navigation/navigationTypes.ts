@@ -6,6 +6,7 @@ import {QueryProductScrapedFunction} from '@domains/scrapedProducts/domain/scrap
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {ItemDetailScreenProps} from '@screens/ItemDetailScreen/ScreenProps';
+import {ItemScreenProps} from '@screens/Items/ScreenProps';
 
 export type AppStackParamList = {
   ConfigServer: undefined;
@@ -14,6 +15,7 @@ export type AppStackParamList = {
   Lists: undefined;
   Categories: undefined;
   Products: undefined;
+  Item: ItemScreenProps;
   ItemDetail: ItemDetailScreenProps;
 };
 

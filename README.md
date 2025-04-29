@@ -1,5 +1,3 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
-
 # Intro
 
 This is the app client of [Price scraper server](https://github.com/irf87/prices-scraper)

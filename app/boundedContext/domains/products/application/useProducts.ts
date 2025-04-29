@@ -48,7 +48,7 @@ export function useProductsList(forceRefetch = false) {
 export function useCreateProduct() {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation<Product[], Error, ProductWithOptionalId>(
+  const mutation = useMutation<Product, Error, ProductWithOptionalId>(
     product => productUseCase.createProduct(product),
     {
       onSuccess: () => {
@@ -70,7 +70,7 @@ export function useCreateProduct() {
 export function useUpdateProduct() {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation<Product[], Error, ProductWithRequiredId>(
+  const mutation = useMutation<Product, Error, ProductWithRequiredId>(
     product => productUseCase.updateProduct(product),
     {
       onSuccess: () => {

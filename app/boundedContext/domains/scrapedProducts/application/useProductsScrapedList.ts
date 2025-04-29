@@ -23,7 +23,6 @@ export const useProductsScrapedList = ({
   id,
   enabled = true,
 }: UseProductsScrapedListProps) => {
-  console.log('id to', id);
   const {t} = useTranslation();
   const queryKey = [queryFunction, id];
 

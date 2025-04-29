@@ -14,13 +14,13 @@ export class ProductRepositoryImpl implements ProductRepository {
     return response.data;
   }
 
-  async create(product: ProductWithOptionalId): Promise<Product[]> {
-    const response = await this.api.post<Product[]>('products', product);
+  async create(product: ProductWithOptionalId): Promise<Product> {
+    const response = await this.api.post<Product>('products', product);
     return response.data;
   }
 
-  async update(product: ProductWithRequiredId): Promise<Product[]> {
-    const response = await this.api.put<Product[]>(
+  async update(product: ProductWithRequiredId): Promise<Product> {
+    const response = await this.api.put<Product>(
       `products/${product.id}`,
       product,
     );

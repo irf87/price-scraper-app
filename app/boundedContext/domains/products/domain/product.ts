@@ -9,4 +9,6 @@ export interface Product {
 export type ProductWithRequiredId = Pick<Product, 'id'> &
   Partial<Omit<Product, 'id'>>;
 
-export type ProductWithOptionalId = Partial<Product>;
+export interface ProductWithOptionalId extends Omit<Product, 'id'> {
+  id?: number;
+}
