@@ -52,5 +52,6 @@ export function useItemList<T extends ItemRepository>(
     },
     refetchItems: refetch,
     setSearchTerm,
+    searchTerm,
   };
 }

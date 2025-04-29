@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {View, StyleSheet, ActivityIndicator, TextInput} from 'react-native';
+import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import {useNavigation} from '@react-navigation/native';
@@ -14,6 +14,7 @@ import Drawer from '@components/Drawer/Drawer';
 import NavigationHeader from '@design-system/atoms/navigation/navigationHeader/NavigationHeader';
 import {ItemProps} from '@design-system/molecules/list/itemList/ItemList';
 import VirtualizedItemList from '@design-system/molecules/list/virtualizedItemList';
+import SearchInput from '@design-system/atoms/inputs/SearchInput';
 
 import {SCREEN_NAMES} from '@screens/screenTypes';
 
@@ -52,11 +53,12 @@ const ProductsScreen = () => {
 
       <Drawer toggleDrawer={toggleDrawer} isOpen={isOpen} />
       <View style={styles.searchContainer}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder={t('search.placeholder')}
+        <SearchInput
           value={searchTerm}
           onChangeText={setSearchTerm}
+          placeholder={`${t('search.placeholder')} ${t(
+            'navigation.products',
+          ).toLowerCase()} ...`}
         />
       </View>
       {productState.isFetching && (
@@ -84,14 +86,6 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     padding: 16,
-  },
-  searchInput: {
-    height: 40,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    backgroundColor: '#f5f5f5',
   },
 });
 

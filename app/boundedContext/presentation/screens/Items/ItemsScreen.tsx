@@ -1,4 +1,5 @@
 import React, {useMemo} from 'react';
+import {useTranslation} from 'react-i18next';
 
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import Drawer from '@components/Drawer/Drawer';
@@ -6,6 +7,7 @@ import Drawer from '@components/Drawer/Drawer';
 import NavigationHeader from '@design-system/atoms/navigation/navigationHeader/NavigationHeader';
 import VirtualizedItemList from '@design-system/molecules/list/virtualizedItemList';
 import {ItemProps} from '@design-system/molecules/list/itemList/ItemList';
+import SearchInput from '@design-system/atoms/inputs/SearchInput';
 
 import {useDrawer} from '@hooks/useDrawer';
 import {useItemList} from '@domains/items/application/useItem';
@@ -19,13 +21,12 @@ interface Props {
 }
 
 const ItemsScreen = ({route}: Props) => {
+  const {t} = useTranslation();
   const {screenTitle, screenType} = route.params;
   const {isOpen, toggleDrawer, spin} = useDrawer();
 
-  const {items, itemsState, refetchItems} = useItemList(
-    useItemRepository(screenType),
-    screenType,
-  );
+  const {items, itemsState, refetchItems, searchTerm, setSearchTerm} =
+    useItemList(useItemRepository(screenType), screenType);
 
   function handleOnPressItem(item: ItemProps) {
     console.log(`item ${item.id} as been pressed`);
@@ -42,7 +43,18 @@ const ItemsScreen = ({route}: Props) => {
         toggleDrawer={toggleDrawer}
         spin={spin}
       />
+
       <Drawer toggleDrawer={toggleDrawer} isOpen={isOpen} />
+
+      <View style={styles.searchContainer}>
+        <SearchInput
+          value={searchTerm}
+          onChangeText={setSearchTerm}
+          placeholder={`${t(
+            'search.placeholder',
+          )} ${screenTitle.toLowerCase()} ...`}
+        />
+      </View>
 
       {itemsState.isFetching && (
         <ActivityIndicator style={{paddingTop: 24}} color="black" />
@@ -67,6 +79,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  searchContainer: {
+    padding: 16,
   },
 });
 
