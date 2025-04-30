@@ -23,7 +23,7 @@
       "listIdRequired": "List ID is required for getScrapedProductByList",
       "unknownQueryFunction": "Unknown query function: {{function}}"
     },
-    "activeProducts": "Active Products",
+    "activeScrappers": "Active Scrappers",
     "productDetail": "Product Detail",
     "screens": {
       "detail": "Detail",

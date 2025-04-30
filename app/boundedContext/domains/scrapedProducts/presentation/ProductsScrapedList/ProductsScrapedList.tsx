@@ -1,5 +1,11 @@
-import React, {useCallback} from 'react';
-import {FlatList, RefreshControl, StyleSheet} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {
+  FlatList,
+  RefreshControl,
+  StyleSheet,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+} from 'react-native';
 
 import {ScrapedProduct} from '@domains/scrapedProducts/domain/scrapedProduct';
 import useVirtualizedList from '@hooks/useVirtualizedList';
@@ -11,6 +17,7 @@ interface Props {
   onPressProduct: (scrapedProduct: ScrapedProduct) => void;
   onRefetch: () => void;
   refreshing?: boolean;
+  onScroll?: (isScrollingDown: boolean) => void;
 }
 
 function ProductsScrapedList({
@@ -18,14 +25,28 @@ function ProductsScrapedList({
   onPressProduct,
   onRefetch,
   refreshing = false,
+  onScroll,
 }: Props) {
   const {listProps} = useVirtualizedList();
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const renderItem = useCallback(
     ({item}: {item: ScrapedProduct}) => (
       <ProductItem scrapedProduct={item} onPress={() => onPressProduct(item)} />
     ),
     [onPressProduct],
+  );
+
+  const handleScroll = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      if (onScroll) {
+        const currentScrollY = event.nativeEvent.contentOffset.y;
+        const isScrollingDown = currentScrollY > lastScrollY;
+        onScroll(isScrollingDown);
+        setLastScrollY(currentScrollY);
+      }
+    },
+    [lastScrollY, onScroll],
   );
 
   return (
@@ -37,6 +58,8 @@ function ProductsScrapedList({
         <RefreshControl refreshing={refreshing} onRefresh={onRefetch} />
       }
       contentContainerStyle={styles.contentContainer}
+      onScroll={handleScroll}
+      scrollEventThrottle={16}
       {...listProps}
     />
   );

@@ -10,16 +10,16 @@ console.log('Recursos de traducción cargados:', {en, es});
 
 const LANGUAGES = {
   en: {
-    translation: en
+    translation: en,
   },
   es: {
-    translation: es
-  }
+    translation: es,
+  },
 };
 
 const getDeviceLanguage = () => {
   let deviceLanguage;
-  
+
   if (Platform.OS === 'ios') {
     deviceLanguage =
       NativeModules.SettingsManager.settings.AppleLocale ||
@@ -31,7 +31,7 @@ const getDeviceLanguage = () => {
 
   // Extraemos el código de idioma de dos letras
   const languageCode = deviceLanguage.substring(0, 2).toLowerCase();
-  
+
   // Verificamos si tenemos traducciones para este idioma
   return LANGUAGES[languageCode] ? languageCode : 'en';
 };

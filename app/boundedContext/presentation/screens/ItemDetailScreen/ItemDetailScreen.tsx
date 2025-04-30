@@ -2,6 +2,8 @@ import React from 'react';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
+import {useTheme} from 'react-native-paper';
+
 import {AppStackParamList} from '@navigation/navigationTypes';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
@@ -19,6 +21,7 @@ interface Props {
 }
 
 const ItemDetailScreen = ({route}: Props) => {
+  const theme = useTheme();
   const {queryFunction, item} = route.params;
 
   const {navigate} =
@@ -35,7 +38,8 @@ const ItemDetailScreen = ({route}: Props) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[styles.container, {backgroundColor: theme.colors.background}]}>
       {isFetching && (
         <ActivityIndicator style={{paddingTop: 24}} color="black" />
       )}

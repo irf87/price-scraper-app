@@ -23,7 +23,7 @@
       "listIdRequired": "Se requiere ID de lista para getScrapedProductByList",
       "unknownQueryFunction": "Función de consulta desconocida: {{function}}"
     },
-    "activeProducts": "Productos activos",
+    "activeScrappers": "Scrappers activos",
     "productDetail": "Detalle del producto",
     "screens": {
       "detail": "Detalle",

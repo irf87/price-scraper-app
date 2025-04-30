@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ActivityIndicator, SafeAreaView, StyleSheet} from 'react-native';
-import {useTheme} from 'react-native-paper';
+import {useTheme, AnimatedFAB} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 
 import {useNavigation} from '@react-navigation/native';
@@ -35,16 +35,26 @@ function ScrapedProductsListScreen({route}: Props) {
   const {isOpen, toggleDrawer, spin} = useDrawer();
   const theme = useTheme();
   const {t} = useTranslation();
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
 
   function handleOnPressProduct(productScraped: ScrapedProduct) {
     navigate(SCREEN_NAMES.PRODUCT_DETAIL, productScraped);
   }
 
+  const handleCreatePress = () => {
+    // Handle create action
+    console.log('Create button pressed');
+  };
+
+  const handleScroll = (scrollingDown: boolean) => {
+    setIsScrollingDown(scrollingDown);
+  };
+
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: theme.colors.background}]}>
       <NavigationHeader
-        title={t('scrapedProducts.activeProducts')}
+        title={t('scrapedProducts.activeScrappers')}
         toggleDrawer={toggleDrawer}
         spin={spin}
       />
@@ -58,6 +68,15 @@ function ScrapedProductsListScreen({route}: Props) {
         onPressProduct={handleOnPressProduct}
         onRefetch={refetchProductScraped}
         productsScrapedList={productsScraped || []}
+        onScroll={handleScroll}
+      />
+      <AnimatedFAB
+        icon="plus"
+        label={t('common.create')}
+        onPress={handleCreatePress}
+        style={styles.fab}
+        color={theme.colors.primary}
+        extended={!isScrollingDown}
       />
     </SafeAreaView>
   );
@@ -66,6 +85,13 @@ function ScrapedProductsListScreen({route}: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    borderRadius: 28,
   },
 });
 
