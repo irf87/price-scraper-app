@@ -76,9 +76,11 @@ export const Item: React.FC<ItemProps> = ({
           <Text style={styles.title} numberOfLines={1}>
             {title}
           </Text>
-          <Text style={styles.description} numberOfLines={2}>
-            {description}
-          </Text>
+          {description && (
+            <Text style={styles.description} numberOfLines={2}>
+              {description}
+            </Text>
+          )}
         </View>
       </View>
       {showOptions && (
@@ -99,11 +101,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     backgroundColor: '#fff',
+    width: '100%',
   },
   content: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    minHeight: 48,
   },
   imageContainer: {
     width: 48,
@@ -114,6 +118,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 12,
     overflow: 'hidden',
+    flexShrink: 0,
   },
   image: {
     width: '100%',
@@ -136,6 +141,7 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
     marginRight: 8,
+    justifyContent: 'center',
   },
   title: {
     fontSize: 16,
@@ -150,5 +156,6 @@ const styles = StyleSheet.create({
   },
   optionsButton: {
     padding: 8,
+    flexShrink: 0,
   },
 });

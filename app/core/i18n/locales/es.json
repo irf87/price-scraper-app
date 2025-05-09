@@ -6,7 +6,8 @@
     "delete": "Eliminar",
     "loading": "Cargando...",
     "error": "Error",
-    "success": "Éxito"
+    "success": "Éxito",
+    "create": "Crear"
   },
   "configServer": {
     "title": "Configuración del Servidor",
@@ -42,6 +43,19 @@
       "enabled": "Habilitado",
       "url": "URL",
       "urlPlaceholder": "URL Scrapeada"
+    },
+    "form": {
+      "legend": "Por favor pegue o ingrese la URL de la página de comercio electrónico que desea scrapear, si la soportamos, el formulario se llenará automáticamente",
+      "urlPlaceholder": "Ingrese la URL",
+      "autoFill": "Llenar automáticamente",
+      "scraperSelectors": "Selectores del Scraper",
+      "priceDomSelector": "Selector DOM de Precio",
+      "stockDomSelector": "Selector DOM de Stock",
+      "availableDomSelector": "Selector DOM de Disponibilidad",
+      "linkedProduct": "Producto vinculado",
+      "createScraper": "Crear Scraper",
+      "scraperRules": "Reglas del Scraper",
+      "selectAnExistingProduct": "Seleccionar un producto existente"
     }
   },
   "scraperRules": {

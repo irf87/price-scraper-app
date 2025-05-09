@@ -10,6 +10,10 @@ export interface ScraperRule {
   notifyAvailabilityChanges: boolean;
 }
 
+export interface ScraperRuleWithOptionalId extends Omit<ScraperRule, 'id'> {
+  id?: number;
+}
+
 export interface ScraperRuleFromApi {
   id: number;
   productScrapedId: number;
