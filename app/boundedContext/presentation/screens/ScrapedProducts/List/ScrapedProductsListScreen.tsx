@@ -14,6 +14,8 @@ import {useDrawer} from '@hooks/useDrawer';
 import ProductsScrapedList from '@domains/scrapedProducts/presentation/ProductsScrapedList/ProductsScrapedList';
 import Drawer from '@components/Drawer/Drawer';
 import NavigationHeader from '@design-system/atoms/navigation/navigationHeader/NavigationHeader';
+import CreateScraperModal from '@domains/scraper/presentation/CreateScraperModal';
+import SnackbarInternal from '@components/SnackbarInternal/SnackbarInternal';
 
 import {QueryProductScrapedFunction} from '@domains/scrapedProducts/domain/scrapedProductRepository';
 
@@ -24,7 +26,10 @@ interface Props {
 }
 
 function ScrapedProductsListScreen({route}: Props) {
+  const {t} = useTranslation();
+  const theme = useTheme();
   const {queryFunction} = route.params;
+
   const {navigate} =
     useNavigation<NativeStackNavigationProp<AppStackParamList>>();
   const {
@@ -33,17 +38,16 @@ function ScrapedProductsListScreen({route}: Props) {
     refetch: refetchProductScraped,
   } = useProductsScrapedList({queryFunction});
   const {isOpen, toggleDrawer, spin} = useDrawer();
-  const theme = useTheme();
-  const {t} = useTranslation();
+
   const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   function handleOnPressProduct(productScraped: ScrapedProduct) {
     navigate(SCREEN_NAMES.PRODUCT_DETAIL, productScraped);
   }
 
   const handleCreatePress = () => {
-    // Handle create action
-    console.log('Create button pressed');
+    setShowModal(true);
   };
 
   const handleScroll = (scrollingDown: boolean) => {
@@ -78,6 +82,11 @@ function ScrapedProductsListScreen({route}: Props) {
         color={theme.colors.primary}
         extended={!isScrollingDown}
       />
+      <CreateScraperModal
+        visible={showModal}
+        onDismiss={() => setShowModal(false)}
+      />
+      <SnackbarInternal />
     </SafeAreaView>
   );
 }

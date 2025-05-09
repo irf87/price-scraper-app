@@ -6,7 +6,8 @@
     "delete": "Delete",
     "loading": "Loading...",
     "error": "Error",
-    "success": "Success"
+    "success": "Success",
+    "create": "Create"
   },
   "configServer": {
     "title": "Server Configuration",
@@ -42,6 +43,19 @@
       "enabled": "Enabled",
       "url": "URL",
       "urlPlaceholder": "URL Scrapped"
+    },
+    "form": {
+      "legend": "Please paste or put the URL of e-commerce page that you want to scrapp, if we support it, the form bellow will dill automaticaly",
+      "urlPlaceholder": "Put the URL",
+      "autoFill": "Auto fill",
+      "scraperSelectors": "Scraper Selectors",
+      "priceDomSelector": "Price Dom Selector",
+      "stockDomSelector": "Stock Dom Selector",
+      "availableDomSelector": "Available Dom Selector",
+      "linkedProduct": "Linked a product",
+      "createScraper": "Create Scraper",
+      "scraperRules": "Scraper Rules",
+      "selectAnExistingProduct": "Select an existing product"
     }
   },
   "scraperRules": {

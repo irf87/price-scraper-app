@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {useQuery, useQueryClient, useMutation} from 'react-query';
 
 import {api} from '@infrastructure/repositories/axiosBase';
@@ -48,17 +49,49 @@ export function useProductsList(forceRefetch = false) {
 export function useCreateProduct() {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation<Product, Error, ProductWithOptionalId>(
-    product => productUseCase.createProduct(product),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(QUERY_KEY);
-      },
+  type MutationContext = {
+    previousProducts: Product[] | undefined;
+  };
+
+  const mutation = useMutation<
+    Product,
+    Error,
+    ProductWithOptionalId,
+    MutationContext
+  >(product => productUseCase.createProduct(product), {
+    onMutate: async newProduct => {
+      // Cancel any outgoing refetches
+      await queryClient.cancelQueries(QUERY_KEY);
+
+      // Snapshot the previous value
+      const previousProducts = queryClient.getQueryData<Product[]>(QUERY_KEY);
+
+      // Optimistically update to the new value
+      if (previousProducts) {
+        queryClient.setQueryData<Product[]>(QUERY_KEY, [
+          ...previousProducts,
+          newProduct as Product,
+        ]);
+      }
+
+      return {previousProducts};
     },
-  );
+    onError: (error, newProduct, context) => {
+      // If the mutation fails, use the context returned from onMutate to roll back
+      if (context?.previousProducts) {
+        queryClient.setQueryData(QUERY_KEY, context.previousProducts);
+      }
+      // Log the error or handle it appropriately
+      console.error('Error creating product:', error);
+    },
+    onSuccess: newProduct => {
+      queryClient.invalidateQueries(QUERY_KEY);
+    },
+  });
 
   return {
-    createProduct: mutation.mutate,
+    createProduct: (product: ProductWithOptionalId) =>
+      mutation.mutateAsync(product),
     createProductState: {
       isLoading: mutation.isLoading,
       isError: mutation.isError,
@@ -70,17 +103,51 @@ export function useCreateProduct() {
 export function useUpdateProduct() {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation<Product, Error, ProductWithRequiredId>(
-    product => productUseCase.updateProduct(product),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(QUERY_KEY);
-      },
+  type MutationContext = {
+    previousProducts: Product[] | undefined;
+  };
+
+  const mutation = useMutation<
+    Product,
+    Error,
+    ProductWithRequiredId,
+    MutationContext
+  >(product => productUseCase.updateProduct(product), {
+    onMutate: async updatedProduct => {
+      // Cancel any outgoing refetches
+      await queryClient.cancelQueries(QUERY_KEY);
+
+      // Snapshot the previous value
+      const previousProducts = queryClient.getQueryData<Product[]>(QUERY_KEY);
+
+      // Optimistically update to the new value
+      if (previousProducts) {
+        queryClient.setQueryData<Product[]>(
+          QUERY_KEY,
+          previousProducts.map(p =>
+            p.id === updatedProduct.id ? (updatedProduct as Product) : p,
+          ),
+        );
+      }
+
+      return {previousProducts};
     },
-  );
+    onError: (error, updatedProduct, context) => {
+      // If the mutation fails, use the context returned from onMutate to roll back
+      if (context?.previousProducts) {
+        queryClient.setQueryData(QUERY_KEY, context.previousProducts);
+      }
+      // Log the error or handle it appropriately
+      console.error('Error updating product:', error);
+    },
+    onSuccess: updatedProduct => {
+      queryClient.invalidateQueries(QUERY_KEY);
+    },
+  });
 
   return {
-    updateProduct: mutation.mutate,
+    updateProduct: (product: ProductWithRequiredId) =>
+      mutation.mutateAsync(product),
     updateProductState: {
       isLoading: mutation.isLoading,
       isError: mutation.isError,

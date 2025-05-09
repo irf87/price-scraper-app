@@ -3,7 +3,10 @@ import {useTranslation} from '@core/i18n';
 import {api} from '@infrastructure/repositories/axiosBase';
 
 import {ScraperRulesRepositoryImpl} from '@domains/scraperRules/infrastructure/scraperRulesRepositoryImpl';
-import {ScraperRule} from '@domains/scraperRules/domain/scraperRules';
+import {
+  ScraperRule,
+  ScraperRuleWithOptionalId,
+} from '@domains/scraperRules/domain/scraperRules';
 import {ScraperRulesUseCase} from '@domains/scraperRules/application/scraperRulesUseCase';
 
 import {useSnackbarStore} from '@components/SnackbarInternal/useSnackbarStore';
@@ -35,7 +38,7 @@ export const useScraperRuleMutation = () => {
   const queryClient = useQueryClient();
 
   const createMutation = useMutation({
-    mutationFn: (scraperRule: ScraperRule) =>
+    mutationFn: (scraperRule: ScraperRuleWithOptionalId) =>
       scraperRulesUseCase.createScraperRule(scraperRule),
     onSuccess: () => {
       setSnackbarOptions({type: 'success', message: t('common.success')});
@@ -63,13 +66,20 @@ export const useScraperRuleMutation = () => {
   });
 
   return {
-    createScraperRule: createMutation.mutate,
+    createScraperRule: (scraperRule: ScraperRuleWithOptionalId) =>
+      createMutation.mutateAsync(scraperRule),
     createScraperRuleState: {
       isLoading: createMutation.isLoading,
       isError: createMutation.isError,
       isSuccess: createMutation.isSuccess,
     },
-    updateScraperRule: updateMutation.mutate,
+    updateScraperRule: ({
+      id,
+      scraperRule,
+    }: {
+      id: number;
+      scraperRule: ScraperRule;
+    }) => updateMutation.mutateAsync({id, scraperRule}),
     updateScraperRuleState: {
       isLoading: updateMutation.isLoading,
       isError: updateMutation.isError,

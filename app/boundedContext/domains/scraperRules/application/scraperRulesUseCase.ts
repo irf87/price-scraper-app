@@ -1,5 +1,8 @@
 import {ScraperRulesRepository} from '@domains/scraperRules/domain/scraperRulesRepository';
-import {ScraperRule} from '@domains/scraperRules/domain/scraperRules';
+import {
+  ScraperRule,
+  ScraperRuleWithOptionalId,
+} from '@domains/scraperRules/domain/scraperRules';
 import {ScraperRulesAdapter} from '@domains/scraperRules/application/scraperRulesAdapter';
 
 export class ScraperRulesUseCase {
@@ -12,7 +15,9 @@ export class ScraperRulesUseCase {
     return ScraperRulesAdapter.fromApi(scraperRuleFromApi);
   }
 
-  async createScraperRule(scraperRule: ScraperRule): Promise<ScraperRule> {
+  async createScraperRule(
+    scraperRule: ScraperRuleWithOptionalId,
+  ): Promise<ScraperRule> {
     const scraperRuleFromApi = await this.repository.createScraperRule(
       scraperRule,
     );

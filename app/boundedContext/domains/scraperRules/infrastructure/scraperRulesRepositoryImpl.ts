@@ -2,6 +2,7 @@ import {AxiosInstance} from 'axios';
 import {ScraperRulesRepository} from '@domains/scraperRules/domain/scraperRulesRepository';
 import {
   ScraperRule,
+  ScraperRuleWithOptionalId,
   ScraperRuleFromApi,
 } from '@domains/scraperRules/domain/scraperRules';
 
@@ -14,7 +15,7 @@ export class ScraperRulesRepositoryImpl implements ScraperRulesRepository {
   }
 
   async createScraperRule(
-    scraperRule: ScraperRule,
+    scraperRule: ScraperRuleWithOptionalId,
   ): Promise<ScraperRuleFromApi> {
     const response = await this.api.post('/notifications', scraperRule);
     return response.data;
