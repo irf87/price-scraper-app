@@ -131,3 +131,7 @@ The GitHub Actions workflow will automatically:
 - Attach the APK and CHANGELOG.md to the release
 
 Note: Make sure your commit messages follow the [Conventional Commits](https://www.conventionalcommits.org/) specification for proper changelog generation.
+
+```bash
+git push --follow-tags origin main
+```
