@@ -109,3 +109,25 @@ cd android
 ./gradlew assembleRelease
 ```
 The APK will be generated at `android/app/build/outputs/apk/release/app-release.apk`
+
+## Release Process
+
+To create a new release:
+
+1. Make sure all your changes are committed
+2. Run the release command:
+```bash
+yarn release
+```
+This will:
+- Update the version in package.json
+- Generate/update the CHANGELOG.md
+- Create a git tag
+- Push the changes and tag to GitHub
+
+The GitHub Actions workflow will automatically:
+- Build the Android APK
+- Create a new GitHub Release
+- Attach the APK and CHANGELOG.md to the release
+
+Note: Make sure your commit messages follow the [Conventional Commits](https://www.conventionalcommits.org/) specification for proper changelog generation.

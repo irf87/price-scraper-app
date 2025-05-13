@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "storybook:web": "storybook dev -p 6006"
+    "storybook:web": "storybook dev -p 6006",
+    "release": "standard-version"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -68,6 +69,7 @@
     "react-dom": "^18.2.0",
     "react-native-web": "^0.19.10",
     "react-test-renderer": "18.2.0",
+    "standard-version": "^9.5.0",
     "storybook": "^7.6.17",
     "typescript": "5.0.4"
   },
