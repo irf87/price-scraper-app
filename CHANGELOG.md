@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/irf87/prices-scraper/compare/v1.0.0...v1.0.1) (2025-05-13)
+
+
+### Documentation
+
+* add flow to release ([d425259](https://github.com/irf87/prices-scraper/commit/d425259582b523a79feb6bc6ed7373884a79156f))
+
 ## 1.0.0 (2025-05-13)
 
 
