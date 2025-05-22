@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ActivityIndicator, SafeAreaView, StyleSheet} from 'react-native';
 import {useTheme, AnimatedFAB} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
@@ -10,6 +10,8 @@ import {AppStackParamList} from '@navigation/navigationTypes';
 import {ScrapedProduct} from '@domains/scrapedProducts/domain/scrapedProduct';
 import {useProductsScrapedList} from '@domains/scrapedProducts/application/useProductsScrapedList';
 import {useDrawer} from '@hooks/useDrawer';
+import {useProductsPrefetch} from '@domains/products/application/useProductsPrefetch';
+import {useItemPrefetch} from '@domains/items/application/useItemPrefetch';
 
 import ProductsScrapedList from '@domains/scrapedProducts/presentation/ProductsScrapedList/ProductsScrapedList';
 import Drawer from '@components/Drawer/Drawer';
@@ -29,6 +31,8 @@ function ScrapedProductsListScreen({route}: Props) {
   const {t} = useTranslation();
   const theme = useTheme();
   const {queryFunction} = route.params;
+  const {prefetchProducts} = useProductsPrefetch();
+  const {prefetchItems} = useItemPrefetch();
 
   const {navigate} =
     useNavigation<NativeStackNavigationProp<AppStackParamList>>();
@@ -41,6 +45,16 @@ function ScrapedProductsListScreen({route}: Props) {
 
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    prefetchProducts();
+  }, [prefetchProducts]);
+
+  useEffect(() => {
+    if (isOpen) {
+      prefetchItems();
+    }
+  }, [isOpen, prefetchItems]);
 
   function handleOnPressProduct(productScraped: ScrapedProduct) {
     navigate(SCREEN_NAMES.PRODUCT_DETAIL, productScraped);

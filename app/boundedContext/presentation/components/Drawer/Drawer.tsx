@@ -8,6 +8,7 @@ import MenuDrawer from '@design-system/molecules/drawer/menuDrawer/MenuDrawer';
 
 import {AppStackParamList} from '@navigation/navigationTypes';
 import {SCREEN_NAMES} from '@screens/screenTypes';
+import {ITEMS_QUERY_KEYS} from '@domains/items/infrastructure/config/itemsConfig';
 
 type DrawerProps = {
   isOpen: boolean;
@@ -51,7 +52,7 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, toggleDrawer}) => {
           onPress={() =>
             handleNavigation(SCREEN_NAMES.ITEM, {
               screenTitle: t('drawer.lists'),
-              screenType: 'list',
+              screenType: ITEMS_QUERY_KEYS.LIST,
             })
           }
         />
@@ -61,7 +62,7 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, toggleDrawer}) => {
           onPress={() =>
             handleNavigation(SCREEN_NAMES.ITEM, {
               screenTitle: t('drawer.categories'),
-              screenType: 'category',
+              screenType: ITEMS_QUERY_KEYS.CATEGORY,
             })
           }
         />

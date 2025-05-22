@@ -1,35 +1,36 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {useQuery, useQueryClient, useMutation} from 'react-query';
 
-import {api} from '@infrastructure/repositories/axiosBase';
-
-import {ProductRepositoryImpl} from '@domains/products/infrastructure/productRepositoryImpl';
-import {ProductUseCase} from '@domains/products/application/productUseCase';
 import {
   Product,
   ProductWithOptionalId,
   ProductWithRequiredId,
 } from '@domains/products/domain/product';
-
-const productUseCase = new ProductUseCase(new ProductRepositoryImpl(api));
-
-const QUERY_KEY = 'products';
-const CACHE_TIME = 1000 * 60 * 60 * 24; // 1 day in milliseconds
+import {
+  PRODUCTS_QUERY_KEY,
+  PRODUCTS_CACHE_TIME,
+} from '@domains/products/infrastructure/config/productsConfig';
+import {getProductUseCase} from '@domains/products/infrastructure/factories/productUseCaseFactory';
 
 export function useProductsList(forceRefetch = false) {
   const queryClient = useQueryClient();
+  const productUseCase = getProductUseCase();
 
   const {data, isError, isFetched, isFetching, isLoading, isSuccess, refetch} =
-    useQuery<Product[], Error>(QUERY_KEY, () => productUseCase.getProducts(), {
-      staleTime: CACHE_TIME,
-      cacheTime: CACHE_TIME,
-      refetchOnWindowFocus: false,
-      refetchOnMount: !forceRefetch,
-      refetchOnReconnect: !forceRefetch,
-    });
+    useQuery<Product[], Error>(
+      PRODUCTS_QUERY_KEY,
+      () => productUseCase.getProducts(),
+      {
+        staleTime: PRODUCTS_CACHE_TIME,
+        cacheTime: PRODUCTS_CACHE_TIME,
+        refetchOnWindowFocus: false,
+        refetchOnMount: !forceRefetch,
+        refetchOnReconnect: !forceRefetch,
+      },
+    );
 
   const invalidateCache = () => {
-    queryClient.invalidateQueries(QUERY_KEY);
+    queryClient.invalidateQueries(PRODUCTS_QUERY_KEY);
   };
 
   return {
@@ -48,6 +49,7 @@ export function useProductsList(forceRefetch = false) {
 
 export function useCreateProduct() {
   const queryClient = useQueryClient();
+  const productUseCase = getProductUseCase();
 
   type MutationContext = {
     previousProducts: Product[] | undefined;
@@ -61,14 +63,15 @@ export function useCreateProduct() {
   >(product => productUseCase.createProduct(product), {
     onMutate: async newProduct => {
       // Cancel any outgoing refetches
-      await queryClient.cancelQueries(QUERY_KEY);
+      await queryClient.cancelQueries(PRODUCTS_QUERY_KEY);
 
       // Snapshot the previous value
-      const previousProducts = queryClient.getQueryData<Product[]>(QUERY_KEY);
+      const previousProducts =
+        queryClient.getQueryData<Product[]>(PRODUCTS_QUERY_KEY);
 
       // Optimistically update to the new value
       if (previousProducts) {
-        queryClient.setQueryData<Product[]>(QUERY_KEY, [
+        queryClient.setQueryData<Product[]>(PRODUCTS_QUERY_KEY, [
           ...previousProducts,
           newProduct as Product,
         ]);
@@ -79,13 +82,13 @@ export function useCreateProduct() {
     onError: (error, newProduct, context) => {
       // If the mutation fails, use the context returned from onMutate to roll back
       if (context?.previousProducts) {
-        queryClient.setQueryData(QUERY_KEY, context.previousProducts);
+        queryClient.setQueryData(PRODUCTS_QUERY_KEY, context.previousProducts);
       }
       // Log the error or handle it appropriately
       console.error('Error creating product:', error);
     },
     onSuccess: newProduct => {
-      queryClient.invalidateQueries(QUERY_KEY);
+      queryClient.invalidateQueries(PRODUCTS_QUERY_KEY);
     },
   });
 
@@ -102,6 +105,7 @@ export function useCreateProduct() {
 
 export function useUpdateProduct() {
   const queryClient = useQueryClient();
+  const productUseCase = getProductUseCase();
 
   type MutationContext = {
     previousProducts: Product[] | undefined;
@@ -115,15 +119,16 @@ export function useUpdateProduct() {
   >(product => productUseCase.updateProduct(product), {
     onMutate: async updatedProduct => {
       // Cancel any outgoing refetches
-      await queryClient.cancelQueries(QUERY_KEY);
+      await queryClient.cancelQueries(PRODUCTS_QUERY_KEY);
 
       // Snapshot the previous value
-      const previousProducts = queryClient.getQueryData<Product[]>(QUERY_KEY);
+      const previousProducts =
+        queryClient.getQueryData<Product[]>(PRODUCTS_QUERY_KEY);
 
       // Optimistically update to the new value
       if (previousProducts) {
         queryClient.setQueryData<Product[]>(
-          QUERY_KEY,
+          PRODUCTS_QUERY_KEY,
           previousProducts.map(p =>
             p.id === updatedProduct.id ? (updatedProduct as Product) : p,
           ),
@@ -135,13 +140,13 @@ export function useUpdateProduct() {
     onError: (error, updatedProduct, context) => {
       // If the mutation fails, use the context returned from onMutate to roll back
       if (context?.previousProducts) {
-        queryClient.setQueryData(QUERY_KEY, context.previousProducts);
+        queryClient.setQueryData(PRODUCTS_QUERY_KEY, context.previousProducts);
       }
       // Log the error or handle it appropriately
       console.error('Error updating product:', error);
     },
     onSuccess: updatedProduct => {
-      queryClient.invalidateQueries(QUERY_KEY);
+      queryClient.invalidateQueries(PRODUCTS_QUERY_KEY);
     },
   });
 

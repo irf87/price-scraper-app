@@ -6,14 +6,16 @@ import {api} from '@infrastructure/repositories/axiosBase';
 import {Item} from '@domains/items/domain/item';
 import {ItemUseCase} from '@domains/items/application/itemUseCase';
 import {ItemRepository} from '@domains/items/domain/itemRepository';
+import {
+  ITEMS_CACHE_TIME,
+  ItemType,
+} from '@domains/items/infrastructure/config/itemsConfig';
 
 import {searchByNameOrDescription} from '@utils/strings/searchByNameOrDescription';
 
-const CACHE_TIME = 1000 * 60 * 60 * 24; // 1 day in milliseconds
-
 export function useItemList<T extends ItemRepository>(
   RepositoryImpl: new (apiProp: AxiosInstance) => T,
-  queryName?: string,
+  itemType: ItemType,
 ) {
   const [searchTerm, setSearchTerm] = useState('');
   const itemUseCase = new ItemUseCase(new RepositoryImpl(api));
@@ -24,9 +26,9 @@ export function useItemList<T extends ItemRepository>(
     isFetching,
     error,
     refetch,
-  } = useQuery(queryName || 'items', () => itemUseCase.getItems(), {
-    staleTime: CACHE_TIME,
-    cacheTime: CACHE_TIME,
+  } = useQuery(itemType, () => itemUseCase.getItems(), {
+    staleTime: ITEMS_CACHE_TIME,
+    cacheTime: ITEMS_CACHE_TIME,
     refetchOnWindowFocus: false,
   });
 
