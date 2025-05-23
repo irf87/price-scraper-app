@@ -7,7 +7,8 @@
     "loading": "Loading...",
     "error": "Error",
     "success": "Success",
-    "create": "Create"
+    "create": "Create",
+    "readMore": "Read More"
   },
   "configServer": {
     "title": "Server Configuration",

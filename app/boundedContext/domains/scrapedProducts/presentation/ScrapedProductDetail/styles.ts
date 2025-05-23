@@ -38,7 +38,9 @@ const style = StyleSheet.create({
     marginBottom: 24,
   },
   description: {
-    textAlign: 'center',
+    textAlign: 'left',
+    width: '100%',
+    flexWrap: 'wrap',
   },
   currentPriceSection: {
     alignItems: 'center',
@@ -86,6 +88,10 @@ const style = StyleSheet.create({
   button: {
     marginTop: 16,
     width: '100%',
+  },
+  readMoreButton: {
+    marginTop: 8,
+    alignSelf: 'flex-start',
   },
 });
 

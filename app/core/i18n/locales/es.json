@@ -7,7 +7,8 @@
     "loading": "Cargando...",
     "error": "Error",
     "success": "Éxito",
-    "create": "Crear"
+    "create": "Crear",
+    "readMore": "Leer más"
   },
   "configServer": {
     "title": "Configuración del Servidor",

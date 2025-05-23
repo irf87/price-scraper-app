@@ -21,6 +21,12 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 16,
     color: '#666',
+    fontSize: 16,
+    lineHeight: 24,
+  },
+  readMoreButton: {
+    marginTop: -8,
+    marginBottom: 16,
   },
   itemsContainer: {
     marginTop: 16,

@@ -13,7 +13,7 @@ function ProductDetailData({route}: Props) {
   const {scrapedProductRecordsState, scrapedProductRecords} =
     useScrapedProductRecord(productParams?.productScrapedId);
   return (
-    <SafeAreaView style={{padding: 16}}>
+    <SafeAreaView>
       {scrapedProductRecordsState.isFetching && (
         <ActivityIndicator style={{paddingTop: 24}} color="black" />
       )}
