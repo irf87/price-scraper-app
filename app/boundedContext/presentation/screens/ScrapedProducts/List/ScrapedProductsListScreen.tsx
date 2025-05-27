@@ -11,7 +11,7 @@ import {ScrapedProduct} from '@domains/scrapedProducts/domain/scrapedProduct';
 import {useProductsScrapedList} from '@domains/scrapedProducts/application/useProductsScrapedList';
 import {useDrawer} from '@hooks/useDrawer';
 import {useProductsPrefetch} from '@domains/products/application/useProductsPrefetch';
-import {useItemPrefetch} from '@domains/items/application/useItemPrefetch';
+import {useItemPrefetch} from '@domains/items/application/hooks/useItemPrefetch';
 
 import ProductsScrapedList from '@domains/scrapedProducts/presentation/ProductsScrapedList/ProductsScrapedList';
 import Drawer from '@components/Drawer/Drawer';

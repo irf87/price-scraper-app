@@ -85,5 +85,21 @@
   },
   "search": {
     "placeholder": "Buscar"
+  },
+  "lists": {
+    "form": {
+      "create": "Crear lista",
+      "update": "Actualizar lista",
+      "name": "Nombre de la lista",
+      "description": "Descripción de la lista"
+    }
+  },
+  "categories": {
+    "form": {
+      "create": "Crear categoría",
+      "update": "Actualizar categoría",
+      "name": "Nombre de la categoría",
+      "description": "Descripción de la categoría"
+    }
   }
 } 

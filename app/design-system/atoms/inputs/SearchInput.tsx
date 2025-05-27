@@ -54,20 +54,16 @@ const SearchInput: React.FC<SearchInputProps> = ({
         left={<TextInput.Icon icon="magnify" />}
         style={styles.input}
         outlineStyle={styles.outline}
+        multiline={false}
+        scrollEnabled={false}
+        numberOfLines={1}
+        contentStyle={styles.content}
         theme={{
           colors: {
             primary: theme.colors.primary,
           },
         }}
       />
-      {value.length > 0 && (
-        <Animated.View
-          style={[
-            styles.cursor,
-            {opacity: cursorOpacity, backgroundColor: theme.colors.primary},
-          ]}
-        />
-      )}
     </View>
   );
 };
@@ -78,7 +74,15 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: '#f5f5f5',
+    paddingVertical: 0,
+    paddingHorizontal: 0,
+    overflow: 'hidden',
+  },
+  content: {
     height: 50,
+    paddingVertical: 0,
+    marginVertical: 0,
+    justifyContent: 'center',
   },
   outline: {
     borderRadius: 8,
