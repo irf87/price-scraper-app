@@ -1,14 +1,11 @@
 import React, {useMemo, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 
-import {View, StyleSheet, ActivityIndicator} from 'react-native';
-import {useTheme, AnimatedFAB} from 'react-native-paper';
+import {ActivityIndicator} from 'react-native';
 import Drawer from '@components/Drawer/Drawer';
 
-import NavigationHeader from '@design-system/atoms/navigation/navigationHeader/NavigationHeader';
 import VirtualizedItemList from '@design-system/molecules/list/virtualizedItemList';
 import {ItemProps} from '@design-system/molecules/list/itemList/ItemList';
-import SearchInput from '@design-system/atoms/inputs/SearchInput';
 
 import {useDrawer} from '@hooks/useDrawer';
 import {useItemList} from '@domains/items/application/hooks/useItem';
@@ -19,7 +16,8 @@ import {useItemRepository} from '../../../domains/items/application/hooks/useIte
 import CreateUpdateItemModal from '@domains/items/presentation/CreateUpdateItemModal';
 import {Item} from '@domains/items/domain/item';
 import useItemCase from '@domains/items/application/hooks/useItemCase';
-import SnackbarInternal from '@components/SnackbarInternal/SnackbarInternal';
+import FloatingButton from '@design-system/atoms/buttons/floatingButton/FloatingButton';
+import ScreenLayout from '@design-system/templates/screenLayout/ScreenLayout';
 
 interface Props {
   route: {params: ItemScreenProps};
@@ -27,7 +25,6 @@ interface Props {
 
 const ItemsScreen = ({route}: Props) => {
   const {t} = useTranslation();
-  const theme = useTheme();
   const {screenTitle, screenType} = route.params;
   const {isOpen, toggleDrawer, spin} = useDrawer();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -48,24 +45,20 @@ const ItemsScreen = ({route}: Props) => {
   }, [items]);
 
   return (
-    <View style={styles.container}>
-      <NavigationHeader
-        title={screenTitle}
-        toggleDrawer={toggleDrawer}
-        spin={spin}
-      />
-
+    <ScreenLayout
+      showHeader
+      headerTitle={screenTitle}
+      onToggleDrawer={toggleDrawer}
+      spin={spin}>
       <Drawer toggleDrawer={toggleDrawer} isOpen={isOpen} />
 
-      <View style={styles.searchContainer}>
-        <SearchInput
-          value={searchTerm}
-          onChangeText={setSearchTerm}
-          placeholder={`${t(
-            'search.placeholder',
-          )} ${screenTitle.toLowerCase()} ...`}
-        />
-      </View>
+      <ScreenLayout.SearchSection
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        placeholder={`${t(
+          'search.placeholder',
+        )} ${screenTitle.toLowerCase()} ...`}
+      />
 
       {itemsState.isFetching && (
         <ActivityIndicator style={{paddingTop: 24}} color="black" />
@@ -78,7 +71,7 @@ const ItemsScreen = ({route}: Props) => {
         refreshing={itemsState.isFetching}
       />
 
-      <AnimatedFAB
+      <FloatingButton
         icon="plus"
         label={t('common.create')}
         extended
@@ -86,8 +79,6 @@ const ItemsScreen = ({route}: Props) => {
           setSelectedItem(undefined);
           setIsModalVisible(true);
         }}
-        style={styles.fab}
-        color={theme.colors.primary}
       />
 
       <CreateUpdateItemModal
@@ -100,31 +91,8 @@ const ItemsScreen = ({route}: Props) => {
         item={selectedItem}
         itemUseCase={itemUseCase}
       />
-      <SnackbarInternal />
-    </View>
+    </ScreenLayout>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  searchContainer: {
-    padding: 16,
-  },
-  fab: {
-    position: 'absolute',
-    margin: 16,
-    right: 0,
-    bottom: 0,
-    borderRadius: 28,
-  },
-});
 
 export default ItemsScreen;
