@@ -3,7 +3,7 @@ import {View, Button} from 'react-native';
 import {DropDown} from './DropDown';
 
 export default {
-  title: '@Design-system/Atoms/DropDown',
+  title: 'Design System/Atoms/DropDown',
   component: DropDown,
 };
 
@@ -23,15 +23,9 @@ export const Default = () => {
 
   return (
     <View style={{padding: 20}}>
-      <Button
-        title="Show Options"
-        onPress={() => setIsVisible(true)}
-      />
+      <Button title="Show Options" onPress={() => setIsVisible(true)} />
       {isVisible && (
-        <DropDown
-          options={options}
-          onClose={() => setIsVisible(false)}
-        />
+        <DropDown options={options} onClose={() => setIsVisible(false)} />
       )}
     </View>
   );

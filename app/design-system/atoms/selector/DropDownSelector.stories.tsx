@@ -7,7 +7,7 @@ import {i18n} from '@core/i18n';
 import DropDownSelector, {DropDownSelectorOption} from './DropDownSelector';
 
 export default {
-  title: 'Atoms/DropDownSelector',
+  title: 'Design System/Atoms/DropDownSelector',
   component: DropDownSelector,
   decorators: [
     (Story: React.FC) => (

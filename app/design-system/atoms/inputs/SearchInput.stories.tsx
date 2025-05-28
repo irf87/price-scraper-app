@@ -3,10 +3,10 @@ import {View} from 'react-native';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {I18nextProvider} from 'react-i18next';
 import {i18n} from '@core/i18n';
-import SearchInput from '../inputs/SearchInput';
+import SearchInput from './SearchInput';
 
 export default {
-  title: 'Atoms/SearchInput',
+  title: 'Design System/Atoms/SearchInput',
   component: SearchInput,
   decorators: [
     Story => (
