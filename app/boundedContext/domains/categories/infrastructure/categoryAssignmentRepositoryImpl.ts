@@ -26,4 +26,11 @@ export class CategoryAssignmentRepositoryImpl
     );
     return response.data.map(category => this.adapter.toItem(category));
   }
+
+  async unassignItemFromProduct(
+    itemId: number,
+    productId: number,
+  ): Promise<void> {
+    await this.api.delete(`/product-category/${productId}/${itemId}`);
+  }
 }

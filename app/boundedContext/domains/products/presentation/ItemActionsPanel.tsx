@@ -18,14 +18,21 @@ interface Props {
 const ItemActionsPanel = ({productId, listOptions, categoryOptions}: Props) => {
   const {t} = useTranslation();
 
-  const {options: categoriesAssigned, assignItem: assignCategory} =
-    useItemAssignment(
-      useItemAssignmentRepository(ITEMS_QUERY_KEYS.CATEGORY),
-      ITEMS_QUERY_KEYS.CATEGORY,
-      productId,
-    );
+  const {
+    options: categoriesAssigned,
+    assignItem: assignCategory,
+    unassignItem: unassignCategory,
+  } = useItemAssignment(
+    useItemAssignmentRepository(ITEMS_QUERY_KEYS.CATEGORY),
+    ITEMS_QUERY_KEYS.CATEGORY,
+    productId,
+  );
 
-  const {options: listsAssigned, assignItem: assignList} = useItemAssignment(
+  const {
+    options: listsAssigned,
+    assignItem: assignList,
+    unassignItem: unassignList,
+  } = useItemAssignment(
     useItemAssignmentRepository(ITEMS_QUERY_KEYS.LIST),
     ITEMS_QUERY_KEYS.LIST,
     productId,
@@ -35,7 +42,8 @@ const ItemActionsPanel = ({productId, listOptions, categoryOptions}: Props) => {
   const filteredCategoryOptions = useMemo(
     () =>
       categoryOptions.filter(
-        option => !categoriesAssigned.some(assigned => assigned.value === option.value),
+        option =>
+          !categoriesAssigned.some(assigned => assigned.value === option.value),
       ),
     [categoryOptions, categoriesAssigned],
   );
@@ -44,7 +52,8 @@ const ItemActionsPanel = ({productId, listOptions, categoryOptions}: Props) => {
   const filteredListOptions = useMemo(
     () =>
       listOptions.filter(
-        option => !listsAssigned.some(assigned => assigned.value === option.value),
+        option =>
+          !listsAssigned.some(assigned => assigned.value === option.value),
       ),
     [listOptions, listsAssigned],
   );
@@ -57,7 +66,7 @@ const ItemActionsPanel = ({productId, listOptions, categoryOptions}: Props) => {
         selectedOptions={categoriesAssigned}
         actionTitle={t('items.actions.addCategory')}
         onSelect={value => assignCategory(Number(value))}
-        onRemove={() => {}}
+        onRemove={value => unassignCategory(Number(value))}
       />
       <AddActionSectionsWithChips
         label={t('items.actions.addToListLabel')}
@@ -65,7 +74,7 @@ const ItemActionsPanel = ({productId, listOptions, categoryOptions}: Props) => {
         selectedOptions={listsAssigned}
         actionTitle={t('items.actions.addToList')}
         onSelect={value => assignList(Number(value))}
-        onRemove={() => {}}
+        onRemove={value => unassignList(Number(value))}
       />
     </View>
   );

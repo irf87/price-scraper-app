@@ -11,4 +11,8 @@ export class AssignmentItemUseCase {
   async assignItemToProduct(itemId: number, productId: number) {
     return await this.itemRepository.assignItemToProduct(itemId, productId);
   }
+
+  async unassignItemFromProduct(itemId: number, productId: number) {
+    return await this.itemRepository.unassignItemFromProduct(itemId, productId);
+  }
 }

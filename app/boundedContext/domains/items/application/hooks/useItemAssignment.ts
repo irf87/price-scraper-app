@@ -41,11 +41,34 @@ export function useItemAssignment<T extends ItemAssignmentRepository>(
     },
   );
 
+  const unassignItemMutation = useMutation(
+    ({itemId, targetProductId}: {itemId: number; targetProductId: number}) =>
+      itemAssignmentUseCase.unassignItemFromProduct(itemId, targetProductId),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries([itemType, 'assigned', productId]);
+      },
+    },
+  );
+
   const assignItem = useCallback(
-    (itemId: number) => {
-      assignItemMutation.mutate({itemId, targetProductId: productId});
+    async (itemId: number) => {
+      await assignItemMutation.mutateAsync({
+        itemId,
+        targetProductId: productId,
+      });
     },
     [assignItemMutation, productId],
+  );
+
+  const unassignItem = useCallback(
+    async (itemId: number) => {
+      await unassignItemMutation.mutateAsync({
+        itemId,
+        targetProductId: productId,
+      });
+    },
+    [unassignItemMutation, productId],
   );
 
   const options: Option[] = useMemo(
@@ -66,7 +89,12 @@ export function useItemAssignment<T extends ItemAssignmentRepository>(
     },
     refetchItems: refetch,
     assignItem,
-    isAssigning: assignItemMutation.isLoading,
+    unassignItem,
+    assignItemState: {
+      isLoading: assignItemMutation.isLoading,
+      isError: assignItemMutation.isError,
+      isSuccess: assignItemMutation.isSuccess,
+    },
     options,
   };
 }

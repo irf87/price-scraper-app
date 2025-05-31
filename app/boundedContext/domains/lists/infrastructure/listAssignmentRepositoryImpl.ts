@@ -21,4 +21,12 @@ export class ListAssignmentRepositoryImpl implements ItemAssignmentRepository {
     );
     return response.data.map(list => this.adapter.toItem(list));
   }
+
+  async unassignItemFromProduct(
+    itemId: number,
+    productId: number,
+  ): Promise<void> {
+    console.log('unassignItemFromProduct', productId, itemId);
+    await this.api.delete(`/product-list/${productId}/${itemId}`);
+  }
 }
