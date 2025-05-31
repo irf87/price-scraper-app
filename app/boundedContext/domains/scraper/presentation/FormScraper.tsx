@@ -103,6 +103,8 @@ const FormScraper = forwardRef<FormScraperRef, FormScraperProps>(
             value={url}
             onChangeText={setUrl}
             style={styles.input}
+            onSubmitEditing={handleAutoFill}
+            returnKeyType="go"
           />
           <Button
             disabled={isLoadingGetDataByUrl}

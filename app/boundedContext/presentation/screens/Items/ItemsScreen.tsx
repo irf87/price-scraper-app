@@ -38,6 +38,7 @@ const ItemsScreen = ({route}: Props) => {
   const {isOpen, toggleDrawer, spin} = useDrawer();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Item | undefined>();
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
   const {title, queryFunction} = useGetQueryFunctionForProduct(screenType);
 
   const {items, itemsState, refetchItems, searchTerm, setSearchTerm} =
@@ -56,6 +57,10 @@ const ItemsScreen = ({route}: Props) => {
   const adaptedItems = useMemo(() => {
     return itemsAdapter(items || []);
   }, [items]);
+
+  const handleScroll = (scrollingDown: boolean) => {
+    setIsScrollingDown(scrollingDown);
+  };
 
   return (
     <ScreenLayout
@@ -82,12 +87,13 @@ const ItemsScreen = ({route}: Props) => {
         onPressItem={handleOnPressItem}
         onRefetch={refetchItems}
         refreshing={itemsState.isFetching}
+        onScroll={handleScroll}
       />
 
       <FloatingButton
         icon="plus"
         label={t('common.create')}
-        extended
+        extended={!isScrollingDown}
         onPress={() => {
           setSelectedItem(undefined);
           setIsModalVisible(true);

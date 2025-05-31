@@ -1,6 +1,6 @@
 import React, {useMemo, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {View, ActivityIndicator, StyleSheet} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 import {useTheme, Button} from 'react-native-paper';
@@ -21,6 +21,8 @@ import {SCREEN_NAMES} from '@screens/screenTypes';
 import {ItemDetailScreenProps} from './ScreenProps';
 import {queryClient} from '@infrastructure/repositories/queryClient';
 import {useGetItemsAsOptionsFromCache} from '@domains/items/application/hooks/useGetItemsAsOptionsFromCache';
+
+import ScreenLayout from '@design-system/templates/screenLayout/ScreenLayout';
 
 interface Props {
   route: {params: ItemDetailScreenProps};
@@ -53,64 +55,60 @@ const ItemDetailScreen = ({route}: Props) => {
   }
 
   return (
-    <View
-      style={[styles.container, {backgroundColor: theme.colors.background}]}>
+    <ScreenLayout showHeader={false} backgroundColor={theme.colors.background}>
       {isFetching && (
         <ActivityIndicator style={{paddingTop: 24}} color="black" />
       )}
 
-      <ItemSectionWrapper
-        imageUrl={item.imageUrl}
-        title={item.title}
-        description={item.description}>
-        {queryFunction === 'getScrapedProductByProductId' && (
-          <Button
-            mode="elevated"
-            onPress={() => setIsActionsPanelVisible(true)}
-            style={styles.actionButton}>
-            {t('items.itemDetail.organize')}
-          </Button>
-        )}
-        <ProductsScrapedList
-          onPressProduct={handleOnPressProduct}
-          onRefetch={refetchProductScraped}
-          productsScrapedList={data || []}
-          refreshing={isFetching}
-        />
-        {queryFunction === 'getScrapedProductByProductId' && (
-          <ModalBottomSheetForContent
-            isVisible={isActionsPanelVisible}
-            onClose={() => setIsActionsPanelVisible(false)}
-            title={item.title}
-            handleColor={theme.colors.primary}>
-            <QueryClientProvider client={queryClient}>
-              <ItemActionsPanel
-                productId={Number(item.id)}
-                listOptions={listOptions}
-                categoryOptions={categoryOptions}
-              />
-            </QueryClientProvider>
-          </ModalBottomSheetForContent>
-        )}
-      </ItemSectionWrapper>
-    </View>
+      <View style={styles.container}>
+        <ItemSectionWrapper
+          imageUrl={item.imageUrl}
+          title={item.title}
+          description={item.description}>
+          {queryFunction === 'getScrapedProductByProductId' && (
+            <Button
+              mode="elevated"
+              onPress={() => setIsActionsPanelVisible(true)}
+              style={styles.actionButton}>
+              {t('items.itemDetail.organize')}
+            </Button>
+          )}
+          <ProductsScrapedList
+            onPressProduct={handleOnPressProduct}
+            onRefetch={refetchProductScraped}
+            productsScrapedList={data || []}
+            refreshing={isFetching}
+          />
+        </ItemSectionWrapper>
+      </View>
+
+      {queryFunction === 'getScrapedProductByProductId' && (
+        <ModalBottomSheetForContent
+          isVisible={isActionsPanelVisible}
+          onClose={() => setIsActionsPanelVisible(false)}
+          title={item.title}
+          handleColor={theme.colors.primary}>
+          <QueryClientProvider client={queryClient}>
+            <ItemActionsPanel
+              productId={Number(item.id)}
+              listOptions={listOptions}
+              categoryOptions={categoryOptions}
+            />
+          </QueryClientProvider>
+        </ModalBottomSheetForContent>
+      )}
+    </ScreenLayout>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   actionButton: {
     marginTop: 16,
     marginHorizontal: 16,
     marginBottom: 16,
+  },
+  container: {
+    flex: 1,
   },
 });
 
