@@ -47,7 +47,7 @@
       "urlPlaceholder": "URL Scrapped"
     },
     "form": {
-      "legend": "Please paste or put the URL of e-commerce page that you want to scrapp, if we support it, the form bellow will dill automaticaly",
+      "legend": "Please paste or put the URL of e-commerce page that you want to scrape, if we support it, the form bellow will fill automatically",
       "urlPlaceholder": "Put the URL",
       "autoFill": "Auto fill",
       "scraperSelectors": "Scraper Selectors",
