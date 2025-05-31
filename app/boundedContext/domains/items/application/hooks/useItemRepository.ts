@@ -1,8 +1,13 @@
 import {AxiosInstance} from 'axios';
 
-import {ItemRepository} from '@domains/items/domain/itemRepository';
+import {
+  ItemAssignmentRepository,
+  ItemRepository,
+} from '@domains/items/domain/itemRepository';
 import {ListRepositoryImpl} from '@domains/lists/infrastructure/listRepositoryImpl';
+import {ListAssignmentRepositoryImpl} from '@domains/lists/infrastructure/listAssignmentRepositoryImpl';
 import {CategoryRepositoryImpl} from '@domains/categories/infrastructure/categoryRepositoryImpl';
+import {CategoryAssignmentRepositoryImpl} from '@domains/categories/infrastructure/categoryAssignmentRepositoryImpl';
 
 import {ITEMS_QUERY_KEYS} from '@domains/items/infrastructure/config/itemsConfig';
 /**
@@ -18,5 +23,16 @@ export const useItemRepository = (
       return ListRepositoryImpl;
     default:
       return CategoryRepositoryImpl;
+  }
+};
+
+export const useItemAssignmentRepository = (
+  screenType: string,
+): new (api: AxiosInstance) => ItemAssignmentRepository => {
+  switch (screenType) {
+    case ITEMS_QUERY_KEYS.LIST:
+      return ListAssignmentRepositoryImpl;
+    default:
+      return CategoryAssignmentRepositoryImpl;
   }
 };

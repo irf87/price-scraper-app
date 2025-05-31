@@ -8,7 +8,8 @@
     "error": "Error",
     "success": "Éxito",
     "create": "Crear",
-    "readMore": "Leer más"
+    "readMore": "Leer más",
+    "selectAnOption": "Seleccionar una opción"
   },
   "configServer": {
     "title": "Configuración del Servidor",
@@ -100,6 +101,14 @@
       "update": "Actualizar categoría",
       "name": "Nombre de la categoría",
       "description": "Descripción de la categoría"
+    }
+  },
+  "items": {
+    "actions": {
+      "addCategory": "Agregar categoría",
+      "addToList": "Agregar a lista",
+      "addCategoryLabel": "Selecciona una categoría",
+      "addToListLabel": "Selecciona una lista"
     }
   }
 } 

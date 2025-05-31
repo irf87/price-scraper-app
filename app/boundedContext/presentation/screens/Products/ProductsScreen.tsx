@@ -17,6 +17,8 @@ import VirtualizedItemList from '@design-system/molecules/list/virtualizedItemLi
 import ScreenLayout from '@design-system/templates/screenLayout/ScreenLayout';
 
 import {SCREEN_NAMES} from '@screens/screenTypes';
+import {useItemAssignmentPrefetch} from '@domains/items/application/hooks/useItemAssignmentPrefetch';
+import {useItemPrefetch} from '@domains/items/application/hooks/useItemPrefetch';
 
 const ProductsScreen = () => {
   const {t} = useTranslation();
@@ -29,9 +31,13 @@ const ProductsScreen = () => {
     productState,
     refetchProducts,
   } = useProductSearch();
+  const {prefetchAssignedItems} = useItemAssignmentPrefetch();
+  const {prefetchItems} = useItemPrefetch();
   const {isOpen, toggleDrawer, spin} = useDrawer();
 
   function handleOnPressItem(item: ItemProps) {
+    prefetchItems();
+    prefetchAssignedItems(Number(item.id));
     navigate(SCREEN_NAMES.ITEM_DETAIL, {
       queryFunction: 'getScrapedProductByProductId',
       item,
