@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/irf87/prices-scraper/compare/v1.0.1...v1.1.0) (2025-05-31)
+
+
+### Features
+
+* about section ([69545db](https://github.com/irf87/prices-scraper/commit/69545dbb69cf1c3a86be355a10b4ac27bf79e3f3))
+* add unassigned product from item (list or category) ([55bee26](https://github.com/irf87/prices-scraper/commit/55bee26e1d02440347b67d06a99a1aa7cdee25aa))
+* applied performance optimization strategy with prefeching ([3661fd3](https://github.com/irf87/prices-scraper/commit/3661fd303369321f02a948f859d66fb01d88612b))
+* create and update item functionality, fix minor ui improvements ([b023aa0](https://github.com/irf87/prices-scraper/commit/b023aa0a1c21f0bc063e8f7554f75cfa2ecca7ef))
+* create assignment functionality ([d18db10](https://github.com/irf87/prices-scraper/commit/d18db10013db74d8c7f6612c85a55c57b55c23a3))
+* create modal button sheet and improvements in description sections ([6dfa986](https://github.com/irf87/prices-scraper/commit/6dfa986b510ebcaeb761e6a3928bdef70d91d861))
+* create selector component and addActionSection component ([d526933](https://github.com/irf87/prices-scraper/commit/d5269339726ee2d940f81cc0f9c5e3cfdb229807))
+* linked item with assigned products ([3e380c9](https://github.com/irf87/prices-scraper/commit/3e380c955325029cca580583c22746145b1be2d8))
+
+
+### Bug Fixes
+
+* correction of grammar error ([a5e7459](https://github.com/irf87/prices-scraper/commit/a5e74592d32062dba415ff7fabdadebaa79c6370))
+
+
+### Code Refactoring
+
+* apply open close principle in scraper interfaces ([4857596](https://github.com/irf87/prices-scraper/commit/4857596cfff51db6c2c28fad32cfe370bf211d9f))
+* reduce component and reuse them ([cf48b17](https://github.com/irf87/prices-scraper/commit/cf48b17d748e7c388db256709692e2cceeb511f5))
+
+
+### Chores
+
+* add icons for IOS ([d71936b](https://github.com/irf87/prices-scraper/commit/d71936bf84eacb63b3769389b88330c4c2579b92))
+* create script to generate apk ([2c13546](https://github.com/irf87/prices-scraper/commit/2c13546167d4d72229250966538fc9d6b0b5d25b))
+* fix and improve the component's stories for storybook ([27aaaa3](https://github.com/irf87/prices-scraper/commit/27aaaa35c34da76e270fbc0edd3bda342b946d8f))
+* improve copies ([83859cd](https://github.com/irf87/prices-scraper/commit/83859cd87abe9df94b0c7c910bd4f33607ee363b))
+* ux improvements ([9874e0d](https://github.com/irf87/prices-scraper/commit/9874e0dc5028b0a19d951e3a5480ededf91fe32d))
+
 ### [1.0.1](https://github.com/irf87/prices-scraper/compare/v1.0.0...v1.0.1) (2025-05-13)
 
 
