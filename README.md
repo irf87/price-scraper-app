@@ -76,6 +76,18 @@ $ ./gradlew :app:installDebug
 
 /android/app/build/outputs/apk/debug
 
+### Quick Build (Alternative Method)
+You can also use the simplified build script that combines all the above steps:
+
+```bash
+yarn build:android
+```
+
+The APK will be generated at:
+```
+android/app/build/outputs/apk/debug/app-debug.apk
+```
+
 ## Icon Configuration
 
 ### Android
