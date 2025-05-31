@@ -114,5 +114,12 @@
       "addCategoryLabel": "Selecciona una categoría",
       "addToListLabel": "Selecciona una lista"
     }
+  },
+  "about": {
+    "title": "Acerca de",
+    "appName": "Price Scraper App",
+    "author": "Creado por irf87",
+    "linkedin": "Perfil de LinkedIn",
+    "github": "Perfil de GitHub"
   }
 } 
