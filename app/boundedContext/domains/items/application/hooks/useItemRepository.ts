@@ -10,6 +10,7 @@ import {CategoryRepositoryImpl} from '@domains/categories/infrastructure/categor
 import {CategoryAssignmentRepositoryImpl} from '@domains/categories/infrastructure/categoryAssignmentRepositoryImpl';
 
 import {ITEMS_QUERY_KEYS} from '@domains/items/infrastructure/config/itemsConfig';
+import {QueryProductScrapedFunction} from '@domains/scrapedProducts/domain/scrapedProductRepository';
 /**
  * Custom hook that returns the appropriate repository implementation based on screen type
  * @param screenType The type of screen ('list' or 'category')
@@ -34,5 +35,27 @@ export const useItemAssignmentRepository = (
       return ListAssignmentRepositoryImpl;
     default:
       return CategoryAssignmentRepositoryImpl;
+  }
+};
+
+interface QueryFunctionForProduct {
+  title: string;
+  queryFunction: QueryProductScrapedFunction;
+}
+
+export const useGetQueryFunctionForProduct = (
+  screenType: string,
+): QueryFunctionForProduct => {
+  switch (screenType) {
+    case ITEMS_QUERY_KEYS.LIST:
+      return {
+        title: 'navigation.productsAssigned',
+        queryFunction: 'getScrapedProductByList',
+      };
+    default:
+      return {
+        title: 'navigation.productsAssigned',
+        queryFunction: 'getScrapedProductByCategory',
+      };
   }
 };

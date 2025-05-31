@@ -74,7 +74,8 @@
     "server": "Servidor",
     "lists": "Listas",
     "categories": "Categorías",
-    "products": "Productos"
+    "products": "Productos",
+    "productsAssigned": "Productos Asignados"
   },
   "drawer": {
     "sections": "Secciones",
