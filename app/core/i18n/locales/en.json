@@ -104,6 +104,9 @@
     }
   },
   "items": {
+    "itemDetail": {
+      "organize": "Organize"
+    },
     "actions": {
       "addCategory": "Add Category",
       "addToList": "Add to List",

@@ -1,4 +1,5 @@
 import React, {useMemo, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
@@ -27,6 +28,7 @@ interface Props {
 
 const ItemDetailScreen = ({route}: Props) => {
   const theme = useTheme();
+  const {t} = useTranslation();
   const {queryFunction, item} = route.params;
   const [isActionsPanelVisible, setIsActionsPanelVisible] = useState(false);
   const {getListOptions, getCategoryOptions} = useGetItemsAsOptionsFromCache();
@@ -61,6 +63,14 @@ const ItemDetailScreen = ({route}: Props) => {
         imageUrl={item.imageUrl}
         title={item.title}
         description={item.description}>
+        {queryFunction === 'getScrapedProductByProductId' && (
+          <Button
+            mode="elevated"
+            onPress={() => setIsActionsPanelVisible(true)}
+            style={styles.actionButton}>
+            {t('items.itemDetail.organize')}
+          </Button>
+        )}
         <ProductsScrapedList
           onPressProduct={handleOnPressProduct}
           onRefetch={refetchProductScraped}
@@ -68,27 +78,19 @@ const ItemDetailScreen = ({route}: Props) => {
           refreshing={isFetching}
         />
         {queryFunction === 'getScrapedProductByProductId' && (
-          <>
-            <Button
-              mode="elevated"
-              onPress={() => setIsActionsPanelVisible(true)}
-              style={styles.actionButton}>
-              Actions
-            </Button>
-            <ModalBottomSheetForContent
-              isVisible={isActionsPanelVisible}
-              onClose={() => setIsActionsPanelVisible(false)}
-              title={item.title}
-              handleColor={theme.colors.primary}>
-              <QueryClientProvider client={queryClient}>
-                <ItemActionsPanel
-                  productId={Number(item.id)}
-                  listOptions={listOptions}
-                  categoryOptions={categoryOptions}
-                />
-              </QueryClientProvider>
-            </ModalBottomSheetForContent>
-          </>
+          <ModalBottomSheetForContent
+            isVisible={isActionsPanelVisible}
+            onClose={() => setIsActionsPanelVisible(false)}
+            title={item.title}
+            handleColor={theme.colors.primary}>
+            <QueryClientProvider client={queryClient}>
+              <ItemActionsPanel
+                productId={Number(item.id)}
+                listOptions={listOptions}
+                categoryOptions={categoryOptions}
+              />
+            </QueryClientProvider>
+          </ModalBottomSheetForContent>
         )}
       </ItemSectionWrapper>
     </View>
@@ -108,6 +110,7 @@ const styles = StyleSheet.create({
   actionButton: {
     marginTop: 16,
     marginHorizontal: 16,
+    marginBottom: 16,
   },
 });
 
