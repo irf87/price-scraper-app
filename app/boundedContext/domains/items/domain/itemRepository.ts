@@ -5,3 +5,9 @@ export interface ItemRepository {
   createItem(item: ItemWithOptionalId): Promise<Item>;
   updateItem(item: Item): Promise<Item>;
 }
+
+export interface ItemAssignmentRepository {
+  assignItemToProduct(itemId: number, productId: number): Promise<void>;
+  getItemsAssignedToProduct(productId: number): Promise<Item[]>;
+  unassignItemFromProduct(itemId: number, productId: number): Promise<void>;
+}

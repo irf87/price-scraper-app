@@ -21,7 +21,7 @@ export class ScrapedProductRepositoryImpl implements ScrapedProductRepository {
 
   async getScrapedProductByList(idList: number): Promise<ScrapedProduct[]> {
     const response = await this.api.get(
-      `product-list/scraped-product${idList}`,
+      `product-list/scraped-product/${idList}`,
     );
     return response.data;
   }

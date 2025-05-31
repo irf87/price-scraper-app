@@ -1,13 +1,35 @@
-export interface Scraper {
+// Base interface
+export interface BaseScraper {
   id: number;
   productId: number;
   urlToScrape: string;
-  priceDomSelector: string;
-  stockDomSelector?: string;
-  availableDomSelector?: string;
   enable: boolean;
   gettingMode: 'FETCH' | 'RENDER';
 }
+
+// Extended interface for price scraping
+export interface PriceScraper extends BaseScraper {
+  priceDomSelector: string;
+}
+
+// Extended interface for stock scraping
+export interface StockScraper extends BaseScraper {
+  stockDomSelector: string;
+}
+
+// Extended interface for availability scraping
+export interface AvailabilityScraper extends BaseScraper {
+  availableDomSelector: string;
+}
+
+// Combined interface for all selectors
+export interface FullScraper
+  extends PriceScraper,
+    StockScraper,
+    AvailabilityScraper {}
+
+// Maintain backward compatibility by making Scraper an alias of FullScraper
+export type Scraper = FullScraper;
 
 export interface ScraperSelectors {
   priceDomSelector: string;

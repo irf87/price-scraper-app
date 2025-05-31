@@ -5,8 +5,7 @@ import {useTranslation} from 'react-i18next';
 
 import ProductScrapedList from '@screens/ScrapedProducts/List/ScrapedProductsListScreen';
 import ConfigServer from '@screens/ConfigServer/ConfigServer';
-import ListScreen from '@screens/Lists/ListScreen';
-import CategoriesScreen from '@screens/Categories/CategoriesScreen';
+
 import ProductsScreen from '@screens/Products/ProductsScreen';
 import ItemDetailScreen from '@screens/ItemDetailScreen/ItemDetailScreen';
 import Items from '@screens/Items/ItemsScreen';
@@ -30,16 +29,6 @@ export default function AppNavigation() {
         name={SCREEN_NAMES.PRODUCT_SCRAPED_LIST}
         options={{headerShown: false}}
         component={ProductScrapedList}
-      />
-      <Stack.Screen
-        name={SCREEN_NAMES.LISTS}
-        options={{headerShown: false}}
-        component={ListScreen}
-      />
-      <Stack.Screen
-        name={SCREEN_NAMES.CATEGORIES}
-        options={{headerShown: false}}
-        component={CategoriesScreen}
       />
       <Stack.Screen
         name={SCREEN_NAMES.PRODUCT_DETAIL}

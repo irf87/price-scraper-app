@@ -49,6 +49,12 @@ const main: StorybookConfig = {
         '@core': path.resolve(__dirname, '../app/core'),
       };
     }
+    // Add loader for .ttf fonts from react-native-vector-icons
+    config.module.rules.push({
+      test: /\.ttf$/,
+      include: [path.resolve(__dirname, '../node_modules/react-native-vector-icons')],
+      use: [{ loader: 'file-loader' }],
+    });
     return config;
   },
 };

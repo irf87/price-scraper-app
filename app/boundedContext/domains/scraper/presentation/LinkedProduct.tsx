@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {Divider, Text} from 'react-native-paper';
-import DropDownSelector from '@design-system/atoms/selector/DropDownSelector';
-import type {DropDownSelectorOption} from '@design-system/atoms/selector/DropDownSelector';
+import DropDownSelector from '@design-system/atoms/selector/DropDownSelector/DropDownSelector';
+import type {DropDownSelectorOption} from '@design-system/atoms/selector/DropDownSelector/DropDownSelector';
 import {Controller, useFormContext} from 'react-hook-form';
 
 import {Product} from '@domains/products/domain/product';

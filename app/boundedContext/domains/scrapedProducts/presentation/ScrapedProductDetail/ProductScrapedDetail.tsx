@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState, useCallback} from 'react';
 import {View, Image, Linking, ScrollView} from 'react-native';
-import {Text, Button, Card} from 'react-native-paper';
+import {Text, Button, Card, useTheme} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 
 import {ScrapedProduct} from '@domains/scrapedProducts/domain/scrapedProduct';
 import {ScrapedProductRecords} from '@domains/scrapedProductsRecord/domain/scrapedProductRecord';
+import ModalBottomSheetForText from '@design-system/molecules/modals/ModalBottomSheetForText/ModalBottomSheetForText';
 
 import style from './styles';
 
@@ -15,6 +16,15 @@ interface Props {
 
 function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
   const {t} = useTranslation();
+  const theme = useTheme();
+  const [isDescriptionModalVisible, setIsDescriptionModalVisible] =
+    useState(false);
+  const [isTextTruncated, setIsTextTruncated] = useState(false);
+
+  const handleTextLayout = useCallback((event: any) => {
+    const {lines} = event.nativeEvent;
+    setIsTextTruncated(lines.length > 10);
+  }, []);
 
   return (
     <ScrollView>
@@ -39,9 +49,22 @@ function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
           />
         </View>
         <View style={style.descriptionContainer}>
-          <Text variant="bodyMedium" style={style.description}>
+          <Text
+            variant="bodyMedium"
+            style={style.description}
+            numberOfLines={10}
+            ellipsizeMode="tail"
+            onTextLayout={handleTextLayout}>
             {productDetail?.description}
           </Text>
+          {isTextTruncated && (
+            <Button
+              mode="text"
+              onPress={() => setIsDescriptionModalVisible(true)}
+              style={style.readMoreButton}>
+              {t('common.readMore')}
+            </Button>
+          )}
         </View>
         <View style={style.currentPriceSection}>
           <Text variant="titleMedium" style={style.currentPriceLabel}>
@@ -109,6 +132,13 @@ function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
           </Button>
         </View>
       </View>
+      <ModalBottomSheetForText
+        isVisible={isDescriptionModalVisible}
+        onClose={() => setIsDescriptionModalVisible(false)}
+        text={productDetail?.description || ''}
+        title={productDetail?.name}
+        handleColor={theme.colors.primary}
+      />
     </ScrollView>
   );
 }

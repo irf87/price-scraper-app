@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {View, StyleSheet, ActivityIndicator} from 'react-native';
+import {ActivityIndicator} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import {useNavigation} from '@react-navigation/native';
@@ -11,12 +11,14 @@ import {productsItemAdapter} from '@domains/products/application/productsItemAda
 
 import {useDrawer} from '@hooks/useDrawer';
 import Drawer from '@components/Drawer/Drawer';
-import NavigationHeader from '@design-system/atoms/navigation/navigationHeader/NavigationHeader';
 import {ItemProps} from '@design-system/molecules/list/itemList/ItemList';
 import VirtualizedItemList from '@design-system/molecules/list/virtualizedItemList';
-import SearchInput from '@design-system/atoms/inputs/SearchInput';
+
+import ScreenLayout from '@design-system/templates/screenLayout/ScreenLayout';
 
 import {SCREEN_NAMES} from '@screens/screenTypes';
+import {useItemAssignmentPrefetch} from '@domains/items/application/hooks/useItemAssignmentPrefetch';
+import {useItemPrefetch} from '@domains/items/application/hooks/useItemPrefetch';
 
 const ProductsScreen = () => {
   const {t} = useTranslation();
@@ -29,9 +31,13 @@ const ProductsScreen = () => {
     productState,
     refetchProducts,
   } = useProductSearch();
+  const {prefetchAssignedItems} = useItemAssignmentPrefetch();
+  const {prefetchItems} = useItemPrefetch();
   const {isOpen, toggleDrawer, spin} = useDrawer();
 
   function handleOnPressItem(item: ItemProps) {
+    prefetchItems();
+    prefetchAssignedItems(Number(item.id));
     navigate(SCREEN_NAMES.ITEM_DETAIL, {
       queryFunction: 'getScrapedProductByProductId',
       item,
@@ -44,49 +50,33 @@ const ProductsScreen = () => {
   }, [searchResults]);
 
   return (
-    <View style={styles.container}>
-      <NavigationHeader
-        title={t('navigation.products')}
-        toggleDrawer={toggleDrawer}
-        spin={spin}
+    <ScreenLayout
+      showHeader
+      headerTitle={t('navigation.products')}
+      onToggleDrawer={toggleDrawer}
+      spin={spin}>
+      <Drawer toggleDrawer={toggleDrawer} isOpen={isOpen} />
+
+      <ScreenLayout.SearchSection
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        placeholder={`${t('search.placeholder')} ${t(
+          'navigation.products',
+        ).toLowerCase()} ...`}
       />
 
-      <Drawer toggleDrawer={toggleDrawer} isOpen={isOpen} />
-      <View style={styles.searchContainer}>
-        <SearchInput
-          value={searchTerm}
-          onChangeText={setSearchTerm}
-          placeholder={`${t('search.placeholder')} ${t(
-            'navigation.products',
-          ).toLowerCase()} ...`}
-        />
-      </View>
       {productState.isFetching && (
         <ActivityIndicator style={{paddingTop: 24}} color="black" />
       )}
+
       <VirtualizedItemList
         items={adaptedItems}
         onPressItem={handleOnPressItem}
         onRefetch={refetchProducts}
         refreshing={productState.isFetching}
       />
-    </View>
+    </ScreenLayout>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  searchContainer: {
-    padding: 16,
-  },
-});
 
 export default ProductsScreen;

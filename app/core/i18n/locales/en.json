@@ -7,7 +7,9 @@
     "loading": "Loading...",
     "error": "Error",
     "success": "Success",
-    "create": "Create"
+    "create": "Create",
+    "readMore": "Read More",
+    "selectAnOption": "Select an option"
   },
   "configServer": {
     "title": "Server Configuration",
@@ -45,7 +47,7 @@
       "urlPlaceholder": "URL Scrapped"
     },
     "form": {
-      "legend": "Please paste or put the URL of e-commerce page that you want to scrapp, if we support it, the form bellow will dill automaticaly",
+      "legend": "Please paste or put the URL of e-commerce page that you want to scrape, if we support it, the form bellow will fill automatically",
       "urlPlaceholder": "Put the URL",
       "autoFill": "Auto fill",
       "scraperSelectors": "Scraper Selectors",
@@ -72,7 +74,8 @@
     "server": "Server",
     "lists": "Lists",
     "categories": "Categories",
-    "products": "Products"
+    "products": "Products",
+    "productsAssigned": "Products Assigned"
   },
   "drawer": {
     "sections": "Sections",
@@ -84,5 +87,39 @@
   },
   "search": {
     "placeholder": "Search"
+  },
+  "lists": {
+    "form": {
+      "create": "Create list",
+      "update": "Update list",
+      "name": "Name of the list",
+      "description": "Description of the list"
+    }
+  },
+  "categories": {
+    "form": {
+      "create": "Create category",
+      "update": "Update category",
+      "name": "Name of the category",
+      "description": "Description of the category"
+    }
+  },
+  "items": {
+    "itemDetail": {
+      "organize": "Organize"
+    },
+    "actions": {
+      "addCategory": "Add Category",
+      "addToList": "Add to List",
+      "addCategoryLabel": "Select a category",
+      "addToListLabel": "Select a list"
+    }
+  },
+  "about": {
+    "title": "About",
+    "appName": "Price Scraper App",
+    "author": "Created by irf87",
+    "linkedin": "LinkedIn Profile",
+    "github": "GitHub Profile"
   }
 } 

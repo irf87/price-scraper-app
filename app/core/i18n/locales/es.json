@@ -7,7 +7,9 @@
     "loading": "Cargando...",
     "error": "Error",
     "success": "Éxito",
-    "create": "Crear"
+    "create": "Crear",
+    "readMore": "Leer más",
+    "selectAnOption": "Seleccionar una opción"
   },
   "configServer": {
     "title": "Configuración del Servidor",
@@ -72,7 +74,8 @@
     "server": "Servidor",
     "lists": "Listas",
     "categories": "Categorías",
-    "products": "Productos"
+    "products": "Productos",
+    "productsAssigned": "Productos Asignados"
   },
   "drawer": {
     "sections": "Secciones",
@@ -84,5 +87,39 @@
   },
   "search": {
     "placeholder": "Buscar"
+  },
+  "lists": {
+    "form": {
+      "create": "Crear lista",
+      "update": "Actualizar lista",
+      "name": "Nombre de la lista",
+      "description": "Descripción de la lista"
+    }
+  },
+  "categories": {
+    "form": {
+      "create": "Crear categoría",
+      "update": "Actualizar categoría",
+      "name": "Nombre de la categoría",
+      "description": "Descripción de la categoría"
+    }
+  },
+  "items": {
+    "itemDetail": {
+      "organize": "Organizar"
+    },
+    "actions": {
+      "addCategory": "Agregar categoría",
+      "addToList": "Agregar a lista",
+      "addCategoryLabel": "Selecciona una categoría",
+      "addToListLabel": "Selecciona una lista"
+    }
+  },
+  "about": {
+    "title": "Acerca de",
+    "appName": "Price Scraper App",
+    "author": "Creado por irf87",
+    "linkedin": "Perfil de LinkedIn",
+    "github": "Perfil de GitHub"
   }
 } 

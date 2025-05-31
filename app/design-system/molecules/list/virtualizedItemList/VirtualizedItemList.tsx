@@ -1,5 +1,12 @@
-import React, {useCallback} from 'react';
-import {FlatList, RefreshControl, StyleSheet, View} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {
+  FlatList,
+  RefreshControl,
+  StyleSheet,
+  View,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+} from 'react-native';
 
 import {Item} from '@design-system/atoms/items/Item';
 import {ItemProps} from '@design-system/molecules/list/itemList/ItemList';
@@ -15,6 +22,7 @@ interface Props {
   windowSize?: number;
   removeClippedSubviews?: boolean;
   keyExtractor?: (item: ItemProps) => string;
+  onScroll?: (isScrollingDown: boolean) => void;
 }
 
 const VirtualizedItemList = ({
@@ -27,6 +35,7 @@ const VirtualizedItemList = ({
   windowSize = 5,
   removeClippedSubviews = true,
   keyExtractor = (item: ItemProps) => item.id.toString(),
+  onScroll,
 }: Props) => {
   const {listProps} = useVirtualizedList({
     initialNumToRender,
@@ -34,6 +43,7 @@ const VirtualizedItemList = ({
     windowSize,
     removeClippedSubviews,
   });
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const renderItem = useCallback(
     ({item}: {item: ItemProps}) => (
@@ -52,6 +62,18 @@ const VirtualizedItemList = ({
     [],
   );
 
+  const handleScroll = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      if (onScroll) {
+        const currentScrollY = event.nativeEvent.contentOffset.y;
+        const isScrollingDown = currentScrollY > lastScrollY;
+        onScroll(isScrollingDown);
+        setLastScrollY(currentScrollY);
+      }
+    },
+    [lastScrollY, onScroll],
+  );
+
   return (
     <FlatList
       data={items}
@@ -62,6 +84,8 @@ const VirtualizedItemList = ({
       }
       ItemSeparatorComponent={ItemSeparator}
       contentContainerStyle={styles.contentContainer}
+      onScroll={handleScroll}
+      scrollEventThrottle={16}
       {...listProps}
     />
   );

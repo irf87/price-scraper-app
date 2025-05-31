@@ -1,20 +1,30 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useState} from 'react';
 import {useTranslation} from 'react-i18next';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {AppStackParamList} from '@navigation/navigationTypes';
 
-import {View, StyleSheet, ActivityIndicator} from 'react-native';
+import {ActivityIndicator} from 'react-native';
 import Drawer from '@components/Drawer/Drawer';
 
-import NavigationHeader from '@design-system/atoms/navigation/navigationHeader/NavigationHeader';
 import VirtualizedItemList from '@design-system/molecules/list/virtualizedItemList';
 import {ItemProps} from '@design-system/molecules/list/itemList/ItemList';
-import SearchInput from '@design-system/atoms/inputs/SearchInput';
 
 import {useDrawer} from '@hooks/useDrawer';
-import {useItemList} from '@domains/items/application/useItem';
+import {useItemList} from '@domains/items/application/hooks/useItem';
 import {itemsAdapter} from '@domains/items/application/itemsAdapter';
 
 import {ItemScreenProps} from './ScreenProps';
-import {useItemRepository} from './useItemRepository';
+import {
+  useItemRepository,
+  useGetQueryFunctionForProduct,
+} from '@domains/items/application/hooks/useItemRepository';
+import CreateUpdateItemModal from '@domains/items/presentation/CreateUpdateItemModal';
+import {Item} from '@domains/items/domain/item';
+import useItemCase from '@domains/items/application/hooks/useItemCase';
+import FloatingButton from '@design-system/atoms/buttons/floatingButton/FloatingButton';
+import ScreenLayout from '@design-system/templates/screenLayout/ScreenLayout';
+import {SCREEN_NAMES} from '@screens/screenTypes';
 
 interface Props {
   route: {params: ItemScreenProps};
@@ -22,39 +32,51 @@ interface Props {
 
 const ItemsScreen = ({route}: Props) => {
   const {t} = useTranslation();
+  const {navigate} =
+    useNavigation<NativeStackNavigationProp<AppStackParamList>>();
   const {screenTitle, screenType} = route.params;
   const {isOpen, toggleDrawer, spin} = useDrawer();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<Item | undefined>();
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const {title, queryFunction} = useGetQueryFunctionForProduct(screenType);
 
   const {items, itemsState, refetchItems, searchTerm, setSearchTerm} =
     useItemList(useItemRepository(screenType), screenType);
 
+  const itemUseCase = useItemCase(screenType);
+
   function handleOnPressItem(item: ItemProps) {
-    console.log(`item ${item.id} as been pressed`);
+    navigate(SCREEN_NAMES.ITEM_DETAIL, {
+      queryFunction: queryFunction,
+      item,
+      screenTitle: t(title),
+    });
   }
 
   const adaptedItems = useMemo(() => {
     return itemsAdapter(items || []);
   }, [items]);
 
-  return (
-    <View style={styles.container}>
-      <NavigationHeader
-        title={screenTitle}
-        toggleDrawer={toggleDrawer}
-        spin={spin}
-      />
+  const handleScroll = (scrollingDown: boolean) => {
+    setIsScrollingDown(scrollingDown);
+  };
 
+  return (
+    <ScreenLayout
+      showHeader
+      headerTitle={screenTitle}
+      onToggleDrawer={toggleDrawer}
+      spin={spin}>
       <Drawer toggleDrawer={toggleDrawer} isOpen={isOpen} />
 
-      <View style={styles.searchContainer}>
-        <SearchInput
-          value={searchTerm}
-          onChangeText={setSearchTerm}
-          placeholder={`${t(
-            'search.placeholder',
-          )} ${screenTitle.toLowerCase()} ...`}
-        />
-      </View>
+      <ScreenLayout.SearchSection
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        placeholder={`${t(
+          'search.placeholder',
+        )} ${screenTitle.toLowerCase()} ...`}
+      />
 
       {itemsState.isFetching && (
         <ActivityIndicator style={{paddingTop: 24}} color="black" />
@@ -65,24 +87,31 @@ const ItemsScreen = ({route}: Props) => {
         onPressItem={handleOnPressItem}
         onRefetch={refetchItems}
         refreshing={itemsState.isFetching}
+        onScroll={handleScroll}
       />
-    </View>
+
+      <FloatingButton
+        icon="plus"
+        label={t('common.create')}
+        extended={!isScrollingDown}
+        onPress={() => {
+          setSelectedItem(undefined);
+          setIsModalVisible(true);
+        }}
+      />
+
+      <CreateUpdateItemModal
+        visible={isModalVisible}
+        onDismiss={() => {
+          setIsModalVisible(false);
+          setSelectedItem(undefined);
+        }}
+        type={screenType}
+        item={selectedItem}
+        itemUseCase={itemUseCase}
+      />
+    </ScreenLayout>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  searchContainer: {
-    padding: 16,
-  },
-});
 
 export default ItemsScreen;

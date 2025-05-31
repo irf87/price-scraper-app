@@ -25,15 +25,18 @@ const getDeviceLanguage = () => {
       NativeModules.SettingsManager.settings.AppleLocale ||
       NativeModules.SettingsManager.settings.AppleLanguages[0];
   } else {
-    // Para Android, usamos el idioma del sistema
-    deviceLanguage = NativeModules.I18nManager.localeIdentifier;
+    // Para Android, usamos el idioma del sistema con fallback
+    deviceLanguage =
+      NativeModules.I18nManager?.localeIdentifier ||
+      NativeModules.I18nManager?.locale ||
+      'en';
   }
 
   // Extraemos el código de idioma de dos letras
-  const languageCode = deviceLanguage.substring(0, 2).toLowerCase();
+  const languageCode = deviceLanguage?.substring(0, 2)?.toLowerCase() || 'en';
 
   // Verificamos si tenemos traducciones para este idioma
-  return LANGUAGES[languageCode] ? languageCode : 'en';
+  return Object.keys(LANGUAGES).includes(languageCode) ? languageCode : 'en';
 };
 
 // Configuración de i18n
