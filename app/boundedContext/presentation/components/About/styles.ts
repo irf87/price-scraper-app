@@ -17,6 +17,12 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: '#666',
   },
+  version: {
+    fontSize: 14,
+    marginBottom: 16,
+    textAlign: 'center',
+    color: '#666',
+  },
   linksContainer: {
     width: '100%',
     gap: 12,

@@ -3,6 +3,7 @@ import {View, Linking} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {Text, Button} from 'react-native-paper';
 import ModalBottomSheetForContent from '@design-system/molecules/modals/ModalBottomSheetForContent/ModalBottomSheetForContent';
+import {getFullAppVersion} from '@core/utils/appVersion';
 import styles from './styles';
 
 interface AboutProps {
@@ -29,6 +30,9 @@ const About: React.FC<AboutProps> = ({isVisible, onClose}) => {
         </Text>
         <Text variant="bodyLarge" style={styles.author}>
           {t('about.author')}
+        </Text>
+        <Text variant="bodyMedium" style={styles.version}>
+          {getFullAppVersion()}
         </Text>
         <View style={styles.linksContainer}>
           <Button

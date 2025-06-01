@@ -67,6 +67,7 @@ const ItemDetailScreen = ({route}: Props) => {
           description={item.description}>
           {queryFunction === 'getScrapedProductByProductId' && (
             <Button
+              disabled={isFetching}
               mode="elevated"
               onPress={() => setIsActionsPanelVisible(true)}
               style={styles.actionButton}>
