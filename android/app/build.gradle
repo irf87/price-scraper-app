@@ -69,6 +69,12 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'org.webkit:android-jsc:+'
 
+def getNpmVersion() {
+    def inputFile = new File("$rootDir/../package.json")
+    def packageJson = new groovy.json.JsonSlurper().parseText(inputFile.text)
+    return packageJson.version
+}
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -80,7 +86,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName getNpmVersion()
     }
     signingConfigs {
         debug {
