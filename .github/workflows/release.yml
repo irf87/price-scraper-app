@@ -27,6 +27,7 @@ jobs:
 
       - name: Build Android APK
         run: |
+          yarn build:android
           cd android
           ./gradlew assembleRelease
 
