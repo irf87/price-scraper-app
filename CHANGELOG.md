@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/irf87/prices-scraper/compare/v1.1.0...v1.1.1) (2025-06-01)
+
+
+### Bug Fixes
+
+* correction of heigh size in ProductScrapedDetail ([7910b51](https://github.com/irf87/prices-scraper/commit/7910b5149856e915bf95f9843e38bb21e2c900c9))
+* correction of minor ui errors ([91b8eeb](https://github.com/irf87/prices-scraper/commit/91b8eebdb5e65bd5d1434e048655a9e25ba2e003))
+* set as default theme light mode ([2438a93](https://github.com/irf87/prices-scraper/commit/2438a93d5f1831dbb85cd3f955d5407e1c40c08d))
+
+
+### Chores
+
+* add app version in about section and fixed minor ui errors ([5c22cc4](https://github.com/irf87/prices-scraper/commit/5c22cc424a7f790fcfbf7ad5b3801f80604bd479))
+* add permissions for github actions ([83f8e83](https://github.com/irf87/prices-scraper/commit/83f8e83d32317ab6c0066182ca335d7eab230931))
+* indicate the version of apk ([325a301](https://github.com/irf87/prices-scraper/commit/325a301a54b2404b6124a94d6f192759d2c39c7b))
+
 ## [1.1.0](https://github.com/irf87/prices-scraper/compare/v1.0.1...v1.1.0) (2025-05-31)
 
 
