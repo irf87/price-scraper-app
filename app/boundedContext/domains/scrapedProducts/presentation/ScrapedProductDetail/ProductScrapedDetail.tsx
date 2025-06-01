@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {View, Image, Linking, ScrollView} from 'react-native';
+import {View, Image, Linking, ScrollView, Dimensions} from 'react-native';
 import {Text, Button, Card, useTheme} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 
@@ -13,6 +13,8 @@ interface Props {
   productDetail: Readonly<ScrapedProduct>;
   productScrapedRecord: Readonly<ScrapedProductRecords>;
 }
+
+const screenHeight = Dimensions.get('window').height;
 
 function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
   const {t} = useTranslation();
@@ -28,7 +30,7 @@ function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
 
   return (
     <ScrollView>
-      <View style={style.container}>
+      <View style={[style.container, {minHeight: screenHeight}]}>
         <View style={style.lastUpdateContainer}>
           <Text variant="bodySmall" style={style.lastUpdateText}>
             {t('scrapedProducts.detail.lastUpdate', {
