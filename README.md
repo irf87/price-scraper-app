@@ -20,6 +20,14 @@ yarn android
 
 ### For iOS
 
+##  Set-up
+
+Only first time
+
+```bash
+cd ios && pod install && cd ..
+```
+
 ```bash
 yarn ios
 ```
