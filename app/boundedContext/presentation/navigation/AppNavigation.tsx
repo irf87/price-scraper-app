@@ -14,7 +14,25 @@ import {SCREEN_NAMES} from '@screens/screenTypes';
 
 import ProductDetailTabNavigation from '@navigation/ProductDetailTabNavigation';
 
+import ProductDetailHeaderRight from '@components/ProductDetailHeaderRight/ProductDetailHeaderRight';
+
 const Stack = createNativeStackNavigator();
+
+const ProductDetailHeaderRightWrapper = ({
+  route,
+  navigation,
+}: {
+  route: any;
+  navigation: any;
+}) => (
+  <ProductDetailHeaderRight
+    id={route.params?.productScrapedId}
+    navigation={navigation}
+  />
+);
+
+const getProductDetailHeaderRight = (route: any, navigation: any) => () =>
+  <ProductDetailHeaderRightWrapper route={route} navigation={navigation} />;
 
 export default function AppNavigation() {
   const {t} = useTranslation();
@@ -32,7 +50,10 @@ export default function AppNavigation() {
       />
       <Stack.Screen
         name={SCREEN_NAMES.PRODUCT_DETAIL}
-        options={{title: t('scrapedProducts.productDetail')}}
+        options={({navigation, route}) => ({
+          title: t('scrapedProducts.productDetail'),
+          headerRight: getProductDetailHeaderRight(route, navigation),
+        })}
         component={ProductDetailTabNavigation}
       />
       <Stack.Screen

@@ -3,7 +3,9 @@ import {LineChart, Grid, XAxis, YAxis} from 'react-native-svg-charts';
 import {G, Text} from 'react-native-svg';
 import * as scale from 'd3-scale';
 import * as shape from 'd3-shape';
-import {View, ScrollView} from 'react-native';
+import {View} from 'react-native';
+
+import ScreenLayout from '@design-system/templates/screenLayout/ScreenLayout';
 
 import {useGetStoredScrapedProductRecord} from '@domains/scrapedProductsRecord/application/useScrapedProductRecord';
 import {convertToPrice} from '@utils/currency';
@@ -24,7 +26,7 @@ function ProductDetailReport() {
   const minPrice = Math.min(...prices);
   const maxPrice = Math.max(...prices);
   return (
-    <ScrollView>
+    <ScreenLayout showHeader={false}>
       <View style={{height: 300, padding: 20, flexDirection: 'row'}}>
         <YAxis
           data={prices}
@@ -79,7 +81,7 @@ function ProductDetailReport() {
           />
         </View>
       </View>
-    </ScrollView>
+    </ScreenLayout>
   );
 }
 

@@ -3,6 +3,7 @@ import {Animated, ColorValue, SafeAreaView} from 'react-native';
 
 import NavigationHeader from '@design-system/atoms/navigation/navigationHeader/NavigationHeader';
 import SnackbarInternal from '@components/SnackbarInternal/SnackbarInternal';
+import GlobalLoader from '@components/Loader/GlobalLoader';
 
 import SearchInputSection from './SearchInputSection';
 
@@ -15,6 +16,7 @@ interface Props {
   onToggleDrawer?: () => void;
   spin?: Animated.AnimatedInterpolation<string | number>;
   backgroundColor?: ColorValue;
+  hasLoader?: boolean;
 }
 
 const ScreenLayout = ({
@@ -24,9 +26,11 @@ const ScreenLayout = ({
   onToggleDrawer,
   spin,
   backgroundColor = '#fff',
+  hasLoader = true,
 }: Props) => {
   return (
     <SafeAreaView style={[styles.container, {backgroundColor}]}>
+      {hasLoader && <GlobalLoader />}
       {showHeader && spin && (
         <NavigationHeader
           title={headerTitle || ''}

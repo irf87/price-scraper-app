@@ -41,6 +41,10 @@
       "avgPrice": "Precio Promedio",
       "visitWebsite": "Visitar Sitio Web"
     },
+    "remove": {
+      "title": "Eliminar producto",
+      "confirmQuestion": "¿Estás seguro de que deseas eliminar este producto?"
+    },
     "scraperSettings": {
       "enabled": "Habilitado",
       "url": "URL",

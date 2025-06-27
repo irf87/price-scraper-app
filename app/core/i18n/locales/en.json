@@ -41,6 +41,10 @@
       "avgPrice": "Avg Price",
       "visitWebsite": "Visit Website"
     },
+    "remove": {
+      "title": "Delete product",
+      "confirmQuestion": "Are you sure you want to delete this product?"
+    },
     "scraperSettings": {
       "enabled": "Enabled",
       "url": "URL",

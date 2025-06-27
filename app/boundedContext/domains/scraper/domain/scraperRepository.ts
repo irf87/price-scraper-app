@@ -11,6 +11,7 @@ import {
 export interface ScraperRepository {
   updataScraper(scraper: ScraperUpdates): Promise<ScraperUpdateResponseApi>;
   createScraper(scraper: ScraperWithOptionalId): Promise<Scraper>;
+  deleteScraper(id: number): Promise<void>;
   getScraperSelectorsByUrl(url: string): Promise<ScraperSelectors>;
   getProductDetailByScraper(
     props: ProductDetailBySelectorsProps,

@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, ActivityIndicator} from 'react-native';
+import {ScrollView, View, ActivityIndicator} from 'react-native';
+import ScreenLayout from '@design-system/templates/screenLayout/ScreenLayout';
 
 import {StackScreenProductDetailProps} from '@navigation/navigationTypes';
 
@@ -75,29 +76,33 @@ function ProductScrapperSettings({route}: Props) {
   };
 
   return (
-    <View style={{flex: 1}}>
-      <ScraperSettings
-        enable={enable}
-        urlToScrape={urlToScrape}
-        onSubmit={handleScraperSettingsSubmit}
-        isLoading={updateScraperState.isLoading}
-      />
-
-      {scraperRulesState.isFetching ? (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <ActivityIndicator size="large" />
-        </View>
-      ) : (
-        <ScraperRules
-          scraperRule={scraperRules || undefined}
-          onSubmit={handleScraperRulesSubmit}
-          isLoading={
-            createScraperRuleState.isLoading || updateScraperRuleState.isLoading
-          }
+    <ScreenLayout showHeader={false}>
+      <ScrollView>
+        <ScraperSettings
+          enable={enable}
+          urlToScrape={urlToScrape}
+          onSubmit={handleScraperSettingsSubmit}
+          isLoading={updateScraperState.isLoading}
         />
-      )}
-      <SnackbarInternal />
-    </View>
+
+        {scraperRulesState.isFetching ? (
+          <View
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <ActivityIndicator size="large" />
+          </View>
+        ) : (
+          <ScraperRules
+            scraperRule={scraperRules || undefined}
+            onSubmit={handleScraperRulesSubmit}
+            isLoading={
+              createScraperRuleState.isLoading ||
+              updateScraperRuleState.isLoading
+            }
+          />
+        )}
+        <SnackbarInternal />
+      </ScrollView>
+    </ScreenLayout>
   );
 }
 

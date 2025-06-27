@@ -1,5 +1,6 @@
 import React from 'react';
-import {SafeAreaView, ActivityIndicator} from 'react-native';
+import {ActivityIndicator} from 'react-native';
+import ScreenLayout from '@design-system/templates/screenLayout/ScreenLayout';
 
 import {StackScreenProductDetailProps} from '@navigation/navigationTypes';
 
@@ -13,7 +14,7 @@ function ProductDetailData({route}: Props) {
   const {scrapedProductRecordsState, scrapedProductRecords} =
     useScrapedProductRecord(productParams?.productScrapedId);
   return (
-    <SafeAreaView>
+    <ScreenLayout showHeader={false}>
       {scrapedProductRecordsState.isFetching && (
         <ActivityIndicator style={{paddingTop: 24}} color="black" />
       )}
@@ -23,7 +24,7 @@ function ProductDetailData({route}: Props) {
           productScrapedRecord={scrapedProductRecords}
         />
       )}
-    </SafeAreaView>
+    </ScreenLayout>
   );
 }
 

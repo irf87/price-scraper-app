@@ -41,4 +41,8 @@ export class ScraperRepositoryImp implements ScraperRepository {
     );
     return response.data;
   }
+
+  async deleteScraper(id: number): Promise<void> {
+    await this.api.delete(`scraper/${id}`);
+  }
 }

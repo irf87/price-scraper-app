@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, View} from 'react-native';
+import {View} from 'react-native';
 import {Button, Text, useTheme} from 'react-native-paper';
 import {useTranslation} from '@core/i18n';
 import {useForm, FormProvider} from 'react-hook-form';
@@ -36,7 +36,7 @@ function ScraperRulesForm({scraperRule, onSubmit, isLoading = false}: Props) {
   };
 
   return (
-    <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style={{padding: 16}}>
         <Text
           variant="titleLarge"
@@ -57,7 +57,7 @@ function ScraperRulesForm({scraperRule, onSubmit, isLoading = false}: Props) {
           {isLoading ? t('common.loading') : t('common.save')}
         </Button>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 

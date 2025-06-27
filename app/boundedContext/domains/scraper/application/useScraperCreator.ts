@@ -87,8 +87,8 @@ const useScraperCreator = () => {
       urlToScrape: url,
       productId: linkedProductId,
       priceDomSelector: data.priceDomSelector,
-      stockDomSelector: data?.stockDomSelector,
-      availableDomSelector: data?.availableDomSelector,
+      stockDomSelector: data?.stockDomSelector || '',
+      availableDomSelector: data?.availableDomSelector || '',
       enable: true,
       gettingMode: selectors.gettingMode,
     });

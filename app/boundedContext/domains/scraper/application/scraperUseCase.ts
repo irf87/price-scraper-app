@@ -30,4 +30,8 @@ export class ScraperUseCase {
   ): Promise<ProductDetailBySelectorsResponse> {
     return await this.repository.getProductDetailByScraper(props);
   }
+
+  async removeScraper(id: number) {
+    return await this.repository.deleteScraper(id);
+  }
 }

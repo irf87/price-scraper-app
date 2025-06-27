@@ -4,30 +4,23 @@ import {
   ProductDetailStackPramList,
 } from '@navigation/navigationTypes';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useTranslation} from 'react-i18next';
 
 import ProductDetailData from '@screens/ScrapedProducts/Details/ProductDetailData';
 import ProductDetailReport from '@screens/ScrapedProducts/Chart/ProductDetailReport';
 import ProductScrapperSettings from '@screens/ScrapedProducts/Settings/ProductScrapperSettings';
 
+import {
+  SettingsIcon,
+  ChartIcon,
+  ShoppingIcon,
+} from '@design-system/atoms/icons';
+
 import {SCRAPED_PRODUCT_DETAIL_SCREEN} from '@screens/screenTypes';
 
 const Tab = createBottomTabNavigator<ProductDetailStackPramList>();
 
 interface Props extends StackScreenProps<'ProductDetail'> {}
-
-const DetailIcon = ({color, size}: {color: string; size: number}) => (
-  <MaterialCommunityIcons name="shopping" color={color} size={size} />
-);
-
-const TrendIcon = ({color, size}: {color: string; size: number}) => (
-  <MaterialCommunityIcons name="chart-areaspline" color={color} size={size} />
-);
-
-const SettingsIcon = ({color, size}: {color: string; size: number}) => (
-  <MaterialCommunityIcons name="cog" color={color} size={size} />
-);
 
 function ProductDetailTabNavigation({route}: Props) {
   const {t} = useTranslation();
@@ -43,7 +36,7 @@ function ProductDetailTabNavigation({route}: Props) {
         name={SCRAPED_PRODUCT_DETAIL_SCREEN.PRODUCT_DETAIL_DATA}
         options={{
           title: t('scrapedProducts.screens.detail'),
-          tabBarIcon: DetailIcon,
+          tabBarIcon: ShoppingIcon,
         }}
         component={ProductDetailData}
       />
@@ -51,7 +44,7 @@ function ProductDetailTabNavigation({route}: Props) {
         name={SCRAPED_PRODUCT_DETAIL_SCREEN.PRODUCT_DETAIL_REPORT}
         options={{
           title: t('scrapedProducts.screens.trend'),
-          tabBarIcon: TrendIcon,
+          tabBarIcon: ChartIcon,
         }}
         component={ProductDetailReport}
       />
