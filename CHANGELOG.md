@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/irf87/prices-scraper/compare/v1.1.1...v1.2.0) (2025-10-25)
+
+
+### Features
+
+* adds navigation to product detail ([4981b49](https://github.com/irf87/prices-scraper/commit/4981b49ffddc6d54e56a241cbf876376f23dcd7a))
+* adds new translations and dropdown height ([304e27a](https://github.com/irf87/prices-scraper/commit/304e27a77eebef0448d4a85dfa8d0b355163f783))
+* delete scrapper ([32c2da9](https://github.com/irf87/prices-scraper/commit/32c2da9fb30c3723016622e30139c25e5413ef15))
+* implements item linking to products ([873e87f](https://github.com/irf87/prices-scraper/commit/873e87f697a3402d10a29713441ee61349d7fb03))
+
+
+### Bug Fixes
+
+* trust in not secure protocol http in release mode ([879b568](https://github.com/irf87/prices-scraper/commit/879b568e4c106584f57f986395db30f838c233d6))
+
+
+### Chores
+
+* fixed configutarion ([01d3e48](https://github.com/irf87/prices-scraper/commit/01d3e487440c753c6603e8d0709da7136f0ab80d))
+
 ### [1.1.1](https://github.com/irf87/prices-scraper/compare/v1.1.0...v1.1.1) (2025-06-01)
 
 
