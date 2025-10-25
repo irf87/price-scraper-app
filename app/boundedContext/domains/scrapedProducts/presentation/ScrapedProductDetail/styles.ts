@@ -15,8 +15,10 @@ const style = StyleSheet.create({
   },
   productNameContainer: {
     width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 8,
   },
   productName: {
     fontWeight: 'bold',
@@ -26,6 +28,7 @@ const style = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     marginBottom: 24,
+    marginTop: 8,
   },
   img: {
     height: 200,
@@ -92,6 +95,16 @@ const style = StyleSheet.create({
   readMoreButton: {
     marginTop: 8,
     alignSelf: 'flex-start',
+  },
+  modalImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
+  },
+  touchableImageContent: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 12,
   },
 });
 

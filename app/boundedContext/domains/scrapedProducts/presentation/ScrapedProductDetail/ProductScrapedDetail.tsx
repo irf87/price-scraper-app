@@ -1,11 +1,24 @@
 import React, {useState, useCallback} from 'react';
-import {View, Image, Linking, ScrollView, Dimensions} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {
+  View,
+  Image,
+  Linking,
+  ScrollView,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import {Text, Button, Card, useTheme} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {AppStackParamList} from '@navigation/navigationTypes';
+import {SCREEN_NAMES} from '@screens/screenTypes';
+import {scrapedProductToItemAdapter} from '@domains/products/application/adapters/scrapedProductToItem.adapter';
 
 import {ScrapedProduct} from '@domains/scrapedProducts/domain/scrapedProduct';
 import {ScrapedProductRecords} from '@domains/scrapedProductsRecord/domain/scrapedProductRecord';
 import ModalBottomSheetForText from '@design-system/molecules/modals/ModalBottomSheetForText/ModalBottomSheetForText';
+import ModalBottomSheet from '@design-system/atoms/modals/ModalBottomSheet/ModalBottomSheet';
 
 import style from './styles';
 
@@ -19,14 +32,27 @@ const screenHeight = Dimensions.get('window').height;
 function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
   const {t} = useTranslation();
   const theme = useTheme();
+  const {navigate} =
+    useNavigation<NativeStackNavigationProp<AppStackParamList>>();
+
   const [isDescriptionModalVisible, setIsDescriptionModalVisible] =
     useState(false);
+  const [isImageModalVisible, setIsImageModalVisible] = useState(false);
   const [isTextTruncated, setIsTextTruncated] = useState(false);
 
   const handleTextLayout = useCallback((event: any) => {
     const {lines} = event.nativeEvent;
     setIsTextTruncated(lines.length > 10);
   }, []);
+
+  const handleNavigation = () => {
+    const item = scrapedProductToItemAdapter(productDetail);
+    navigate(SCREEN_NAMES.ITEM_DETAIL, {
+      queryFunction: 'getScrapedProductByProductId',
+      item,
+      screenTitle: t('navigation.products'),
+    });
+  };
 
   return (
     <ScrollView>
@@ -43,12 +69,23 @@ function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
             {productDetail?.name}
           </Text>
         </View>
+        <Button mode="text" icon="arrow-right" onPress={handleNavigation}>
+          {t('common.go')}
+        </Button>
         <View style={style.imageContainer}>
-          <Image
+          <TouchableOpacity
             style={style.img}
-            source={{uri: productDetail?.urlImg || ''}}
-            resizeMode="cover"
-          />
+            onPress={() => {
+              if (productDetail.urlImg) {
+                setIsImageModalVisible(true);
+              }
+            }}>
+            <Image
+              source={{uri: productDetail?.urlImg || ''}}
+              style={style.touchableImageContent}
+              resizeMode="cover"
+            />
+          </TouchableOpacity>
         </View>
         <View style={style.descriptionContainer}>
           <Text
@@ -141,6 +178,16 @@ function ProductScrapedDetail({productDetail, productScrapedRecord}: Props) {
         title={productDetail?.name}
         handleColor={theme.colors.primary}
       />
+      <ModalBottomSheet
+        isVisible={isImageModalVisible}
+        onClose={() => setIsImageModalVisible(false)}
+        title={productDetail?.name}
+        height="full">
+        <Image
+          source={{uri: productDetail.urlImg || ''}}
+          style={style.modalImage}
+        />
+      </ModalBottomSheet>
     </ScrollView>
   );
 }
