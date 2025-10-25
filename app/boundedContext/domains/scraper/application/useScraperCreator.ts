@@ -108,7 +108,10 @@ const useScraperCreator = () => {
       notifyAvailabilityChanges: data?.notifyAvailability || false,
     });
 
-    return scraperCreated.id;
+    return {
+      scraperId: scraperCreated.id,
+      productId: linkedProductId,
+    };
   };
 
   useEffect(() => {

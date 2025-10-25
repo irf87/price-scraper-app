@@ -9,25 +9,36 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   legend: {
-    marginBottom: 16,
-    fontSize: 16,
+    marginBottom: 8,
+    fontSize: 14,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 16,
+    marginBottom: 8,
   },
   input: {
-    marginBottom: 16,
+    marginBottom: 8,
   },
   autoFillButton: {
-    alignSelf: 'flex-start',
+    marginTop: 8,
   },
   divider: {
     marginVertical: 16,
   },
   selectExistingButton: {
-    marginBottom: 16,
+    marginBottom: 8,
+  },
+  switchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  switchLabel: {
+    marginLeft: 8,
+  },
+  hidden: {
+    display: 'none',
   },
 });
 
