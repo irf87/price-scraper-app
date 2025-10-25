@@ -12,6 +12,21 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from '../styles';
 
+export const DropDownHeight = {
+  SMALL: 'small',
+  MEDIUM: 'medium',
+  HIGH: 'high',
+} as const;
+
+export type DropDownHeightVariant =
+  (typeof DropDownHeight)[keyof typeof DropDownHeight];
+
+const heightVariants = {
+  [DropDownHeight.SMALL]: 224, // 4 items
+  [DropDownHeight.MEDIUM]: 336, // 6 items
+  [DropDownHeight.HIGH]: 448, // 8 items
+};
+
 export interface DropDownSelectorOption {
   value: string | number;
   title: string;
@@ -27,6 +42,7 @@ export interface DropDownSelectorProps {
   disabled?: boolean;
   error?: boolean;
   style?: any;
+  heightVariant?: DropDownHeightVariant;
 }
 
 const ITEM_HEIGHT = 56;
@@ -40,6 +56,7 @@ export const DropDownSelector: React.FC<DropDownSelectorProps> = ({
   disabled = false,
   error = false,
   style,
+  heightVariant = DropDownHeight.MEDIUM,
 }) => {
   const [visible, setVisible] = useState(false);
   const selected = options.find(opt => opt.value === value);
@@ -110,7 +127,7 @@ export const DropDownSelector: React.FC<DropDownSelectorProps> = ({
                 offset: ITEM_HEIGHT * index,
                 index,
               })}
-              style={{maxHeight: 320}}
+              style={{maxHeight: heightVariants[heightVariant]}}
               renderItem={({item}) => (
                 <TouchableOpacity
                   style={styles.option}

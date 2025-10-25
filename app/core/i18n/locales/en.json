@@ -9,7 +9,8 @@
     "success": "Success",
     "create": "Create",
     "readMore": "Read More",
-    "selectAnOption": "Select an option"
+    "selectAnOption": "Select an option",
+    "go": "Go"
   },
   "configServer": {
     "title": "Server Configuration",
@@ -61,7 +62,12 @@
       "linkedProduct": "Linked a product",
       "createScraper": "Create Scraper",
       "scraperRules": "Scraper Rules",
-      "selectAnExistingProduct": "Select an existing product"
+      "selectAnExistingProduct": "Select an existing product",
+      "hideSelectors": "Hide Selectors",
+      "linkToListLabel": "Link product to list",
+      "linkToListPlaceholder": "Select a list",
+      "linkToCategoryLabel": "Link product to category",
+      "linkToCategoryPlaceholder": "Select a category"
     }
   },
   "scraperRules": {

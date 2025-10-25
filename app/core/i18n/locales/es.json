@@ -9,7 +9,8 @@
     "success": "Éxito",
     "create": "Crear",
     "readMore": "Leer más",
-    "selectAnOption": "Seleccionar una opción"
+    "selectAnOption": "Seleccionar una opción",
+    "go": "Ir"
   },
   "configServer": {
     "title": "Configuración del Servidor",
@@ -61,7 +62,12 @@
       "linkedProduct": "Producto vinculado",
       "createScraper": "Crear Scraper",
       "scraperRules": "Reglas del Scraper",
-      "selectAnExistingProduct": "Seleccionar un producto existente"
+      "selectAnExistingProduct": "Seleccionar un producto existente",
+      "hideSelectors": "Ocultar selectores",
+      "linkToListLabel": "Vincular producto a lista",
+      "linkToListPlaceholder": "Selecciona una lista",
+      "linkToCategoryLabel": "Vincular producto a categoría",
+      "linkToCategoryPlaceholder": "Selecciona una categoría"
     }
   },
   "scraperRules": {
