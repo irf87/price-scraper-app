@@ -171,7 +171,7 @@ const FormScraper = forwardRef<FormScraperRef, FormScraperProps>(
           <View style={styles.switchContainer}>
             <Switch value={hideSelectors} onValueChange={setHideSelectors} />
             <Text style={styles.switchLabel}>
-              {t('scrapedProducts.form.hide_selectors')}
+              {t('scrapedProducts.form.hideSelectors')}
             </Text>
           </View>
           <View style={hideSelectors ? styles.hidden : null}>
