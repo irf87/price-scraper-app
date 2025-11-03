@@ -5,6 +5,7 @@ export interface BaseScraper {
   urlToScrape: string;
   enable: boolean;
   gettingMode: 'FETCH' | 'RENDER';
+  referredCode?: string;
 }
 
 // Extended interface for price scraping

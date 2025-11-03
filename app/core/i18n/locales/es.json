@@ -10,7 +10,8 @@
     "create": "Crear",
     "readMore": "Leer más",
     "selectAnOption": "Seleccionar una opción",
-    "go": "Ir"
+    "go": "Ir",
+    "copy": "Copiar"
   },
   "configServer": {
     "title": "Configuración del Servidor",
@@ -49,7 +50,9 @@
     "scraperSettings": {
       "enabled": "Habilitado",
       "url": "URL",
-      "urlPlaceholder": "URL Scrapeada"
+      "urlPlaceholder": "URL Scrapeada",
+      "referredCode": "Código referido",
+      "referredCodePlaceholder": "Ingresa el código de referido"
     },
     "form": {
       "legend": "Por favor pegue o ingrese la URL de la página de comercio electrónico que desea scrapear, si la soportamos, el formulario se llenará automáticamente",

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, Clipboard} from 'react-native';
 import {TextInput, Switch, Text, Button, useTheme} from 'react-native-paper';
 import {useTranslation} from '@core/i18n';
 import {useForm, Controller} from 'react-hook-form';
@@ -12,6 +12,7 @@ import {
 interface Props {
   urlToScrape: string;
   enable: boolean;
+  referredCode?: string;
   onSubmit?: (data: ScraperSettingsFormData) => void;
   isLoading: boolean;
 }
@@ -19,6 +20,7 @@ interface Props {
 function ScraperSettingsForm({
   urlToScrape,
   enable: initialEnabled,
+  referredCode,
   onSubmit,
   isLoading,
 }: Props) {
@@ -28,12 +30,14 @@ function ScraperSettingsForm({
   const {
     control,
     handleSubmit,
+    getValues,
     formState: {errors},
   } = useForm<ScraperSettingsFormData>({
     resolver: yupResolver(scraperSettingsSchema),
     defaultValues: {
       url: urlToScrape || '',
       enabled: initialEnabled || false,
+      referredCode: referredCode || '',
     },
   });
 
@@ -70,6 +74,46 @@ function ScraperSettingsForm({
         {errors.url && (
           <Text style={{color: 'red', marginBottom: 16}}>
             {errors.url.message}
+          </Text>
+        )}
+
+        <Controller
+          control={control}
+          name="referredCode"
+          render={({field: {onChange, value}}) => (
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginBottom: 16,
+              }}>
+              <TextInput
+                label={t('scrapedProducts.scraperSettings.referredCode')}
+                placeholder={t(
+                  'scrapedProducts.scraperSettings.referredCodePlaceholder',
+                )}
+                value={value}
+                onChangeText={onChange}
+                mode="outlined"
+                style={{flex: 1, marginRight: 8}}
+                error={!!errors.referredCode}
+              />
+              <Button
+                mode="outlined"
+                onPress={() => {
+                  const code = getValues('referredCode');
+                  if (code) {
+                    Clipboard.setString(code);
+                  }
+                }}>
+                {t('common.copy')}
+              </Button>
+            </View>
+          )}
+        />
+        {errors.referredCode && (
+          <Text style={{color: 'red', marginBottom: 16}}>
+            {errors.referredCode.message}
           </Text>
         )}
 

@@ -54,6 +54,7 @@ function ProductDetailTabNavigation({route}: Props) {
           scrapedId: productParams.productScrapedId,
           enable: productParams.enable,
           urlToScrape: productParams.urlToScrape,
+          referredCode: productParams?.referredCode,
         }}
         options={{
           title: t('scrapedProducts.screens.settings'),

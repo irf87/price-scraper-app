@@ -10,7 +10,8 @@
     "create": "Create",
     "readMore": "Read More",
     "selectAnOption": "Select an option",
-    "go": "Go"
+    "go": "Go",
+    "copy": "Copy"
   },
   "configServer": {
     "title": "Server Configuration",
@@ -49,7 +50,9 @@
     "scraperSettings": {
       "enabled": "Enabled",
       "url": "URL",
-      "urlPlaceholder": "URL Scrapped"
+      "urlPlaceholder": "URL Scrapped",
+      "referredCode": "Referred Code",
+      "referredCodePlaceholder": "Enter the referred code"
     },
     "form": {
       "legend": "Please paste or put the URL of e-commerce page that you want to scrape, if we support it, the form bellow will fill automatically",

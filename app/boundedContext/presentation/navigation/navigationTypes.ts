@@ -26,6 +26,7 @@ export type ProductDetailStackPramList = {
     scrapedId: number;
     enable: boolean;
     urlToScrape: string;
+    referredCode?: string;
   };
 };
 

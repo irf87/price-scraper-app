@@ -19,7 +19,7 @@ interface Props
   extends StackScreenProductDetailProps<'ScrapedProductSettings'> {}
 
 function ProductScrapperSettings({route}: Props) {
-  const {scrapedId, enable, urlToScrape} = route.params;
+  const {scrapedId, enable, urlToScrape, referredCode} = route.params;
   const {scraperRules, scraperRulesState} = useScraperRule(scrapedId);
   const {
     createScraperRule,
@@ -35,6 +35,7 @@ function ProductScrapperSettings({route}: Props) {
       id: scrapedId,
       urlToScrape: data.url,
       enable: data.enabled,
+      referredCode: data.referredCode,
     });
   };
 
@@ -81,6 +82,7 @@ function ProductScrapperSettings({route}: Props) {
         <ScraperSettings
           enable={enable}
           urlToScrape={urlToScrape}
+          referredCode={referredCode}
           onSubmit={handleScraperSettingsSubmit}
           isLoading={updateScraperState.isLoading}
         />
