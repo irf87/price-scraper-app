@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/irf87/prices-scraper/compare/v1.2.0...v1.3.0) (2025-11-03)
+
+
+### Features
+
+* adds referred code to scraper settings ([b585360](https://github.com/irf87/prices-scraper/commit/b5853607fef788e361266080166c90005738bc74))
+
+
+### Bug Fixes
+
+* corrects translation key and adds scrollview ([bbc2db7](https://github.com/irf87/prices-scraper/commit/bbc2db702a9ce835926767513bb5eb4062d467d5))
+
 ## [1.2.0](https://github.com/irf87/prices-scraper/compare/v1.1.1...v1.2.0) (2025-10-25)
 
 
